@@ -1,35 +1,32 @@
-import React, { useCallback, useEffect, useState } from "react";
-import "error-polyfill";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "@near-wallet-selector/modal-ui/styles.css";
-import "react-bootstrap-typeahead/css/Typeahead.css";
-import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
-import "bootstrap/dist/js/bootstrap.bundle";
-import "App.scss";
-import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
-import EditorPage from "./pages/EditorPage";
-import ViewPage from "./pages/ViewPage";
+import { sanitizeUrl } from "@braintree/sanitize-url";
 import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupNearWallet } from "@near-wallet-selector/near-wallet";
-import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
-import { setupSender } from "@near-wallet-selector/sender";
 import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
-import { setupNeth } from "@near-wallet-selector/neth";
 import { setupModal } from "@near-wallet-selector/modal-ui";
-import EmbedPage from "./pages/EmbedPage";
-import { sanitizeUrl } from "@braintree/sanitize-url";
+import "@near-wallet-selector/modal-ui/styles.css";
+import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
+import { setupNearWallet } from "@near-wallet-selector/near-wallet";
+import { setupNeth } from "@near-wallet-selector/neth";
+import { setupSender } from "@near-wallet-selector/sender";
+import "App.scss";
+import Big from "big.js";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import "error-polyfill";
 import {
+  EthersProviderContext,
   useAccount,
   useInitNear,
   useNear,
   utils,
-  EthersProviderContext,
 } from "near-social-vm";
-import Big from "big.js";
-import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
-import { NetworkId, Widgets } from "./data/widgets";
+import React, { useCallback, useEffect, useState } from "react";
+import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
+import "react-bootstrap-typeahead/css/Typeahead.css";
+import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
 import { useEthersProviderContext } from "./data/web3";
+import { NetworkId, Widgets } from "./data/widgets";
+import ViewPage from "./pages/ViewPage";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -170,13 +167,6 @@ function App(props) {
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
-            <Route path={"/embed/:widgetSrc*"}>
-              <EmbedPage {...passProps} />
-            </Route>
-            <Route path={"/edit/:widgetSrc*"}>
-              {/* <NavigationWrapper {...passProps} /> */}
-              <EditorPage {...passProps} />
-            </Route>
             <Route path={"/:widgetSrc*"}>
               {/* <NavigationWrapper {...passProps} /> */}
               <ViewPage {...passProps} />
