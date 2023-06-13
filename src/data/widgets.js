@@ -19,7 +19,7 @@ const TestnetWidgets = {
 
 const MainnetWidgets = {
   image: "mob.near/widget/Image",
-  default: "every.near/widget/browser",
+  default: "every.near/thing/core",
   thing: "every.near/widget/every.thing.view",
   create: "efiz.near/widget/creator",
   viewSource: "mob.near/widget/WidgetSource",

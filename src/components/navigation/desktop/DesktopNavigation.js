@@ -74,7 +74,7 @@ export function DesktopNavigation(props) {
             onSubmit={(e) => {
               e.preventDefault();
               history.push(
-                `/${props.widgets?.thing}?path=${e.target[0].value}`
+                `/${e.target[0].value}`
               );
             }}
             className="search"
