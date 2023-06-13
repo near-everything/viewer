@@ -11,6 +11,7 @@ import { Widget } from "near-social-vm";
 import { NavigationButton } from "../NavigationButton";
 import { SignInButton } from "../SignInButton";
 import { Link } from "react-router-dom";
+import { useNearContext } from "../../../data/near";
 
 const StyledMenu = styled.div`
   position: fixed;
@@ -153,30 +154,40 @@ const StyledMenu = styled.div`
   }
 `;
 
-export function Menu(props) {
+export function Menu() {
+  const nearContext = useNearContext();
   return (
     <StyledMenu className={props.showMenu ? "show" : ""}>
       <div className="left-side">
+      <p>{JSON.stringify(nearContext)}</p>
         {props.signedIn ? (
-          <Link
-            to={`/${props.widgets.profilePage}?accountId=${props.signedAccountId}`}
-            className="profile-link"
-          >
-            <Widget
-              src={props.widgets.profileImage}
-              props={{
-                accountId: props.signedAccountId,
-                className: "d-inline-block",
-                style: { width: "56px", height: "56px" },
-              }}
-            />
-            {props.widgets.profileName && (
-              <div className="profile-name">
-                <Widget src={props.widgets.profileName} />
-              </div>
-            )}
-            <div className="profile-username">{props.signedAccountId}</div>
-          </Link>
+           <button
+             className="dropdown-item"
+             type="button"
+             onClick={() => props.logOut()}
+           >
+             <LogOut />
+             Sign Out
+           </button>
+          // <Link
+          //   to={`/${props.widgets.profilePage}?accountId=${props.signedAccountId}`}
+          //   className="profile-link"
+          // >
+          //   <Widget
+          //     src={props.widgets.profileImage}
+          //     props={{
+          //       accountId: props.signedAccountId,
+          //       className: "d-inline-block",
+          //       style: { width: "56px", height: "56px" },
+          //     }}
+          //   />
+          //   {props.widgets.profileName && (
+          //     <div className="profile-name">
+          //       <Widget src={props.widgets.profileName} />
+          //     </div>
+          //   )}
+          //   <div className="profile-username">{props.signedAccountId}</div>
+          // </Link>
         ) : (
           <SignInButton
             onSignIn={() => {
@@ -192,59 +203,6 @@ export function Menu(props) {
               Home
             </NavigationButton>
           </li>
-          <li>
-            <NavigationButton
-              disabled={!props.signedIn}
-              route={`/${props.widgets.profilePage}?accountId=${props.signedAccountId}`}
-            >
-              <UserCircle />
-              Profile
-            </NavigationButton>
-          </li>
-          <li>
-            <NavigationButton route="/edit">
-              <Code />
-              Editor
-            </NavigationButton>
-          </li>
-          <li>
-            <NavigationButton href={props.documentationHref}>
-              <Book />
-              Documentation
-            </NavigationButton>
-          </li>
-        </ul>
-        <ul className="bottom-links">
-          {props.widgetSrc?.edit && (
-            <li>
-              <Link to={`/edit/${props.widgetSrc?.edit}`}>
-                <Fork />
-                {props.widgetSrc.edit.startsWith(
-                  `${props.signedAccountId}/widget/`
-                )
-                  ? "Edit widget"
-                  : "Fork widget"}
-              </Link>
-            </li>
-          )}
-          {props.widgetSrc?.view && (
-            <li>
-              <Link
-                to={`/${props.widgets.viewSource}?src=${props.widgetSrc?.view}`}
-              >
-                <Code />
-                View source
-              </Link>
-            </li>
-          )}
-          {props.signedIn && (
-            <li>
-              <button onClick={() => props.logOut()} className="log-out-button">
-                <LogOut />
-                Sign Out
-              </button>
-            </li>
-          )}
         </ul>
         <button className="close-button" onClick={props.onCloseMenu}>
           <Close />

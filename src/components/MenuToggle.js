@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import useScrollBlock from ".././../../hooks/useScrollBlock";
-import { Menu } from "./Menu";
-import { Navigation } from "./Navigation";
+import React, { useState } from "react";
+import { Menu } from "./navigation/mobile/Menu";
+import useScrollBlock from "../hooks/useScrollBlock";
 
-export function MobileNavigation(props) {
+export function MenuToggle(props) {
   const [showMenu, setShowMenu] = useState(false);
   const [blockScroll, allowScroll] = useScrollBlock();
-  
+
   return (
     <>
-      <div
+      <button
         onClick={() => {
           setShowMenu(true);
           blockScroll();
@@ -25,7 +23,7 @@ export function MobileNavigation(props) {
         >
           <circle cx="12" cy="12" r="8" />
         </svg>
-      </div>
+      </button>
       <Menu
         {...props}
         showMenu={showMenu}
