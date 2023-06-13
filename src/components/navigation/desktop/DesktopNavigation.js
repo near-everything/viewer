@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { CreateWidget } from "../CreateWidget";
 import { NotificationWidget } from "../NotificationWidget";
 import { SignInButton } from "../SignInButton";
 import { UserDropdown } from "./UserDropdown";
@@ -26,7 +27,7 @@ const StyledNavigation = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+
     .user-section {
       display: flex;
       align-items: center;
@@ -77,14 +78,16 @@ export function DesktopNavigation(props) {
               );
             }}
             className="search"
-            style={{ display: 'flex', alignItems: 'stretch' }}
+            style={{ display: "flex", alignItems: "stretch" }}
           >
             <input
               placeholder="path"
               style={{ fontSize: "2em", width: "100%" }}
               onFocus={() => {}}
             />
-            <button type="submit" style={{ height: "auto"}}><span>&#10140;</span></button>
+            <button type="submit" style={{ height: "auto" }}>
+              <span>&#10140;</span>
+            </button>
           </form>
         </div>
         {/*
@@ -103,6 +106,9 @@ export function DesktopNavigation(props) {
           )}
           {props.signedIn && (
             <>
+              <Link to={props.widgets?.create} style={{ textDecoration: "none", color: "inherit"}}>
+                <CreateWidget createWidgetSrc={props.widgets.createButton} />
+              </Link>
               <NotificationWidget
                 notificationButtonSrc={props.widgets.notificationButton}
               />
