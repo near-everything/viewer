@@ -1,10 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { MobileMenuButton } from "./MobileMenuButton";
-import { NearSocialLogo } from "../../icons/NearSocialLogo";
+import styled from "styled-components";
 import { NotificationWidget } from "../NotificationWidget";
 import { SignInButton } from "../SignInButton";
+import { MobileMenuButton } from "./MobileMenuButton";
 
 const StyledNavigation = styled.div`
   position: sticky;
@@ -19,16 +18,16 @@ const StyledNavigation = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  .logo-link {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-  }
+  // .logo-link {
+  //   position: absolute;
+  //   left: 0;
+  //   right: 0;
+  //   margin: auto;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   width: fit-content;
+  // }
 
   .nav-notification-widget {
     margin: 0;
@@ -49,7 +48,15 @@ export function Navigation(props) {
         currentPage={props.currentPage}
       />
       <Link to="/" className="logo-link">
-        <NearSocialLogo />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="black"
+          width="40px"
+          height="40px"
+        >
+          <circle cx="12" cy="12" r="8" />
+        </svg>
       </Link>
       {props.signedIn ? (
         <NotificationWidget

@@ -16,12 +16,24 @@ const StyledDropdown = styled.div`
   }
   .dropdown-toggle {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    text-align: left;
-    background-color: var(--slate-dark-5);
-    border-radius: 50px;
-    outline: none;
-    border: 0;
+    font-weight: var(--font-weight-medium);
+    text-transform: lowercase !important;
+    // display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    border: 2px outset #333;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    color: #333;
+    // display: flex;
+    // align-items: center;
+    // text-align: left;
+    // // background-color: rgba(46, 51, 56, 0.8); /* Adjust the alpha value (0.8) to control transparency */
+    // border-radius: 50px;
+    // outline: none;
+    // border: 0;
 
     &:after {
       margin: 0 15px;
@@ -44,7 +56,7 @@ const StyledDropdown = styled.div`
       }
 
       .profile-name {
-        color: var(--slate-dark-12);
+        color: black;
       }
       .profile-username {
         color: var(--slate-dark-11);
@@ -53,7 +65,7 @@ const StyledDropdown = styled.div`
   }
 
   ul {
-    background-color: var(--slate-dark-5);
+    // background-color: rgba(46, 51, 56, 0.8); /* Adjust the alpha value (0.8) to control transparency */
     width: 100%;
 
     li {
@@ -62,10 +74,19 @@ const StyledDropdown = styled.div`
 
     button,
     a {
-      color: var(--slate-dark-11);
-      display: flex;
-      align-items: center;
-      border-radius: 8px;
+        font-weight: var(--font-weight-medium);
+        text-transform: lowercase !important;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        border: 2px outset #333;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        color: #333;
+      // color: var(--slate-dark-11);
+      // display: flex;
+      // align-items: center;
+      // border-radius: 8px;
       padding: 12px;
 
       :hover,
@@ -91,6 +112,7 @@ const StyledDropdown = styled.div`
     }
   }
 `;
+
 
 export function UserDropdown(props) {
   const near = useNear();

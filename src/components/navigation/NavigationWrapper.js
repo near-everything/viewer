@@ -14,8 +14,9 @@ export function NavigationWrapper(props) {
   }, []);
   return (
     <>
-      {matches && <DesktopNavigation {...props} />}
-      {!matches && <MobileNavigation {...props} />}
+      {/* {matches && <DesktopNavigation {...props} />} */}
+      {/* {!matches && <MobileNavigation {...props} />} */}
+      <DesktopNavigation {...props} />
     </>
   );
 }

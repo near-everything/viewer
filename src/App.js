@@ -27,6 +27,7 @@ import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
+import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -168,7 +169,7 @@ function App(props) {
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path={"/:widgetSrc*"}>
-              {/* <NavigationWrapper {...passProps} /> */}
+              <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />
             </Route>
           </Switch>

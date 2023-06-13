@@ -1,13 +1,9 @@
 import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Logotype } from "../Logotype";
-import { NavigationButton } from "../NavigationButton";
-import { ArrowUpRight } from "../../icons/ArrowUpRight";
+import { NotificationWidget } from "../NotificationWidget";
 import { SignInButton } from "../SignInButton";
 import { UserDropdown } from "./UserDropdown";
-import { DevActionsDropdown } from "./DevActionsDropdown";
-import { NotificationWidget } from "../NotificationWidget";
 
 const StyledNavigation = styled.div`
   position: sticky;
@@ -15,7 +11,7 @@ const StyledNavigation = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-  background-color: var(--slate-dark-1);
+  // background-color: var(--slate-dark-1);
   z-index: 1000;
   padding: 12px 0;
 
@@ -29,18 +25,8 @@ const StyledNavigation = styled.div`
   .container {
     display: flex;
     align-items: center;
-
-    .navigation-section {
-      margin-left: 50px;
-      display: flex;
-
-      > div {
-        > a {
-          margin-right: 20px;
-        }
-      }
-    }
-
+    justify-content: space-between;
+    
     .user-section {
       display: flex;
       align-items: center;
@@ -58,15 +44,50 @@ const StyledNavigation = styled.div`
       margin-left: 4px;
     }
   }
+
+  .search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 export function DesktopNavigation(props) {
+  const history = useHistory();
   return (
     <StyledNavigation>
       <div className="container">
         <Link to="/" className="logo-link">
-          <Logotype />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="black"
+            width="64px"
+            height="64px"
+          >
+            <circle cx="12" cy="12" r="8" />
+          </svg>
         </Link>
+        <div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              history.push(
+                `/${props.widgets?.thing}?path=${e.target[0].value}`
+              );
+            }}
+            className="search"
+            style={{ display: 'flex', alignItems: 'stretch' }}
+          >
+            <input
+              placeholder="path"
+              style={{ fontSize: "2em", width: "100%" }}
+              onFocus={() => {}}
+            />
+            <button type="submit" style={{ height: "auto"}}><span>&#10140;</span></button>
+          </form>
+        </div>
+        {/*
         <div className="navigation-section">
           <NavigationButton route="/">Home</NavigationButton>
           <NavigationButton route="/edit">Editor</NavigationButton>
@@ -74,9 +95,9 @@ export function DesktopNavigation(props) {
             Docs
             <ArrowUpRight />
           </NavigationButton>
-        </div>
+        </div> */}
         <div className="user-section">
-          <DevActionsDropdown {...props} />
+          {/* <DevActionsDropdown {...props} /> */}
           {!props.signedIn && (
             <SignInButton onSignIn={() => props.requestSignIn()} />
           )}
