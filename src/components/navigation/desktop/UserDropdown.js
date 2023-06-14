@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Widget, useNear, useAccount } from "near-social-vm";
 import styled from "styled-components";
 import { User } from "../../icons/User";
@@ -8,6 +8,9 @@ import { NavLink } from "react-router-dom";
 import PretendModal from "../PretendModal";
 import { Pretend } from "../../icons/Pretend";
 import { StopPretending } from "../../icons/StopPretending";
+import { Link } from "react-router-dom";
+import { CreateWidget } from "../CreateWidget";
+import { NotificationWidget } from "../NotificationWidget";
 
 const StyledDropdown = styled.div`
   button,
@@ -34,6 +37,7 @@ const StyledDropdown = styled.div`
     // border-radius: 50px;
     // outline: none;
     // border: 0;
+    height: 54px;
 
     &:after {
       margin: 0 15px;
@@ -74,15 +78,15 @@ const StyledDropdown = styled.div`
 
     button,
     a {
-        font-weight: var(--font-weight-medium);
-        text-transform: lowercase !important;
-        display: inline-block;
-        text-align: center;
-        text-decoration: none;
-        border: 2px outset #333;
-        background-color: #f5f5f5;
-        cursor: pointer;
-        color: #333;
+      font-weight: var(--font-weight-medium);
+      text-transform: lowercase !important;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      border: 2px outset #333;
+      background-color: #f5f5f5;
+      cursor: pointer;
+      color: #333;
       // color: var(--slate-dark-11);
       // display: flex;
       // align-items: center;
@@ -113,10 +117,18 @@ const StyledDropdown = styled.div`
   }
 `;
 
-
 export function UserDropdown(props) {
   const near = useNear();
   const account = useAccount();
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 992px)").matches
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia("(min-width: 992px)")
+      .addEventListener("change", (e) => setMatches(e.matches));
+  }, []);
 
   const withdrawStorage = useCallback(async () => {
     await near.contract.storage_withdraw({}, undefined, "1");
@@ -142,14 +154,18 @@ export function UserDropdown(props) {
               style: { width: "40px", height: "40px" },
             }}
           />
-          <div className="profile-info">
-            {props.widgets.profileName && (
-              <div className="profile-name">
-                <Widget src={props.widgets.profileName} />
+          {matches && (
+            <>
+              <div className="profile-info">
+                {props.widgets.profileName && (
+                  <div className="profile-name">
+                    <Widget src={props.widgets.profileName} />
+                  </div>
+                )}
+                <div className="profile-username">{account.accountId}</div>
               </div>
-            )}
-            <div className="profile-username">{account.accountId}</div>
-          </div>
+            </>
+          )}
         </button>
         <ul
           className="dropdown-menu"

@@ -45,7 +45,7 @@ const StyledNotificationWidget = styled.div`
 
 export function NotificationWidget({ notificationButtonSrc }) {
   return (
-    <StyledNotificationWidget className="nav-notification-widget">
+    <StyledNotificationWidget className="nav-notification-btn">
       <Widget src={notificationButtonSrc} />
     </StyledNotificationWidget>
   );

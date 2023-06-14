@@ -45,7 +45,7 @@ const StyledCreateWidget = styled.div`
 
 export function CreateWidget({ createButtonSrc }) {
   return (
-    <StyledCreateWidget className="nav-create-widget">
+    <StyledCreateWidget className="nav-create-btn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

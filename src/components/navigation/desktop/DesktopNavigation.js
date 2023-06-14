@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { CreateWidget } from "../CreateWidget";
@@ -55,6 +55,16 @@ const StyledNavigation = styled.div`
 
 export function DesktopNavigation(props) {
   const history = useHistory();
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 992px)").matches
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia("(min-width: 992px)")
+      .addEventListener("change", (e) => setMatches(e.matches));
+  }, []);
+
   return (
     <StyledNavigation>
       <div className="container">
@@ -73,9 +83,7 @@ export function DesktopNavigation(props) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              history.push(
-                `/${e.target[0].value}`
-              );
+              history.push(`/${e.target[0].value}`);
             }}
             className="search"
             style={{ display: "flex", alignItems: "stretch" }}
@@ -106,12 +114,22 @@ export function DesktopNavigation(props) {
           )}
           {props.signedIn && (
             <>
-              <Link to={props.widgets?.create} style={{ textDecoration: "none", color: "inherit"}}>
-                <CreateWidget createWidgetSrc={props.widgets.createButton} />
-              </Link>
-              <NotificationWidget
-                notificationButtonSrc={props.widgets.notificationButton}
-              />
+              {matches && (
+                <>
+                  {" "}
+                  <Link
+                    to={props.widgets?.create}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <CreateWidget
+                      createWidgetSrc={props.widgets.createButton}
+                    />
+                  </Link>
+                  <NotificationWidget
+                    notificationButtonSrc={props.widgets.notificationButton}
+                  />
+                </>
+              )}
               <UserDropdown {...props} />
             </>
           )}
