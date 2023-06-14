@@ -118,7 +118,7 @@ export function DesktopNavigation(props) {
                 <>
                   {" "}
                   <Link
-                    to={props.widgets?.create}
+                    to={`/${props.widgets?.create}`}
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
                     <CreateWidget
