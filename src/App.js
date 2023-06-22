@@ -79,6 +79,9 @@ function App(props) {
             }
             return <Link {...props} />;
           },
+          Scanner: (props) => {
+            return <Scanner {...props} />;
+          }
         },
       });
   }, [initNear]);
