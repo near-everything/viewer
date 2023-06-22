@@ -28,6 +28,7 @@ import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
+import { Scanner } from "./components/scanner";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -168,6 +169,10 @@ function App(props) {
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
+          <Route path={"/scanner"}>
+            <NavigationWrapper {...passProps} />
+            <Scanner />
+          </Route>
             <Route path={"/:widgetSrc*"}>
               <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />

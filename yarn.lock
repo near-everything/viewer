@@ -1905,6 +1905,17 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
+"@keypom/core@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@keypom/core/-/core-1.0.2.tgz#65bffdeb753baea14deb9a204582377abe90793b"
+  integrity sha512-FFmOwbZCj3g8IHEdnhbTMHIp53rKjcorOlyoIKk0HaoC8rB/+Cl/BP6It1HP6DxGHorccs7yB4RXBnJei60hAg==
+  dependencies:
+    "@near-wallet-selector/core" "^8.0.3"
+    bn.js "^5.2.1"
+    borsh "^0.7.0"
+    near-seed-phrase "^0.2.0"
+    util "^0.12.5"
+
 "@ledgerhq/connect-kit-loader@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@ledgerhq/connect-kit-loader/-/connect-kit-loader-1.0.2.tgz#8554e16943f86cc2a5f6348a14dfe6e5bd0c572a"
@@ -2148,6 +2159,13 @@
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/@near-wallet-selector/core/-/core-8.1.0.tgz#9886df45272cdee8466c9b751eae4d55b104e6b1"
   integrity sha512-RqVAzVZchYiisCSSBjZjcQr+aZKpmi0tK27IiMrYoTAHUStTEN4DPOiIm4VuRXZlWI0Ciq74sIAjrsj34hlA/Q==
+  dependencies:
+    rxjs "^7.8.1"
+
+"@near-wallet-selector/core@^8.0.3":
+  version "8.1.4"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/core/-/core-8.1.4.tgz#b3292447470ac4509edf43ac9f3bea48b39d2f28"
+  integrity sha512-xTrYymRL8+tAn5XjFLmtX/q3qz77LxfGTEGIEr1F74SPMes18hCWT5nU+GJ1lvz6UxILu9ZSxNxvXFr2H6hw8w==
   dependencies:
     rxjs "^7.8.1"
 
@@ -4047,6 +4065,20 @@
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+
+"@zxing/library@^0.19.2":
+  version "0.19.3"
+  resolved "https://registry.yarnpkg.com/@zxing/library/-/library-0.19.3.tgz#8f8fb119edac43c109e7d74ae240daba04b7f44f"
+  integrity sha512-RUv5svewpDoD0ymXleOP8yVTO5BLkR0zn5coGC/Vs1671u0OBJ4xdtR8WVWf08OcvrieEMHdSfQY3ZKtqII/hg==
+  dependencies:
+    ts-custom-error "^3.2.1"
+  optionalDependencies:
+    "@zxing/text-encoding" "~0.9.0"
+
+"@zxing/text-encoding@~0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@zxing/text-encoding/-/text-encoding-0.9.0.tgz#fb50ffabc6c7c66a0c96b4c03e3d9be74864b70b"
+  integrity sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==
 
 abbrev@1:
   version "1.1.1"
@@ -9870,6 +9902,13 @@ react-uuid@^1.0.2:
   resolved "https://registry.yarnpkg.com/react-uuid/-/react-uuid-1.0.3.tgz#77418d1ebd29b4c4ab8e457272887d489aa87836"
   integrity sha512-cw6Rr6JphvsdK4xHPGBjKD7XSH6Y6i4NJFWUO3OiDd7NLcR8xVeQ3CfeKm7h+S5tpZZVfbH3Tkrz/ydsIiV8pA==
 
+react-zxing@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-zxing/-/react-zxing-1.1.4.tgz#cef9b1f0ac1365ccbd4999da207166eac9a0d605"
+  integrity sha512-2BRjqpiNnVNIefxgp/GK+Pj6paNodh2nnky/fFqnMRrZmp7ExEl7vcwqJ4BKOjPZKwD3oWG+INX1Rl18rHQjsw==
+  dependencies:
+    "@zxing/library" "^0.19.2"
+
 react@18.2.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
@@ -11008,6 +11047,11 @@ trough@^2.0.0:
   dependencies:
     glob "^7.1.2"
 
+ts-custom-error@^3.2.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/ts-custom-error/-/ts-custom-error-3.3.1.tgz#8bd3c8fc6b8dc8e1cb329267c45200f1e17a65d1"
+  integrity sha512-5OX1tzOjxWEgsr/YEUWSuPrQ00deKLh6D7OTWcvNHm12/7QPyRh8SYpyWvA4IZv8H/+GQWQEh/kwo95Q9OVW1A==
+
 ts-node@^10.9.1:
   version "10.9.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
@@ -11282,7 +11326,7 @@ util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
-util@^0.12.0:
+util@^0.12.0, util@^0.12.5:
   version "0.12.5"
   resolved "https://registry.yarnpkg.com/util/-/util-0.12.5.tgz#5f17a6059b73db61a875668781a1c2b136bd6fbc"
   integrity sha512-kZf/K6hEIrWHI6XqOFUiiMa+79wE/D8Q+NCNAWclkyg3b4d2k7s0QGepNjiABc+aR3N1PAyHL7p6UcLY6LmrnA==
