@@ -10,6 +10,28 @@ const Container = styled.div`
   height: 100%;
 `;
 
+const Button = styled.button`
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  flex-shrink: 0;
+  &:active {
+    transform: scale(0.95);
+    background-color: #ddd;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap; 
+`;
+
 export const Camera = (props) => {
   const webcamRef = useRef(null);
   const windowSize = useState([window.innerWidth, window.innerHeight]);
@@ -69,31 +91,14 @@ export const Camera = (props) => {
           mirrored={props.facingMode === FACING_MODE_USER ? true : false}
         />
       </div>
-      <div style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
-        <button 
-          onClick={capture} 
-          style={{
-            backgroundColor: 'white', 
-            padding: '10px', 
-            borderRadius: '5px', 
-            border: 'none',
-            marginRight: '10px',
-          }}
-        >
+      <ButtonContainer>
+        <Button onClick={capture}>
           Capture photo
-        </button>
-        <button 
-          onClick={switchCamera} 
-          style={{
-            backgroundColor: 'white', 
-            padding: '10px', 
-            borderRadius: '5px', 
-            border: 'none',
-          }}
-        >
+        </Button>
+        <Button onClick={switchCamera}>
           Switch Camera
-        </button>
-      </div>
+        </Button>
+      </ButtonContainer>
     </Container>
   );
 };
