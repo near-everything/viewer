@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import styled from "styled-components";
 
@@ -17,6 +17,16 @@ export const Camera = (props) => {
   const FACING_MODE_USER = "user";
   const FACING_MODE_ENVIRONMENT = "environment";
 
+  const [facingMode, setFacingMode] = useState(props.facingMode || FACING_MODE_ENVIRONMENT);
+
+  const switchCamera = useCallback(() => {
+    setFacingMode(prevState =>
+      prevState === FACING_MODE_USER
+        ? FACING_MODE_ENVIRONMENT
+        : FACING_MODE_USER
+    );
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
@@ -30,7 +40,7 @@ export const Camera = (props) => {
   }, []);
 
   const videoConstraints = {
-    facingMode: props.facingMode || FACING_MODE_ENVIRONMENT,
+    facingMode: facingMode,
     width: windowSize[0],
     height: windowSize[1],
   };
@@ -56,31 +66,34 @@ export const Camera = (props) => {
             bottom: '0',
             height: '100%'
           }}
-          // style={{
-          //   position: "absolute",
-          //   right: "0",
-          //   bottom: "0",
-          //   minWidth: "100%",
-          //   minHeight: "100%",
-          // }}
           mirrored={props.facingMode === FACING_MODE_USER ? true : false}
         />
       </div>
-      <button 
-        onClick={capture} 
-        style={{
-          position: 'absolute', 
-          bottom: '10px', 
-          left: '50%', 
-          transform: 'translateX(-50%)', 
-          backgroundColor: 'white', 
-          padding: '10px', 
-          borderRadius: '5px', 
-          border: 'none',
-        }}
-      >
-        Capture photo
-      </button>
+      <div style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
+        <button 
+          onClick={capture} 
+          style={{
+            backgroundColor: 'white', 
+            padding: '10px', 
+            borderRadius: '5px', 
+            border: 'none',
+            marginRight: '10px',
+          }}
+        >
+          Capture photo
+        </button>
+        <button 
+          onClick={switchCamera} 
+          style={{
+            backgroundColor: 'white', 
+            padding: '10px', 
+            borderRadius: '5px', 
+            border: 'none',
+          }}
+        >
+          Switch Camera
+        </button>
+      </div>
     </Container>
   );
 };
