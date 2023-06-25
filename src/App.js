@@ -24,11 +24,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
+import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
+import { Scanner } from "./components/scanner";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
-import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
-import { Scanner } from "./components/scanner";
+import { Camera } from "./components/camera";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -81,7 +82,10 @@ function App(props) {
           },
           Scanner: (props) => {
             return <Scanner {...props} />;
-          }
+          },
+          Camera: (props) => {
+            return <Camera {...props} />;
+          },
         },
       });
   }, [initNear]);
@@ -172,10 +176,10 @@ function App(props) {
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
-          <Route path={"/scanner"}>
-            <NavigationWrapper {...passProps} />
-            <Scanner />
-          </Route>
+            <Route path={"/scanner"}>
+              <NavigationWrapper {...passProps} />
+              <Scanner />
+            </Route>
             <Route path={"/:widgetSrc*"}>
               <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />
