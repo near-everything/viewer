@@ -42,7 +42,7 @@ export default function ViewPage(props) {
             paddingTop: "var(--body-top-padding)",
           }}
         >
-          <Widget key={src} src={"efiz.near/widget/Every.Thing.View"} props={{ path: src, ...widgetProps}} />
+          <Widget key={src} src={props.widgets.thing} props={{ path: src, ...widgetProps}} />
         </div>
       </div>
     </div>
