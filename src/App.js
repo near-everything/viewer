@@ -8,6 +8,8 @@ import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 import { setupNearWallet } from "@near-wallet-selector/near-wallet";
 import { setupNeth } from "@near-wallet-selector/neth";
 import { setupSender } from "@near-wallet-selector/sender";
+// import { Tldraw } from "@tldraw/tldraw";
+import '@tldraw/tldraw/tldraw.css'
 import "App.scss";
 import Big from "big.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -24,12 +26,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
+import { Camera } from "./components/camera";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { Scanner } from "./components/scanner";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
-import { Camera } from "./components/camera";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -86,6 +88,9 @@ function App(props) {
           Camera: (props) => {
             return <Camera {...props} />;
           },
+          // Tldraw: (props) => {
+          //   return <Tldraw {...props} />;
+          // },
         },
       });
   }, [initNear]);
