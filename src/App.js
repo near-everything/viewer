@@ -35,6 +35,8 @@ import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
+import { Camera } from "./components/camera";
+import Plate from "./components/Plate";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -91,9 +93,6 @@ function App(props) {
           },
           Camera: (props) => {
             return <Camera {...props} />;
-          },
-          MonacoEditor: (props) => {
-            return <MonacoEditor {...props} />;
           },
         },
       });

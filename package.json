@@ -15,6 +15,8 @@
     "@near-wallet-selector/near-wallet": "^8.1.0",
     "@near-wallet-selector/neth": "^8.1.0",
     "@near-wallet-selector/sender": "^8.1.0",
+    "@udecode/plate": "^21.4.3",
+    "@udecode/plate-test-utils": "^13.4.0",
     "@web3-onboard/core": "^2.16.2",
     "@web3-onboard/injected-wallets": "^2.8.4",
     "@web3-onboard/ledger": "^2.4.4",
@@ -38,7 +40,11 @@
     "react-webcam": "^7.1.1",
     "react-zxing": "^1.1.4",
     "styled-components": "^5.3.6",
-    "zustand": "^4.4.0"
+    "zustand": "^4.4.0",
+    "slate": "^0.94.1",
+    "slate-history": "^0.93.0",
+    "slate-hyperscript": "^0.77.0",
+    "slate-react": "^0.97.1"
   },
   "scripts": {
     "serve": "webpack serve",
