@@ -1,44 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { Navigation } from "./Navigation";
-import { Menu } from "./Menu";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 import useScrollBlock from ".././../../hooks/useScrollBlock";
+import { Menu } from "./Menu";
+import { Widget } from "near-social-vm";
+
+const Header = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+`;
 
 export function MobileNavigation(props) {
   const [showMenu, setShowMenu] = useState(false);
-  const [currentPage, setCurrentPage] = useState("");
   const location = useLocation();
   const [blockScroll, allowScroll] = useScrollBlock();
 
   useEffect(() => {
     setShowMenu(false);
-    getCurrentPage();
     allowScroll();
   }, [location.pathname]);
 
-  const getCurrentPage = () => {
-    switch (location.pathname) {
-      case "/":
-        return setCurrentPage("Home");
-      case `/${props.widgets.profilePage}`:
-        return setCurrentPage("Profile");
-      case "/edit":
-        return setCurrentPage("Create");
-      default:
-        return setCurrentPage("");
-    }
-  };
-
   return (
     <>
-      <Navigation
-        {...props}
-        currentPage={currentPage}
-        onClickShowMenu={() => {
-          setShowMenu(true);
-          blockScroll();
-        }}
-      />
+      <Header>
+        <Widget
+          src="efiz.testnet/widget/every.app.header.mobile"
+          props={{
+            ...props,
+            onClickShowMenu: () => {
+              setShowMenu(true);
+              blockScroll();
+            },
+          }}
+        />
+      </Header>
       <Menu
         {...props}
         showMenu={showMenu}

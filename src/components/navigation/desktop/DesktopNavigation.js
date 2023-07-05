@@ -69,7 +69,7 @@ const StyledInput = styled.input`
   &::placeholder {
     font-size: 1.5em;
   }
-  
+
   &:focus {
     /* Add styles for focus state here if needed */
   }
@@ -117,17 +117,7 @@ export function DesktopNavigation(props) {
             />
           </form>
         </div>
-        {/*
-        <div className="navigation-section">
-          <NavigationButton route="/">Home</NavigationButton>
-          <NavigationButton route="/edit">Editor</NavigationButton>
-          <NavigationButton href={props.documentationHref}>
-            Docs
-            <ArrowUpRight />
-          </NavigationButton>
-        </div> */}
         <div className="user-section">
-          {/* <DevActionsDropdown {...props} /> */}
           {!props.signedIn && (
             <SignInButton onSignIn={() => props.requestSignIn()} />
           )}
