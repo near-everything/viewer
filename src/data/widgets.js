@@ -8,7 +8,7 @@ export const NetworkId =
   window.location.hostname in TestnetDomains ? "testnet" : "mainnet";
 const TestnetWidgets = {
   image: "eugenethedream/widget/Image",
-  default: "eugenethedream/widget/Welcome",
+  default: "efiz.testnet/widget/every.app.homepage",
   viewSource: "eugenethedream/widget/WidgetSource",
   widgetMetadataEditor: "eugenethedream/widget/WidgetMetadataEditor",
   widgetMetadata: "eugenethedream/widget/WidgetMetadata",
@@ -20,7 +20,7 @@ const TestnetWidgets = {
 
 const MainnetWidgets = {
   image: "mob.near/widget/Image",
-  default: "every.near/thing/post",
+  default: "efiz.near/widget/every.app.homepage",
   thing: "every.near/widget/every.thing.view",
   create: "efiz.near/widget/creator",
   viewSource: "mob.near/widget/WidgetSource",
