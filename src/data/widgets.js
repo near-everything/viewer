@@ -26,6 +26,9 @@ const MainnetWidgets = {
   header: {
     mobile: "efiz.near/widget/every.app.header.mobile"
   },
+  left: {
+    menu: "efiz.near/widget/every.app.left.menu"
+  },
   viewSource: "mob.near/widget/WidgetSource",
   widgetMetadataEditor: "mob.near/widget/WidgetMetadataEditor",
   widgetMetadata: "mob.near/widget/WidgetMetadata",

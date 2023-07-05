@@ -44,7 +44,7 @@ export function Menu(props) {
     <StyledMenu className={props.showMenu ? "show" : ""}>
       <div className="left-side">
         <Widget
-          src="efiz.testnet/widget/every.sidepanel"
+          src={props.widgets.left.menu}
           props={{
             requestSignIn: props.requestSignIn,
             logOut: props.logOut,
