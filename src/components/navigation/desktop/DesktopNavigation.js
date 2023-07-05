@@ -53,6 +53,28 @@ const StyledNavigation = styled.div`
   }
 `;
 
+const StyledInput = styled.input`
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+  height: 3rem;
+  font-size: 1.5em;
+  font-family: Arial, Times, serif;
+  line-height: 2em;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+
+  &::placeholder {
+    font-size: 1.5em;
+  }
+  
+  &:focus {
+    /* Add styles for focus state here if needed */
+  }
+`;
+
 export function DesktopNavigation(props) {
   const history = useHistory();
   const [matches, setMatches] = useState(
@@ -88,14 +110,11 @@ export function DesktopNavigation(props) {
             className="search"
             style={{ display: "flex", alignItems: "stretch" }}
           >
-            <input
-              placeholder="path"
+            <StyledInput
+              placeholder="everything"
               style={{ fontSize: "2em", width: "100%" }}
               onFocus={() => {}}
             />
-            <button type="submit" style={{ height: "auto" }}>
-              <span>&#10140;</span>
-            </button>
           </form>
         </div>
         {/*
