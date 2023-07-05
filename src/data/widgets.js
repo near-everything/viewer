@@ -23,6 +23,9 @@ const MainnetWidgets = {
   default: "efiz.near/widget/every.app.homepage",
   thing: "every.near/widget/every.thing.view",
   create: "efiz.near/widget/creator",
+  header: {
+    mobile: "efiz.near/widget/every.app.header.mobile"
+  },
   viewSource: "mob.near/widget/WidgetSource",
   widgetMetadataEditor: "mob.near/widget/WidgetMetadataEditor",
   widgetMetadata: "mob.near/widget/WidgetMetadata",

@@ -28,7 +28,7 @@ export function MobileNavigation(props) {
     <>
       <Header>
         <Widget
-          src="efiz.testnet/widget/every.app.header.mobile"
+          src={props.widgets.header.mobile}
           props={{
             ...props,
             onClickShowMenu: () => {
