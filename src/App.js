@@ -24,12 +24,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
+import { Camera } from "./components/camera";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { Scanner } from "./components/scanner";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
-import { Camera } from "./components/camera";
+import styled from "styled-components";
+import { ActionButton } from "./components/ActionButton";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -180,9 +182,14 @@ function App(props) {
               <NavigationWrapper {...passProps} />
               <Scanner />
             </Route>
+            <Route path={"/create"}>
+              <NavigationWrapper {...passProps} />
+              <ViewPage widgetSrc={passProps.widgets.create} {...passProps} />
+            </Route>
             <Route path={"/:widgetSrc*"}>
               <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />
+              <ActionButton {...passProps} />
             </Route>
           </Switch>
         </Router>

@@ -1,7 +1,6 @@
 const TestnetDomains = {
   "test.near.social": true,
   "127.0.0.1": true,
-  "localhost": true
 };
 
 export const NetworkId =
@@ -20,7 +19,7 @@ const TestnetWidgets = {
 
 const MainnetWidgets = {
   image: "mob.near/widget/Image",
-  default: "efiz.near/widget/every.app.homepage",
+  default: "efiz.near/widget/every.feed",
   thing: "every.near/widget/every.thing.view",
   create: "efiz.near/widget/creator",
   header: {
@@ -28,6 +27,9 @@ const MainnetWidgets = {
   },
   left: {
     menu: "efiz.near/widget/every.app.left.menu"
+  },
+  action: {
+    button: "efiz.near/widget/every.app.action.button"
   },
   viewSource: "mob.near/widget/WidgetSource",
   widgetMetadataEditor: "mob.near/widget/WidgetMetadataEditor",

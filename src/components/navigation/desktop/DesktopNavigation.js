@@ -110,7 +110,7 @@ export function DesktopNavigation(props) {
             className="search"
             style={{ display: "flex", alignItems: "stretch" }}
           >
-            <StyledInput
+            <input
               placeholder="everything"
               style={{ fontSize: "2em", width: "100%" }}
               onFocus={() => {}}
@@ -125,7 +125,6 @@ export function DesktopNavigation(props) {
             <>
               {matches && (
                 <>
-                  {" "}
                   <Link
                     to={`/${props.widgets?.create}`}
                     style={{ textDecoration: "none", color: "inherit" }}
