@@ -184,7 +184,7 @@ function App(props) {
             </Route>
             <Route path={"/create"}>
               <NavigationWrapper {...passProps} />
-              <ViewPage widgetSrc={passProps.widgets.create} {...passProps} />
+              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
             </Route>
             <Route path={"/:widgetSrc*"}>
               <NavigationWrapper {...passProps} />

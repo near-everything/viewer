@@ -8,7 +8,7 @@ export default function ViewPage(props) {
   const query = useQuery();
   const [widgetProps, setWidgetProps] = useState({});
 
-  const src = widgetSrc || props.widgets.default;
+  const src = widgetSrc || props.overrideSrc || props.widgets.default;
   const setWidgetSrc = props.setWidgetSrc;
   const viewSourceWidget = props.widgets.viewSource;
 
