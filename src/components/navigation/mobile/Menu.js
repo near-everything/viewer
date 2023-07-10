@@ -1,6 +1,7 @@
 import { Widget } from "near-social-vm";
 import React from "react";
 import styled from "styled-components";
+import { useThingContext } from "../../../contexts/ThingProvider";
 
 const StyledMenu = styled.div`
   position: fixed;
@@ -40,6 +41,7 @@ const StyledMenu = styled.div`
 `;
 
 export function Menu(props) {
+  // const { thing } = useThingContext(); 
   return (
     <StyledMenu className={props.showMenu ? "show" : ""}>
       <div className="left-side">

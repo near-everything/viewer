@@ -4,6 +4,7 @@ import styled from "styled-components";
 import useScrollBlock from ".././../../hooks/useScrollBlock";
 import { Menu } from "./Menu";
 import { Widget } from "near-social-vm";
+import { useThingContext } from "../../../contexts/ThingProvider";
 
 const Header = styled.div`
   position: sticky;
@@ -18,6 +19,7 @@ export function MobileNavigation(props) {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
   const [blockScroll, allowScroll] = useScrollBlock();
+  const { thing } = useThingContext();
 
   useEffect(() => {
     setShowMenu(false);
@@ -28,7 +30,7 @@ export function MobileNavigation(props) {
     <>
       <Header>
         <Widget
-          src={props.widgets.header.mobile}
+          src={thing.header.mobile}
           props={{
             ...props,
             onClickShowMenu: () => {

@@ -2,13 +2,31 @@ import React, { useEffect, useState } from "react";
 import { Widget } from "near-social-vm";
 import { useParams } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";
+import { useThingContext } from "../contexts/ThingProvider";
 
 export default function ViewPage(props) {
   const { widgetSrc } = useParams();
   const query = useQuery();
   const [widgetProps, setWidgetProps] = useState({});
+  const { thing, setThing } = useThingContext();
 
-  const src = widgetSrc || props.overrideSrc || props.widgets.default;
+  if (widgetSrc === "every.near/thing/core") {
+    setThing({
+      default: "efiz.near/widget/placeholder",
+      create: "efiz.near/widget/placeholder",
+      header: {
+        mobile: "efiz.near/widget/placeholder",
+      },
+      left: {
+        menu: "efiz.near/widget/placeholder",
+      },
+      action: {
+        button: "efiz.near/widget/placeholder",
+      },
+    })
+  }
+
+  const src = widgetSrc || thing.default;
   const setWidgetSrc = props.setWidgetSrc;
   const viewSourceWidget = props.widgets.viewSource;
 
@@ -42,7 +60,11 @@ export default function ViewPage(props) {
             paddingTop: "var(--body-top-padding)",
           }}
         >
-          <Widget key={src} src={props.widgets.thing} props={{ path: src, ...widgetProps}} />
+          <Widget
+            key={src}
+            src={props.widgets.thing}
+            props={{ path: src, ...widgetProps }}
+          />
         </div>
       </div>
     </div>

@@ -32,6 +32,7 @@ import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
 import styled from "styled-components";
 import { ActionButton } from "./components/ActionButton";
+import { ThingProvider } from "./contexts/ThingProvider";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -176,23 +177,28 @@ function App(props) {
   return (
     <div className="App">
       <EthersProviderContext.Provider value={ethersProviderContext}>
-        <Router basename={process.env.PUBLIC_URL}>
-          <Switch>
-            <Route path={"/scanner"}>
-              <NavigationWrapper {...passProps} />
-              <Scanner />
-            </Route>
-            <Route path={"/create"}>
-              <NavigationWrapper {...passProps} />
-              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-            </Route>
-            <Route path={"/:widgetSrc*"}>
-              <NavigationWrapper {...passProps} />
-              <ViewPage {...passProps} />
-              <ActionButton {...passProps} />
-            </Route>
-          </Switch>
-        </Router>
+        <ThingProvider>
+          <Router basename={process.env.PUBLIC_URL}>
+            <Switch>
+              <Route path={"/scanner"}>
+                <NavigationWrapper {...passProps} />
+                <Scanner />
+              </Route>
+              <Route path={"/create"}>
+                <NavigationWrapper {...passProps} />
+                <ViewPage
+                  overrideSrc={passProps.widgets.create}
+                  {...passProps}
+                />
+              </Route>
+              <Route path={"/:widgetSrc*"}>
+                <NavigationWrapper {...passProps} />
+                <ViewPage {...passProps} />
+                <ActionButton {...passProps} />
+              </Route>
+            </Switch>
+          </Router>
+        </ThingProvider>
       </EthersProviderContext.Provider>
     </div>
   );
