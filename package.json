@@ -7,6 +7,7 @@
     "@braintree/sanitize-url": "^6.0.2",
     "@keypom/core": "^1.0.2",
     "@monaco-editor/react": "^4.5.1",
+    "@livepeer/react": "^2.6.0",
     "@near-wallet-selector/core": "^8.1.0",
     "@near-wallet-selector/here-wallet": "^8.1.0",
     "@near-wallet-selector/meteor-wallet": "^8.1.0",

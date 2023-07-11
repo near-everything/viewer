@@ -1,4 +1,9 @@
 import { sanitizeUrl } from "@braintree/sanitize-url";
+import {
+  LivepeerConfig,
+  createReactClient,
+  studioProvider,
+} from "@livepeer/react";
 import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
@@ -23,19 +28,30 @@ import {
 import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
+<<<<<<< HEAD
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { ActionButton } from "./components/common/buttons/ActionButton";
 import { Camera } from "./components/custom/Camera";
 import { KeypomScanner } from "./components/custom/KeypomScanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
+=======
+import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
+import { ActionButton } from "./components/ActionButton";
+import { Camera } from "./components/camera";
+import { LivepeerPlayer } from "./components/livepeer/LivepeerPlayer";
+>>>>>>> 6d6a68d (feature: adds Livepeer support WIP)
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
+<<<<<<< HEAD
 import Footer from "./components/navigation/Footer";
+=======
+import { LivepeerCreator } from "./components/livepeer/LivepeerCreator";
+>>>>>>> 6d6a68d (feature: adds Livepeer support WIP)
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -57,6 +73,12 @@ function App(props) {
   const accountId = account.accountId;
 
   const location = window.location;
+
+  const livepeerClient = createReactClient({
+    provider: studioProvider({
+      apiKey: "c8323290-27a8-403b-858d-8baee19925c1",
+    }),
+  });
 
   useEffect(() => {
     initNear &&
@@ -95,6 +117,20 @@ function App(props) {
           },
           MonacoEditor: (props) => {
             return <MonacoEditor {...props} />;
+          },
+          LivepeerPlayer: (props) => {
+            return (
+              <LivepeerConfig client={livepeerClient}>
+                <LivepeerPlayer {...props} />
+              </LivepeerConfig>
+            );
+          },
+          LivepeerCreator: (props) => {
+            return (
+              <LivepeerConfig client={livepeerClient}>
+                <LivepeerCreator {...props} />
+              </LivepeerConfig>
+            );
           },
         },
       });
