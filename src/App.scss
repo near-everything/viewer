@@ -54,3 +54,27 @@ a {
     justify-content: center !important;
   }
 }
+
+// Draggable Elements
+.canvas {
+  width: 500px;
+  height: 500px;
+  border: 2px solid #000;
+  position: relative;
+  margin: 50px auto;
+  padding: 10px;
+}
+
+.draggable-element {
+  position: absolute;
+}
+
+.draggable-handle {
+  border: 2px solid #000;
+  height: 20px;
+  cursor: move;
+}
+
+.draggable-content {
+  margin-top: 10px;
+}

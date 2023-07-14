@@ -34,6 +34,8 @@
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-typeahead": "^6.1.2",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-resizable": "1.11.0",
     "react-router-dom": "^5.2.0",
     "react-webcam": "^7.1.1",
     "react-zxing": "^1.1.4",
