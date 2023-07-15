@@ -12,6 +12,7 @@ import "App.scss";
 import Big from "big.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle";
+import "near-social-bridge/near-social-bridge.css";
 import "error-polyfill";
 import {
   EthersProviderContext,
@@ -32,6 +33,8 @@ import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
 import styled from "styled-components";
 import { ActionButton } from "./components/ActionButton";
+import { NearSocialBridgeProvider, overrideLocalStorage } from "near-social-bridge";
+import EmbedPage from "./pages/EmbedPage";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -173,6 +176,8 @@ function App(props) {
     documentationHref,
   };
 
+  overrideLocalStorage()
+
   return (
     <div className="App">
       <EthersProviderContext.Provider value={ethersProviderContext}>
@@ -186,6 +191,11 @@ function App(props) {
               <NavigationWrapper {...passProps} />
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
             </Route>
+              <Route path={"/embed/:widgetSrc*"}>
+              <NearSocialBridgeProvider waitForStorage fallback={<p>Loading...</p>}>
+                <EmbedPage {...passProps} />
+              </NearSocialBridgeProvider>
+            </Route> 
             <Route path={"/:widgetSrc*"}>
               <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />

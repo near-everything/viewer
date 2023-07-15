@@ -8569,6 +8569,11 @@ near-seed-phrase@^0.2.0:
     near-hd-key "^1.2.1"
     tweetnacl "^1.0.2"
 
+near-social-bridge@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/near-social-bridge/-/near-social-bridge-1.4.1.tgz#fa6757a95a0de5007bb0ebf28d46810c1a255bac"
+  integrity sha512-e8hTbBI9Pwq1aKpM6kvZ3Sy1DjjcAOau0wF/Sp9LsT7q2+F1QxeDMkO7ndQrkJI7K0+CIAvjFmoex0ikxBtnug==
+
 near-social-vm@./near-social-vm-v2.2.3.tgz:
   version "2.2.3"
   resolved "./near-social-vm-v2.2.3.tgz#b4350ebebcc790e2bd8d4fc775a0088aebf4088a"
