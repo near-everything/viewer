@@ -32,6 +32,7 @@ import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
 import styled from "styled-components";
 import { ActionButton } from "./components/ActionButton";
+import { MonacoEditor } from "./components/MonacoEditor";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -88,6 +89,9 @@ function App(props) {
           Camera: (props) => {
             return <Camera {...props} />;
           },
+          MonacoEditor: (props) => {
+            return <MonacoEditor {...props} />;
+          }
         },
       });
   }, [initNear]);
