@@ -24,15 +24,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
+import { ActionButton } from "./components/ActionButton";
+import { MapLibreComponent } from "./components/Mapbox";
+import { MonacoEditor } from "./components/MonacoEditor";
 import { Camera } from "./components/camera";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { Scanner } from "./components/scanner";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
-import styled from "styled-components";
-import { ActionButton } from "./components/ActionButton";
-import { MonacoEditor } from "./components/MonacoEditor";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -91,7 +92,10 @@ function App(props) {
           },
           MonacoEditor: (props) => {
             return <MonacoEditor {...props} />;
-          }
+          },
+          MapLibre: (props) => {
+            return <MapLibreComponent {...props} />;
+          },
         },
       });
   }, [initNear]);
