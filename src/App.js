@@ -23,16 +23,15 @@ import {
 import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
-import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
-import { Camera } from "./components/camera";
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
-import { Scanner } from "./components/scanner";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import ViewPage from "./pages/ViewPage";
-import styled from "styled-components";
-import { ActionButton } from "./components/ActionButton";
-import { MonacoEditor } from "./components/MonacoEditor";
+import { KeypomScanner } from "./components/custom/KeypomScanner";
+import { Camera } from "./components/custom/Camera";
+import { MonacoEditor } from "./components/custom/MonacoEditor";
+import { ActionButton } from "./components/common/buttons/ActionButton";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -83,8 +82,8 @@ function App(props) {
             }
             return <Link {...props} />;
           },
-          Scanner: (props) => {
-            return <Scanner {...props} />;
+          KeypomScanner: (props) => {
+            return <KeypomScanner {...props} />;
           },
           Camera: (props) => {
             return <Camera {...props} />;
@@ -184,7 +183,7 @@ function App(props) {
           <Switch>
             <Route path={"/scanner"}>
               <NavigationWrapper {...passProps} />
-              <Scanner />
+              <KeypomScanner />
             </Route>
             <Route path={"/create"}>
               <NavigationWrapper {...passProps} />
