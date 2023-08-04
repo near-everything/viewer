@@ -37,6 +37,8 @@ export default function ViewPage(props) {
     }, 1);
   }, [src, query, setWidgetSrc, viewSourceWidget]);
 
+  // Should move the Thing logic here
+
   return (
     <div className="container-xl">
       <div className="row">
@@ -52,8 +54,8 @@ export default function ViewPage(props) {
             config={{
               redirectMap: redirectMapStore.redirectMap,
             }}
-            src={props.widgets.thing}
-            props={{ path: src, ...widgetProps }}
+            src={props.widgets.default}
+            props={widgetProps}
           />
         </div>
       </div>
