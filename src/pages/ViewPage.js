@@ -6,10 +6,11 @@ import { useHashRouterLegacy } from "../hooks/useHashRouterLegacy";
 
 export default function ViewPage(props) {
   useHashRouterLegacy();
-  
+
   const { widgetSrc } = useParams();
   const query = useQuery();
   const [widgetProps, setWidgetProps] = useState({});
+  const redirectMapStore = useBosLoaderStore();
 
   const src = widgetSrc || props.overrideSrc || props.widgets.default;
   const setWidgetSrc = props.setWidgetSrc;
@@ -45,7 +46,14 @@ export default function ViewPage(props) {
             paddingTop: "var(--body-top-padding)",
           }}
         >
-          <Widget key={src} src={props.widgets.thing} props={{ path: src, ...widgetProps}} />
+          <Widget
+            key={src}
+            config={{
+              redirectMap: redirectMapStore.redirectMap,
+            }}
+            src={props.widgets.thing}
+            props={{ path: src, ...widgetProps }}
+          />
         </div>
       </div>
     </div>

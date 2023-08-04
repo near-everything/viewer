@@ -24,14 +24,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BosLoaderBanner } from "./components/BosLoaderBanner";
+import { ActionButton } from "./components/common/buttons/ActionButton";
+import { Camera } from "./components/custom/Camera";
+import { KeypomScanner } from "./components/custom/KeypomScanner";
+import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
+import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
+import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
-import { KeypomScanner } from "./components/custom/KeypomScanner";
-import { Camera } from "./components/custom/Camera";
-import { MonacoEditor } from "./components/custom/MonacoEditor";
-import { ActionButton } from "./components/common/buttons/ActionButton";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -45,6 +48,7 @@ function App(props) {
   const [widgetSrc, setWidgetSrc] = useState(null);
 
   const ethersProviderContext = useEthersProviderContext();
+  useBosLoaderInitializer();
 
   const { initNear } = useInitNear();
   const near = useNear();
@@ -90,7 +94,7 @@ function App(props) {
           },
           MonacoEditor: (props) => {
             return <MonacoEditor {...props} />;
-          }
+          },
         },
       });
   }, [initNear]);
@@ -181,6 +185,9 @@ function App(props) {
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
+            <Route path={"/flags"}>
+              <Flags {...passProps} />
+            </Route>
             <Route path={"/scanner"}>
               <NavigationWrapper {...passProps} />
               <KeypomScanner />
@@ -190,6 +197,7 @@ function App(props) {
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
             </Route>
             <Route path={"/:widgetSrc*"}>
+              <BosLoaderBanner />
               <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />
               <ActionButton {...passProps} />
