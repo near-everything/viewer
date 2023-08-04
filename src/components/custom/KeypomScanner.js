@@ -2,9 +2,9 @@ import React from "react";
 import { useZxing } from "react-zxing";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import logo from "../static/img/green-check.png";
-import xLogo from "../static/img/red-x.png";
-import { allowEntry } from "../utils/allowEntry";
+import logo from "../../static/img/green-check.png";
+import xLogo from "../../static/img/red-x.png";
+import { allowEntry } from "../../utils/allowEntry";
 
 const Content = styled.div`
   position: absolute;
@@ -15,7 +15,7 @@ const Content = styled.div`
   text-align: center;
 `;
 
-export const Scanner = () => {
+export const KeypomScanner = () => {
   // Stage enum
   const Stage = {
     preClaim: "Pre-claim",

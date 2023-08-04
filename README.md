@@ -1,6 +1,4 @@
-# Browser
-
-A framework for reusable components to render and modify SocialDB by Near Social.
+# everything browser
 
 ## Setup & Development
 
@@ -14,71 +12,15 @@ Start development version:
 yarn start
 ```
 
-## Widget example
 
-Profile view 
+## Using Bos-Loader
 
-```jsx
-let accountId = props.accountId || "eugenethedream";
-let profile = socialGetr(`${accountId}/profile`);
+Load the widgets locally:
 
-(
-  <div>
-    <img src={profile.image.url}/>
-    <span>{profile.name}</span> <span>(@{accountId})</span>
-  </div>
-);
+```
+yarn dev-widgets
 ```
 
 
-Profile editor 
-
-```jsx
-let accountId = context.accountId;
-
-if (!accountId) {
-  return "Please sign in with NEAR wallet";
-}
-
-const profile = socialGetr(`${accountId}/profile`);
-
-if (profile === null) {
-  return "Loading";
-}
-
-initState({
-  name: profile.name,
-  url: profile.image.url,
-});
-
-const data = {
-  profile: {
-    name: state.name,
-    image: {
-      url: state.url,
-    },
-  },
-};
-
-return (
-  <div>
-    <div>account = {accountId}</div>
-    <div>
-      Name:
-      <input type="text" value={state.name} />
-    </div>
-    <div>
-      Image URL:
-      <input type="text" value={state.url} />
-    </div>
-    <div>Preview</div>
-    <div>
-      <img src={state.url} alt="profile image" /> {state.name}
-    </div>
-    <div>
-      <CommitButton data={data}>Save profile</CommitButton>
-    </div>
-  </div>
-);
-
-```
+Go to localhost:3000/flags and past the url here.
+This will setup the redirect map for local widgets.

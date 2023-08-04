@@ -37,7 +37,8 @@
     "react-router-dom": "^5.2.0",
     "react-webcam": "^7.1.1",
     "react-zxing": "^1.1.4",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "zustand": "^4.4.0"
   },
   "scripts": {
     "serve": "webpack serve",
@@ -46,7 +47,8 @@
     "prod": "npm run webpack -- --env mode=production",
     "prod:analyze": "npm run prod -- --env presets=analyze",
     "build": "npm run prod",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "dev-widgets": "~/.cargo/bin/bos-loader every.near --path widgets"
   },
   "eslintConfig": {
     "extends": [
