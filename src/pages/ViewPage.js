@@ -3,6 +3,7 @@ import { Widget } from "near-social-vm";
 import { useParams } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";
 import { useHashRouterLegacy } from "../hooks/useHashRouterLegacy";
+import { useBosLoaderStore } from "../stores/bos-loader";
 
 export default function ViewPage(props) {
   useHashRouterLegacy();
