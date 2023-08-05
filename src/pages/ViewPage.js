@@ -4,23 +4,24 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";
 import { useHashRouterLegacy } from "../hooks/useHashRouterLegacy";
 import { useBosLoaderStore } from "../stores/bos-loader";
+import { Thing } from "../components/Thing";
 
 export default function ViewPage(props) {
   useHashRouterLegacy();
 
-  const { widgetSrc } = useParams();
+  const { path } = useParams();
   const query = useQuery();
-  const [widgetProps, setWidgetProps] = useState({});
-  const redirectMapStore = useBosLoaderStore();
+  const [thingProps, setThingProps] = useState({});
 
-  const src = widgetSrc || props.overrideSrc || props.widgets.default;
+  const src = path || props.widgets.default;
   const setWidgetSrc = props.setWidgetSrc;
   const viewSourceWidget = props.widgets.viewSource;
 
   useEffect(() => {
-    setWidgetProps(Object.fromEntries([...query.entries()]));
+    setThingProps(Object.fromEntries([...query.entries()]));
   }, [query]);
 
+  // Idk what this is about and if I even need it
   useEffect(() => {
     setTimeout(() => {
       setWidgetSrc(
@@ -37,8 +38,6 @@ export default function ViewPage(props) {
     }, 1);
   }, [src, query, setWidgetSrc, viewSourceWidget]);
 
-  // Should move the Thing logic here
-
   return (
     <div className="container-xl">
       <div className="row">
@@ -49,14 +48,7 @@ export default function ViewPage(props) {
             paddingTop: "var(--body-top-padding)",
           }}
         >
-          <Widget
-            key={src}
-            config={{
-              redirectMap: redirectMapStore.redirectMap,
-            }}
-            src={src}
-            props={widgetProps}
-          />
+          <Thing src={src} thingProps={thingProps} />
         </div>
       </div>
     </div>

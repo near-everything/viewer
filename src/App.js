@@ -196,7 +196,7 @@ function App(props) {
               <NavigationWrapper {...passProps} />
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
             </Route>
-            <Route path={"/:widgetSrc*"}>
+            <Route path={"/:path*"}>
               <BosLoaderBanner />
               <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />
