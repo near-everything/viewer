@@ -19,6 +19,7 @@ import {
   useInitNear,
   useNear,
   utils,
+  useCache,
 } from "near-social-vm";
 import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
@@ -35,6 +36,8 @@ import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
+import { useBosLoaderStore } from "./stores/bos-loader";
+import { recursiveGet } from "./utils/data";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -46,6 +49,7 @@ function App(props) {
   const [availableStorage, setAvailableStorage] = useState(null);
   const [walletModal, setWalletModal] = useState(null);
   const [widgetSrc, setWidgetSrc] = useState(null);
+  const bosLoaderStore = useBosLoaderStore();
 
   const ethersProviderContext = useEthersProviderContext();
   useBosLoaderInitializer();
@@ -56,6 +60,54 @@ function App(props) {
   const accountId = account.accountId;
 
   const location = window.location;
+
+  const cc = useCache();
+  cc.socialGet = (near, keys, recursive, blockId, options, invalidate) => {
+    if (!near) {
+      return null;
+    }
+    keys = Array.isArray(keys) ? keys : [keys];
+    keys = keys.map((key) => (recursive ? `${key}/**` : `${key}`));
+
+    let data = null;
+
+    if (keys.length === 1 && bosLoaderStore.dataMap) {
+      data = recursiveGet(bosLoaderStore.dataMap, keys[0]);
+    } else {
+      console.warn("Currently only support mocking one key of SocialGet");
+    }
+
+    if (data === undefined || data === null) {
+      const args = {
+        keys,
+        options,
+      };
+      data = cc.cachedViewCall(
+        near,
+        near.config.contractName,
+        "get",
+        args,
+        blockId,
+        invalidate
+      );
+
+      if (keys.length === 1) {
+        const parts = keys[0].split("/");
+        for (let i = 0; i < parts.length; i++) {
+          const part = parts[i];
+          if (part === "*" || part === "**") {
+            break;
+          }
+          data = data?.[part];
+        }
+      }
+    }
+
+    if (data === null) {
+      return null;
+    }
+    return data;
+  };
 
   useEffect(() => {
     initNear &&

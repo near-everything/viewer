@@ -5,5 +5,6 @@ export const useBosLoaderStore = create((set) => ({
   hasResolved: false,
   loaderUrl: '',
   redirectMap: {},
+  dataMap: {},
   set: (state) => set((previousState) => ({ ...previousState, ...state })),
 }));

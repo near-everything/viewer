@@ -36,6 +36,7 @@ export function useBosLoaderInitializer() {
         setStore({
           hasResolved: true,
           redirectMap: data.components,
+          dataMap: data.data,
         });
       } catch (e) {
         console.error(e);
