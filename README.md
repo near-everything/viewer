@@ -9,18 +9,32 @@ yarn
 
 Start development version:
 ```
-yarn start
+yarn dev
 ```
-
 
 ## Using Bos-Loader
 
-Load the widgets locally:
+Set up a workspace like here: [bos-workspace](https://github.com/sekaiking/bos-workspace)
 
-```
-yarn dev-widgets
-```
+Set the flag at localhost:3000/flags
 
 
-Go to localhost:3000/flags and past the url here.
-This will setup the redirect map for local widgets.
+## Breakdown
+
+### App.js
+
+- Configure custom elements in the VM
+- Add a route to the gateway
+
+### ViewPage.js
+
+- Access query params and render widget
+
+
+## Contributing
+
+### Extending the gateway with a custom component:
+
+- [ ] Install library
+- [ ] Create component in /components/common
+- [ ] Add component as custom element in App.js
