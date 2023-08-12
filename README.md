@@ -31,6 +31,34 @@ Set the flag at localhost:3000/flags
 - Access query params and render widget
 
 
+
+
+## Custom Elements
+
+### Camera : react-webcam
+
+[react-webcam](https://github.com/mozmorris/react-webcam)
+components/custom/Camera
+[https://everything.dev/efiz.near/widget/Camera](efiz.near/widget/Camera)
+
+
+### MonacoEditor : monaco-editor/react
+
+[monaco-editor/react]()
+components/custom/MonacoEditor
+[https://everything.dev/efiz.near/widget/MonacoEditor](efiz.near/widget/MonacoEditor)
+
+TODO: Can switch to https://github.com/react-monaco-editor/react-monaco-editor
+
+
+### KeypomScanner : keypom
+
+[keypom]()
+components/custom/KeypomScanner
+[https://everything.dev/scanner](efiz.near/widget/KeypomScanner)
+
+
+
 ## Contributing
 
 ### Extending the gateway with a custom component:
@@ -38,3 +66,6 @@ Set the flag at localhost:3000/flags
 - [ ] Install library
 - [ ] Create component in /components/common
 - [ ] Add component as custom element in App.js
+
+
+
