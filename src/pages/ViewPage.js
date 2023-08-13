@@ -53,6 +53,7 @@ export default function ViewPage(props) {
             key={src}
             config={{
               redirectMap: redirectMapStore.redirectMap,
+              dataMap: redirectMapStore.dataMap
             }}
             src={src}
             props={widgetProps}
