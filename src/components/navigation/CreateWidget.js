@@ -3,19 +3,21 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledCreateWidget = styled.div`
-  // margin: 0 15px;
-  // background-color: var(--slate-dark-5);
   height: 40px;
   width: 40px;
   border-radius: 50%;
   font-weight: var(--font-weight-medium);
   text-transform: lowercase !important;
-  // display: inline-block;
   text-align: center;
   text-decoration: none;
-  border: 2px outset #333;
-  background-color: #f5f5f5;
+  border: none;
   cursor: pointer;
+  background-color: #fff;
+  background: radial-gradient(
+    circle at 24.1% 68.8%,
+    rgb(210, 210, 210) 0%,
+    rgb(255, 255, 255) 120%
+  );
 
   > div,
   a {

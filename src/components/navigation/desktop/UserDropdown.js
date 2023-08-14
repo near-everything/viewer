@@ -8,9 +8,6 @@ import { NavLink } from "react-router-dom";
 import PretendModal from "../PretendModal";
 import { Pretend } from "../../icons/Pretend";
 import { StopPretending } from "../../icons/StopPretending";
-import { Link } from "react-router-dom";
-import { CreateWidget } from "../CreateWidget";
-import { NotificationWidget } from "../NotificationWidget";
 
 const StyledDropdown = styled.div`
   button,
@@ -19,33 +16,21 @@ const StyledDropdown = styled.div`
   }
   .dropdown-toggle {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    font-weight: var(--font-weight-medium);
-    text-transform: lowercase !important;
-    // display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    border: 2px outset #333;
-    background-color: #f5f5f5;
-    cursor: pointer;
-    color: #333;
-    // display: flex;
-    // align-items: center;
-    // text-align: left;
-    // // background-color: rgba(46, 51, 56, 0.8); /* Adjust the alpha value (0.8) to control transparency */
-    // border-radius: 50px;
-    // outline: none;
-    // border: 0;
-    height: 54px;
+    outline: none;
+    border: 0;
+    height: 40px;
+    background-color: transparent;
+    padding: 0;
 
     &:after {
-      margin: 0 15px;
-      border-top-color: var(--slate-dark-11);
+      margin: 0 10px;
+      border-top-color: #ffffff;
     }
 
     img {
       border-radius: 50% !important;
+      border: 1px solid white;
     }
 
     .profile-info {
@@ -69,48 +54,59 @@ const StyledDropdown = styled.div`
   }
 
   ul {
-    // background-color: rgba(46, 51, 56, 0.8); /* Adjust the alpha value (0.8) to control transparency */
+    background-color: #2d343690;
+    background: radial-gradient(
+      circle at 24.1% 68.8%,
+      rgba(50, 50, 50, 0.8) 0%,
+      rgba(0, 0, 0, 0.8) 99.4%
+    );
+    backdrop-filter: blur(10px);
+    border-radius: 23px;
     width: 100%;
+    margin-top: 10px !important;
+    padding: 10px;
 
-    li {
-      padding: 0 6px;
+    li:not(:last-child) {
+      margin-bottom: 10px;
     }
 
     button,
     a {
       font-weight: var(--font-weight-medium);
       text-transform: lowercase !important;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      width: 100%;
       text-align: center;
       text-decoration: none;
-      border: 2px outset #333;
-      background-color: #f5f5f5;
+      background-color: #fff;
+      border: 0;
       cursor: pointer;
-      color: #333;
-      // color: var(--slate-dark-11);
-      // display: flex;
-      // align-items: center;
-      // border-radius: 8px;
-      padding: 12px;
+      color: #000 !important;
+      border-radius: 18px;
+      padding: 8px;
+      font-size: 14px;
 
       :hover,
       :focus {
         text-decoration: none;
-        background-color: var(--slate-dark-1);
-        color: white;
-
-        svg {
-          path {
-            stroke: white;
-          }
-        }
+        background-color: #eee;
       }
 
       svg {
         margin-right: 7px;
         min-width: 24px;
         path {
-          stroke: var(--slate-dark-9);
+          stroke: #000;
+        }
+      }
+
+      &.active {
+        background-color: #4498e0;
+        color: #fff !important;
+
+        svg path {
+          stroke: #fff;
         }
       }
     }
@@ -154,7 +150,7 @@ export function UserDropdown(props) {
               style: { width: "40px", height: "40px" },
             }}
           />
-          {matches && (
+          {/* {matches && (
             <>
               <div className="profile-info">
                 {props.widgets.profileName && (
@@ -165,7 +161,7 @@ export function UserDropdown(props) {
                 <div className="profile-username">{account.accountId}</div>
               </div>
             </>
-          )}
+          )} */}
         </button>
         <ul
           className="dropdown-menu"
@@ -179,7 +175,7 @@ export function UserDropdown(props) {
               to={`/${account.accountId}`}
             >
               <User />
-              my everything
+              {account.accountId}
             </NavLink>
           </li>
           <li>
