@@ -54,3 +54,7 @@ a {
     justify-content: center !important;
   }
 }
+
+div[data-slate-editor="true"]:focus {
+  outline: none;
+}

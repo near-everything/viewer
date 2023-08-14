@@ -14,9 +14,19 @@ import {
   createUnderlinePlugin,
   Plate,
 } from "@udecode/plate";
-import { basicElementsValue } from "./plate/basicElementsValue";
-import { basicMarksValue } from "./plate/basicMarksValue";
-import { plateUI } from "./plate/plateui";
+import { plateUI } from "./plateui";
+
+const StyledPlate = styled(Plate)`
+  &:focus-visable {
+    outline: none;
+  }
+
+  div {
+    &:focus-visable {
+      outline: none;
+    }
+  }
+`;
 
 export default (props) => {
   const [debugValue, setDebugValue] = useState(null);
@@ -49,7 +59,7 @@ const editableProps = {
   };
 
   return (
-    <Plate
+    <StyledPlate
       {...props}
       onChange={(newValue) => {
         if (props.debug) {
@@ -58,10 +68,19 @@ const editableProps = {
         props.onChange(newValue);
       }}
       editableProps={editableProps}
-      // initialValue={[...basicElementsValue, ...basicMarksValue]}
+      initialValue={[
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'This is editable plain text with react and history plugins, just like a <textarea>!',
+            },
+          ],
+        },
+      ]}
       plugins={plugins}
     >
       {props.debug && <p>value: {JSON.stringify(debugValue)}</p>}
-    </Plate>
+    </StyledPlate>
   );
 };
