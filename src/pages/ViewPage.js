@@ -54,8 +54,8 @@ export default function ViewPage(props) {
             config={{
               redirectMap: redirectMapStore.redirectMap,
             }}
-            src={src}
-            props={widgetProps}
+            src={"every.near/widget/every.thing.view"}
+            props={{ path: src }}
           />
         </div>
       </div>
