@@ -1,7 +1,8 @@
 // src/components/Footer.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
+import Core from "../Core";
 
 const FooterWrapper = styled.footer`
   display: flex;
@@ -11,6 +12,12 @@ const FooterWrapper = styled.footer`
   bottom: 0;
   left: 0;
   right: 0;
+`;
+
+const Form = styled.form`
+  flex: 1;
+  display: flex;
+  margin: 0;
 `;
 
 const Input = styled.input`
@@ -27,8 +34,8 @@ const Input = styled.input`
     outline: none;
     border: 2px solid #333;
   }
-  
-  font-family: 'Arial', sans-serif;
+
+  font-family: "Arial", sans-serif;
 `;
 
 const Button = styled.button`
@@ -60,38 +67,26 @@ const Button = styled.button`
   }
 `;
 
-const Footer = () => {
-  const [address, setAddress] = useState("");
-
-  const handleSubmit = () => {
-    // Do something with the address
-    alert(`Navigating to: ${address}`);
-  };
-
+const Footer = (props) => {
+  const history = useHistory();
   return (
     <FooterWrapper className="classic">
-      <Link to="/">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="black"
-          width="64px"
-          height="64px"
-        >
-          <circle cx="12" cy="12" r="8" />
-        </svg>
-      </Link>
-      <Input
-        type="text"
-        className="classic"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        placeholder="browse everything..."
-      />
-
-      <Button onClick={handleSubmit}>
-        <i className="bi bi-search"></i>
-      </Button>
+      <Core  {...props} />
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          history.push(`/${e.target[0].value}`);
+        }}
+      >
+        <Input
+          type="text"
+          className="classic"
+          placeholder="browse everything..."
+        />
+        <Button type="submit">
+          <i className="bi bi-search"></i>
+        </Button>
+      </Form>
     </FooterWrapper>
   );
 };

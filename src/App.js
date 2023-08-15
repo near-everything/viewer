@@ -201,7 +201,7 @@ function App(props) {
               <BosLoaderBanner />
               {/* <NavigationWrapper {...passProps} /> */}
               <ViewPage {...passProps} />
-              <Footer />
+              <Footer {...passProps} />
               <ActionButton {...passProps} />
             </Route>
           </Switch>
