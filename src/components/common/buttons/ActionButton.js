@@ -10,6 +10,7 @@ const StyledActionButton = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  cursor: pointer;
   background: radial-gradient(circle at 30% 30%, #4a4949, #000000);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06),
     0px 10px 15px rgba(0, 0, 0, 0.1);
@@ -28,9 +29,11 @@ const StyledActionButton = styled.div`
 `;
 
 export function ActionButton(props) {
-  return (
-    <Link to="/create">
+  return <StyledActionButton />;
+}
+
+{
+  /* <Link to="/create">
       <StyledActionButton />
-    </Link>
-  );
+    </Link> */
 }

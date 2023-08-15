@@ -226,6 +226,17 @@ export function UserDropdown(props) {
               Sign Out
             </button>
           </li>
+          <li className="icon-buttons">
+            <button className="dropdown-item" type="button">
+              <i className="bi bi-arrow-left"></i>
+            </button>
+            <button className="dropdown-item" type="button">
+              <i className="bi bi-house"></i>
+            </button>
+            <button className="dropdown-item" type="button">
+              <i className="bi bi-arrow-right"></i>
+            </button>
+          </li>
         </ul>
       </StyledDropdown>
       <PretendModal

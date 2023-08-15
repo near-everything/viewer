@@ -194,8 +194,8 @@ function App(props) {
               <KeypomScanner />
             </Route>
             <Route path={"/create"}>
-              <NavigationWrapper {...passProps} />
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+              <Footer {...passProps} />
             </Route>
             <Route path={"/:widgetSrc*"}>
               <BosLoaderBanner />

@@ -43,7 +43,6 @@ const StyledDropdown = styled.div`
   }
 
   ul {
-    // background-color: rgba(46, 51, 56, 0.8); /* Adjust the alpha value (0.8) to control transparency */
     width: 100%;
 
     li {
@@ -61,23 +60,17 @@ const StyledDropdown = styled.div`
       background-color: #f5f5f5;
       cursor: pointer;
       color: #333;
-      // color: var(--slate-dark-11);
-      // display: flex;
-      // align-items: center;
-      // border-radius: 8px;
       padding: 12px;
 
-      :hover,
-      :focus {
-        text-decoration: none;
-        background-color: var(--slate-dark-1);
-        color: white;
+      &:active {
+        border-style: inset;
+        background-color: #d5d5d5;
+        color: #000;
+      }
 
-        svg {
-          path {
-            stroke: white;
-          }
-        }
+      &:hover {
+        background-color: #e5e5e5;
+        color: #111;
       }
 
       svg {
@@ -88,8 +81,13 @@ const StyledDropdown = styled.div`
         }
       }
     }
-  }
 `;
+
+const ButtonRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+`
 
 const Core = (props) => {
   const near = useNear();
@@ -158,7 +156,6 @@ const Core = (props) => {
             <li>
               <button
                 className="dropdown-item"
-                type="button"
                 disabled={!account.startPretending}
                 onClick={() => account.startPretending(undefined)}
               >
@@ -170,7 +167,6 @@ const Core = (props) => {
             <li>
               <button
                 className="dropdown-item"
-                type="button"
                 onClick={() => setShowPretendModal(true)}
               >
                 <Pretend />
@@ -179,14 +175,23 @@ const Core = (props) => {
             </li>
           )}
           <li>
-            <button
-              className="dropdown-item"
-              type="button"
-              onClick={() => props.logOut()}
-            >
+            <button className="dropdown-item" onClick={() => props.logOut()}>
               <LogOut />
               Sign Out
             </button>
+          </li>
+          <li className="dropdown-item">
+            <ButtonRow>
+              <button>
+                <i className="bi bi-arrow-left"></i>
+              </button>
+              <button>
+                <i className="bi bi-house"></i>
+              </button>
+              <button>
+                <i className="bi bi-arrow-right"></i>
+              </button>
+            </ButtonRow>
           </li>
         </ul>
       </StyledDropdown>
