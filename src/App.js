@@ -199,10 +199,10 @@ function App(props) {
             </Route>
             <Route path={"/:widgetSrc*"}>
               <BosLoaderBanner />
-              <NavigationWrapper {...passProps} />
+              {/* <NavigationWrapper {...passProps} /> */}
               <ViewPage {...passProps} />
               <Footer />
-              {/* <ActionButton {...passProps} /> */}
+              <ActionButton {...passProps} />
             </Route>
           </Switch>
         </Router>
