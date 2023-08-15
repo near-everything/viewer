@@ -35,6 +35,7 @@ import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
+import Footer from "./components/navigation/Footer";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -200,7 +201,8 @@ function App(props) {
               <BosLoaderBanner />
               <NavigationWrapper {...passProps} />
               <ViewPage {...passProps} />
-              <ActionButton {...passProps} />
+              <Footer />
+              {/* <ActionButton {...passProps} /> */}
             </Route>
           </Switch>
         </Router>
