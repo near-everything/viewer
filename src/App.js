@@ -35,6 +35,7 @@ import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
+import Footer from "./components/navigation/Footer";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -193,13 +194,14 @@ function App(props) {
               <KeypomScanner />
             </Route>
             <Route path={"/create"}>
-              <NavigationWrapper {...passProps} />
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+              <Footer {...passProps} />
             </Route>
             <Route path={"/:widgetSrc*"}>
               <BosLoaderBanner />
-              <NavigationWrapper {...passProps} />
+              {/* <NavigationWrapper {...passProps} /> */}
               <ViewPage {...passProps} />
+              <Footer {...passProps} />
               <ActionButton {...passProps} />
             </Route>
           </Switch>
