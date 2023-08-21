@@ -37,26 +37,47 @@ export default function ViewPage(props) {
     }, 1);
   }, [src, query, setWidgetSrc, viewSourceWidget]);
 
-  // Should move the Thing logic here
+  function Thing({ path }) {
+    const parts = path.split("/");
+    if (parts[1] === "widget") {
+      return (
+        <Widget
+          key={path}
+          config={{
+            redirectMap: redirectMapStore.redirectMap,
+          }}
+          src={path}
+          props={widgetProps}
+        />
+      );
+    } else {
+      // TODO: every.thing.view could be abstracted out
+      return (
+        <Widget
+          key={path}
+          config={{
+            redirectMap: redirectMapStore.redirectMap,
+          }}
+          src={"every.near/widget/every.thing.view"}
+          props={{ path, ...widgetProps }}
+        />
+      );
+    }
+  }
 
   return (
-    <div className="container-xl">
+    <div className="">
       <div className="row">
         <div
           className="d-inline-block position-relative overflow-hidden"
           style={{
             "--body-top-padding": "12px",
+            "--body-bottom-padding": "68px",
             paddingTop: "var(--body-top-padding)",
+            paddingBottom: "var(--body-bottom-padding)",
           }}
         >
-          <Widget
-            key={src}
-            config={{
-              redirectMap: redirectMapStore.redirectMap,
-            }}
-            src={"efiz.near/widget/every.thing.view"}
-            props={{ path: src }}
-          />
+          <Thing path={src} />
         </div>
       </div>
     </div>

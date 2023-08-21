@@ -1,6 +1,6 @@
 // src/components/Footer.js
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import React from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import Core from "../Core";
 
@@ -71,7 +71,7 @@ const Footer = (props) => {
   const history = useHistory();
   return (
     <FooterWrapper className="classic">
-      <Core  {...props} />
+      <Core {...props} />
       <Form
         onSubmit={(e) => {
           e.preventDefault();

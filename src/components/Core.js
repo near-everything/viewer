@@ -1,14 +1,13 @@
 // src/components/Core.js
-import { useAccount, useNear } from "near-social-vm";
+import { Widget, useAccount, useNear } from "near-social-vm";
 import { default as React, useCallback, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import { LogOut } from "./icons/LogOut";
 import { Pretend } from "./icons/Pretend";
 import { StopPretending } from "./icons/StopPretending";
-import { Withdraw } from "./icons/Withdraw";
 import { User } from "./icons/User";
 import PretendModal from "./navigation/PretendModal";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 const StyledDropdown = styled.div`
   .dropdown-toggle {
@@ -84,10 +83,15 @@ const StyledDropdown = styled.div`
 `;
 
 const ButtonRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  // justify-content: space-between;
+`;
+
+const ArrowButton = styled.button`
+  flex-grow: 1;
+`;
 
 const Core = (props) => {
   const near = useNear();
@@ -108,25 +112,57 @@ const Core = (props) => {
 
   const [showPretendModal, setShowPretendModal] = React.useState(false);
 
+  const Button = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-transform: lowercase !important;
+    height: 48px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px outset #333;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    color: #333;
+    padding: 20px 20px;
+    margin: 4px;
+
+    &:active {
+      border-style: inset;
+      background-color: #d5d5d5;
+      color: #000;
+    }
+
+    &:hover {
+      background-color: #e5e5e5;
+      color: #111;
+    }
+  `;
+
   return (
     <>
       <StyledDropdown className="dropdown">
-        <div
-          type="button"
-          id="dropdownMenu2222"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="black"
-            width="64px"
-            height="64px"
+        {props.signedIn ? (
+          <div
+            type="button"
+            id="dropdownMenu2222"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-            <circle cx="12" cy="12" r="8" />
-          </svg>
-        </div>
+            <Widget
+              src={"mob.near/widget/ProfileImage"}
+              props={{
+                accountId: account.accountId,
+                className: "d-inline-block m-2",
+                imageClassName: "rounded-circle w-100 h-100",
+                style: { width: "42px", height: "42px" },
+              }}
+            />
+          </div>
+        ) : (
+          <Button onClick={props.requestSignIn}>sign in</Button>
+        )}
         <ul
           className="dropdown-menu"
           aria-labelledby="dropdownMenu2222"
@@ -180,17 +216,17 @@ const Core = (props) => {
               Sign Out
             </button>
           </li>
-          <li className="dropdown-item">
+          <li>
             <ButtonRow>
-              <button>
+              <ArrowButton>
                 <i className="bi bi-arrow-left"></i>
-              </button>
-              <button>
+              </ArrowButton>
+              <NavLink type="button" to={"/"}>
                 <i className="bi bi-house"></i>
-              </button>
-              <button>
+              </NavLink>
+              <ArrowButton>
                 <i className="bi bi-arrow-right"></i>
-              </button>
+              </ArrowButton>
             </ButtonRow>
           </li>
         </ul>
