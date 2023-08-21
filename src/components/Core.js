@@ -1,14 +1,13 @@
 // src/components/Core.js
-import { useAccount, useNear } from "near-social-vm";
+import { Widget, useAccount, useNear } from "near-social-vm";
 import { default as React, useCallback, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import { LogOut } from "./icons/LogOut";
 import { Pretend } from "./icons/Pretend";
 import { StopPretending } from "./icons/StopPretending";
-import { Withdraw } from "./icons/Withdraw";
 import { User } from "./icons/User";
 import PretendModal from "./navigation/PretendModal";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 const StyledDropdown = styled.div`
   .dropdown-toggle {
@@ -84,10 +83,10 @@ const StyledDropdown = styled.div`
 `;
 
 const ButtonRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+`;
 
 const Core = (props) => {
   const near = useNear();
@@ -117,15 +116,15 @@ const Core = (props) => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="black"
-            width="64px"
-            height="64px"
-          >
-            <circle cx="12" cy="12" r="8" />
-          </svg>
+          <Widget
+            src={"mob.near/widget/ProfileImage"}
+            props={{
+              accountId: account.accountId,
+              className: "d-inline-block m-2",
+              imageClassName: "rounded-circle w-100 h-100",
+              style: { width: "42px", height: "42px" },
+            }}
+          />
         </div>
         <ul
           className="dropdown-menu"
