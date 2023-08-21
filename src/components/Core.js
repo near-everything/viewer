@@ -86,6 +86,11 @@ const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
+  // justify-content: space-between;
+`;
+
+const ArrowButton = styled.button`
+  flex-grow: 1;
 `;
 
 const Core = (props) => {
@@ -107,25 +112,57 @@ const Core = (props) => {
 
   const [showPretendModal, setShowPretendModal] = React.useState(false);
 
+  const Button = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-transform: lowercase !important;
+    height: 48px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px outset #333;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    color: #333;
+    padding: 20px 20px;
+    margin: 4px;
+
+    &:active {
+      border-style: inset;
+      background-color: #d5d5d5;
+      color: #000;
+    }
+
+    &:hover {
+      background-color: #e5e5e5;
+      color: #111;
+    }
+  `;
+
   return (
     <>
       <StyledDropdown className="dropdown">
-        <div
-          type="button"
-          id="dropdownMenu2222"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <Widget
-            src={"mob.near/widget/ProfileImage"}
-            props={{
-              accountId: account.accountId,
-              className: "d-inline-block m-2",
-              imageClassName: "rounded-circle w-100 h-100",
-              style: { width: "42px", height: "42px" },
-            }}
-          />
-        </div>
+        {props.signedIn ? (
+          <div
+            type="button"
+            id="dropdownMenu2222"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <Widget
+              src={"mob.near/widget/ProfileImage"}
+              props={{
+                accountId: account.accountId,
+                className: "d-inline-block m-2",
+                imageClassName: "rounded-circle w-100 h-100",
+                style: { width: "42px", height: "42px" },
+              }}
+            />
+          </div>
+        ) : (
+          <Button onClick={props.requestSignIn}>sign in</Button>
+        )}
         <ul
           className="dropdown-menu"
           aria-labelledby="dropdownMenu2222"
@@ -179,17 +216,17 @@ const Core = (props) => {
               Sign Out
             </button>
           </li>
-          <li className="dropdown-item">
+          <li>
             <ButtonRow>
-              <button>
+              <ArrowButton>
                 <i className="bi bi-arrow-left"></i>
-              </button>
-              <button>
+              </ArrowButton>
+              <NavLink type="button" to={"/"}>
                 <i className="bi bi-house"></i>
-              </button>
-              <button>
+              </NavLink>
+              <ArrowButton>
                 <i className="bi bi-arrow-right"></i>
-              </button>
+              </ArrowButton>
             </ButtonRow>
           </li>
         </ul>
