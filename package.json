@@ -15,6 +15,7 @@
     "@near-wallet-selector/near-wallet": "^8.1.0",
     "@near-wallet-selector/neth": "^8.1.0",
     "@near-wallet-selector/sender": "^8.1.0",
+    "@teleporthq/teleport-component-generator-react": "^0.40.0-alpha.0",
     "@web3-onboard/core": "^2.16.2",
     "@web3-onboard/injected-wallets": "^2.8.4",
     "@web3-onboard/ledger": "^2.4.4",

@@ -29,6 +29,7 @@ import { ActionButton } from "./components/common/buttons/ActionButton";
 import { Camera } from "./components/custom/Camera";
 import { KeypomScanner } from "./components/custom/KeypomScanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
+import { TeleportGenerator } from "./components/custom/TeleportGenerator";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
@@ -95,6 +96,9 @@ function App(props) {
           },
           MonacoEditor: (props) => {
             return <MonacoEditor {...props} />;
+          },
+          TeleportGenerator: (props) => {
+            return <TeleportGenerator {...props} />;
           },
         },
       });

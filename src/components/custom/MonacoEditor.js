@@ -4,8 +4,8 @@ import parserBabel from "prettier/parser-babel";
 import React, { useCallback, useState } from "react";
 
 export const MonacoEditor = (props) => {
-  const { value, path, language, onChange } = props;
-  const [code, setCode] = useState(value);
+  const { value, defaultValue, path, language, onChange } = props;
+  const [code, setCode] = useState(defaultValue);
 
   const reformat = useCallback(
     (path, code) => {
@@ -43,8 +43,9 @@ export const MonacoEditor = (props) => {
 
   return (
     <Editor
-      value={code}
+      defaultValue={defaultValue}
       path={path}
+      value={value}
       height={"100%"}
       defaultLanguage={language}
       onChange={(code) => updateCode(path, code)}
