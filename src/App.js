@@ -18,40 +18,23 @@ import Big from "big.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "error-polyfill";
-import {
-  EthersProviderContext,
-  useAccount,
-  useInitNear,
-  useNear,
-  utils,
-} from "near-social-vm";
+import { useAccount, useInitNear, useNear, utils } from "near-social-vm";
 import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
-<<<<<<< HEAD
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { ActionButton } from "./components/common/buttons/ActionButton";
 import { Camera } from "./components/custom/Camera";
-import { KeypomScanner } from "./components/custom/KeypomScanner";
-import { MonacoEditor } from "./components/custom/MonacoEditor";
-=======
-import { Link, Route, HashRouter as Router, Switch } from "react-router-dom";
-import { ActionButton } from "./components/ActionButton";
-import { Camera } from "./components/camera";
-import { LivepeerPlayer } from "./components/livepeer/LivepeerPlayer";
->>>>>>> 6d6a68d (feature: adds Livepeer support WIP)
+import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
+import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
-import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
-<<<<<<< HEAD
+import { KeypomScanner } from "./components/custom/KeypomScanner";
 import Footer from "./components/navigation/Footer";
-=======
-import { LivepeerCreator } from "./components/livepeer/LivepeerCreator";
->>>>>>> 6d6a68d (feature: adds Livepeer support WIP)
+import { BosLoaderBanner } from "./components/BosLoaderBanner";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -64,7 +47,6 @@ function App(props) {
   const [walletModal, setWalletModal] = useState(null);
   const [widgetSrc, setWidgetSrc] = useState(null);
 
-  const ethersProviderContext = useEthersProviderContext();
   useBosLoaderInitializer();
 
   const { initNear } = useInitNear();
@@ -219,30 +201,28 @@ function App(props) {
 
   return (
     <div className="App">
-      <EthersProviderContext.Provider value={ethersProviderContext}>
-        <Router basename={process.env.PUBLIC_URL}>
-          <Switch>
-            <Route path={"/flags"}>
-              <Flags {...passProps} />
-            </Route>
-            <Route path={"/scanner"}>
-              <NavigationWrapper {...passProps} />
-              <KeypomScanner />
-            </Route>
-            <Route path={"/create"}>
-              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-              <Footer {...passProps} />
-            </Route>
-            <Route path={"/:widgetSrc*"}>
-              <BosLoaderBanner />
-              {/* <NavigationWrapper {...passProps} /> */}
-              <ViewPage {...passProps} />
-              <Footer {...passProps} />
-              <ActionButton {...passProps} />
-            </Route>
-          </Switch>
-        </Router>
-      </EthersProviderContext.Provider>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <Route path={"/flags"}>
+            <Flags {...passProps} />
+          </Route>
+          <Route path={"/scanner"}>
+            <NavigationWrapper {...passProps} />
+            <KeypomScanner />
+          </Route>
+          <Route path={"/create"}>
+            <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+            <Footer {...passProps} />
+          </Route>
+          <Route path={"/:widgetSrc*"}>
+            <BosLoaderBanner />
+            {/* <NavigationWrapper {...passProps} /> */}
+            <ViewPage {...passProps} />
+            <Footer {...passProps} />
+            <ActionButton {...passProps} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
