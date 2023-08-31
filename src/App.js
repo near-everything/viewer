@@ -1,4 +1,9 @@
 import { sanitizeUrl } from "@braintree/sanitize-url";
+import {
+  LivepeerConfig,
+  createReactClient,
+  studioProvider,
+} from "@livepeer/react";
 import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
@@ -13,29 +18,23 @@ import Big from "big.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "error-polyfill";
-import {
-  EthersProviderContext,
-  useAccount,
-  useInitNear,
-  useNear,
-  utils,
-} from "near-social-vm";
+import { useAccount, useInitNear, useNear, utils } from "near-social-vm";
 import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { ActionButton } from "./components/common/buttons/ActionButton";
 import { Camera } from "./components/custom/Camera";
-import { KeypomScanner } from "./components/custom/KeypomScanner";
-import { MonacoEditor } from "./components/custom/MonacoEditor";
+import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
+import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
-import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
+import { KeypomScanner } from "./components/custom/KeypomScanner";
 import Footer from "./components/navigation/Footer";
+import { BosLoaderBanner } from "./components/BosLoaderBanner";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -48,7 +47,6 @@ function App(props) {
   const [walletModal, setWalletModal] = useState(null);
   const [widgetSrc, setWidgetSrc] = useState(null);
 
-  const ethersProviderContext = useEthersProviderContext();
   useBosLoaderInitializer();
 
   const { initNear } = useInitNear();
@@ -57,6 +55,12 @@ function App(props) {
   const accountId = account.accountId;
 
   const location = window.location;
+
+  const livepeerClient = createReactClient({
+    provider: studioProvider({
+      apiKey: "c8323290-27a8-403b-858d-8baee19925c1",
+    }),
+  });
 
   useEffect(() => {
     initNear &&
@@ -95,6 +99,20 @@ function App(props) {
           },
           MonacoEditor: (props) => {
             return <MonacoEditor {...props} />;
+          },
+          LivepeerPlayer: (props) => {
+            return (
+              <LivepeerConfig client={livepeerClient}>
+                <LivepeerPlayer {...props} />
+              </LivepeerConfig>
+            );
+          },
+          LivepeerCreator: (props) => {
+            return (
+              <LivepeerConfig client={livepeerClient}>
+                <LivepeerCreator {...props} />
+              </LivepeerConfig>
+            );
           },
         },
       });
@@ -183,30 +201,28 @@ function App(props) {
 
   return (
     <div className="App">
-      <EthersProviderContext.Provider value={ethersProviderContext}>
-        <Router basename={process.env.PUBLIC_URL}>
-          <Switch>
-            <Route path={"/flags"}>
-              <Flags {...passProps} />
-            </Route>
-            <Route path={"/scanner"}>
-              <NavigationWrapper {...passProps} />
-              <KeypomScanner />
-            </Route>
-            <Route path={"/create"}>
-              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-              <Footer {...passProps} />
-            </Route>
-            <Route path={"/:widgetSrc*"}>
-              <BosLoaderBanner />
-              {/* <NavigationWrapper {...passProps} /> */}
-              <ViewPage {...passProps} />
-              <Footer {...passProps} />
-              <ActionButton {...passProps} />
-            </Route>
-          </Switch>
-        </Router>
-      </EthersProviderContext.Provider>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <Route path={"/flags"}>
+            <Flags {...passProps} />
+          </Route>
+          <Route path={"/scanner"}>
+            <NavigationWrapper {...passProps} />
+            <KeypomScanner />
+          </Route>
+          <Route path={"/create"}>
+            <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+            <Footer {...passProps} />
+          </Route>
+          <Route path={"/:widgetSrc*"}>
+            <BosLoaderBanner />
+            {/* <NavigationWrapper {...passProps} /> */}
+            <ViewPage {...passProps} />
+            <Footer {...passProps} />
+            <ActionButton {...passProps} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
