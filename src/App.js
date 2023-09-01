@@ -35,6 +35,7 @@ import ViewPage from "./pages/ViewPage";
 import { KeypomScanner } from "./components/custom/KeypomScanner";
 import Footer from "./components/navigation/Footer";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
+import { MonacoEditor } from "./components/custom/MonacoEditor";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
