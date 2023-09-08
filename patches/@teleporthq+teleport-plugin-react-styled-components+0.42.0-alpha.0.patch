@@ -1,0 +1,25 @@
+diff --git a/node_modules/@teleporthq/teleport-plugin-react-styled-components/src/index.ts b/node_modules/@teleporthq/teleport-plugin-react-styled-components/src/index.ts
+index 2f6ede0..f74e06b 100644
+--- a/node_modules/@teleporthq/teleport-plugin-react-styled-components/src/index.ts
++++ b/node_modules/@teleporthq/teleport-plugin-react-styled-components/src/index.ts
+@@ -46,6 +46,7 @@ export const createReactStyledComponentsPlugin: ComponentPluginFactory<StyledCom
+     if (!componentChunk) {
+       return structure
+     }
++    const styleChunks: any[] = [];
+ 
+     const jsxNodesLookup = componentChunk.meta.nodesLookup as Record<string, types.JSXElement>
+     const propsPrefix = componentChunk.meta.dynamicRefPrefix.prop as string
+@@ -287,8 +288,11 @@ export const createReactStyledComponentsPlugin: ComponentPluginFactory<StyledCom
+           projectStyleReferences,
+         }),
+       }
+-      chunks.push(code)
++      styleChunks.push(code);
++      // chunks.push(code)
+     })
++    chunks.unshift(...styleChunks);
++
+ 
+     if (Object.keys(cssMap).length === 0) {
+       return structure

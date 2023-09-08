@@ -1,0 +1,53 @@
+diff --git a/node_modules/@teleporthq/teleport-plugin-common/src/utils/ast-utils.ts b/node_modules/@teleporthq/teleport-plugin-common/src/utils/ast-utils.ts
+index b047a05..434e109 100644
+--- a/node_modules/@teleporthq/teleport-plugin-common/src/utils/ast-utils.ts
++++ b/node_modules/@teleporthq/teleport-plugin-common/src/utils/ast-utils.ts
+@@ -470,34 +470,24 @@ export const createPureComponent = (
+   jsxTagTree: types.JSXElement,
+   windowImports: Record<string, types.ExpressionStatement> = {},
+   t = types
+-): types.VariableDeclaration => {
+-  const arrowFunctionBody = createReturnExpressionSyntax(
+-    stateDefinitions,
+-    jsxTagTree,
+-    windowImports
+-  )
+-  const arrowFunction = t.arrowFunctionExpression([t.identifier('props')], arrowFunctionBody)
+-
+-  const declarator = t.variableDeclarator(t.identifier(name), arrowFunction)
+-  const component = t.variableDeclaration('const', [declarator])
+-
+-  return component
++): types.JSXElement => {
++  return jsxTagTree;
+ }
+ 
+-export const createReturnExpressionSyntax = (
+-  stateDefinitions: Record<string, UIDLStateDefinition>,
+-  jsxTagTree: types.JSXElement,
+-  windowImports: Record<string, types.ExpressionStatement> = {},
+-  t = types
+-) => {
+-  const returnStatement = t.returnStatement(jsxTagTree)
++// export const createReturnExpressionSyntax = (
++//   stateDefinitions: Record<string, UIDLStateDefinition>,
++//   jsxTagTree: types.JSXElement,
++//   windowImports: Record<string, types.ExpressionStatement> = {},
++//   t = types
++// ) => {
++//   const returnStatement = t.returnStatement(jsxTagTree)
+ 
+-  const stateHooks = Object.keys(stateDefinitions).map((stateKey) =>
+-    createStateHookAST(stateKey, stateDefinitions[stateKey])
+-  )
++//   const stateHooks = Object.keys(stateDefinitions).map((stateKey) =>
++//     createStateHookAST(stateKey, stateDefinitions[stateKey])
++//   )
+ 
+-  return t.blockStatement([...stateHooks, ...Object.values(windowImports), returnStatement] || [])
+-}
++//   return t.blockStatement([...stateHooks, ...Object.values(windowImports), returnStatement] || [])
++// }
+ 
+ /**
+  * Creates an AST line for defining a single state hook

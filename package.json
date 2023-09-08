@@ -4,6 +4,9 @@
   "homepage": "/",
   "private": true,
   "dependencies": {
+    "@babel/generator": "^7.22.15",
+    "@babel/parser": "^7.22.16",
+    "@babel/traverse": "^7.22.15",
     "@braintree/sanitize-url": "^6.0.2",
     "@keypom/core": "^1.0.2",
     "@monaco-editor/react": "^4.5.1",
@@ -15,7 +18,13 @@
     "@near-wallet-selector/near-wallet": "^8.1.0",
     "@near-wallet-selector/neth": "^8.1.0",
     "@near-wallet-selector/sender": "^8.1.0",
+    "@teleporthq/teleport-component-generator": "^0.42.0-alpha.0",
     "@teleporthq/teleport-component-generator-react": "^0.40.0-alpha.0",
+    "@teleporthq/teleport-plugin-css": "^0.42.0-alpha.0",
+    "@teleporthq/teleport-plugin-react-styled-components": "^0.42.0-alpha.0",
+    "@teleporthq/teleport-postprocessor-prettier-js": "^0.42.0-alpha.0",
+    "@teleporthq/teleport-shared": "^0.42.0-alpha.0",
+    "@teleporthq/teleport-types": "^0.42.0-alpha.0",
     "@web3-onboard/core": "^2.16.2",
     "@web3-onboard/injected-wallets": "^2.8.4",
     "@web3-onboard/ledger": "^2.4.4",
@@ -50,7 +59,8 @@
     "prod:analyze": "npm run prod -- --env presets=analyze",
     "build": "npm run prod",
     "start": "npm run dev",
-    "dev-widgets": "~/.cargo/bin/bos-loader every.near --path widgets"
+    "dev-widgets": "~/.cargo/bin/bos-loader every.near --path widgets",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [
@@ -90,6 +100,7 @@
     "mini-css-extract-plugin": "^2.2.2",
     "node-sass": "^7.0.3",
     "os-browserify": "^0.3.0",
+    "patch-package": "^8.0.0",
     "path-browserify": "^1.0.1",
     "postcss-loader": "^7.0.1",
     "process": "^0.11.10",
