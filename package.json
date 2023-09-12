@@ -6,8 +6,8 @@
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.2",
     "@keypom/core": "^1.0.2",
-    "@monaco-editor/react": "^4.5.1",
     "@livepeer/react": "^2.6.0",
+    "@monaco-editor/react": "^4.5.1",
     "@near-wallet-selector/core": "^8.1.0",
     "@near-wallet-selector/here-wallet": "^8.1.0",
     "@near-wallet-selector/meteor-wallet": "^8.1.0",
@@ -36,6 +36,7 @@
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-typeahead": "^6.1.2",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
     "react-router-dom": "^5.2.0",
     "react-webcam": "^7.1.1",
     "react-zxing": "^1.1.4",
