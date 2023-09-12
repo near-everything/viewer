@@ -1,20 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { createComponentGenerator } from "@teleporthq/teleport-component-generator";
-import reactComponentPlugin from "@teleporthq/teleport-plugin-react-base-component";
-import styledComponentsPlugin from "@teleporthq/teleport-plugin-react-styled-components";
-import importStatementsPlugin from "@teleporthq/teleport-plugin-import-statements";
-import prettierJS from "@teleporthq/teleport-postprocessor-prettier-js";
+import React from "react";
+import {
+  ReactStyleVariation,
+  createReactComponentGenerator,
+} from "@teleporthq/teleport-component-generator-react";
+import * as types from "@babel/types";
 
-import reactMapping from "./react-mapping";
+const IGNORE_CHUNKS = [
+  "component-types-of-props",
+  "import-lib",
+  "import-pack",
+  "import-local",
+  "export",
+];
 
-const generator = createComponentGenerator();
+const generator = createReactComponentGenerator({
+  variation: ReactStyleVariation.StyledComponents,
+});
 
-generator.addMapping(reactMapping);
+const astModifierPlugin = async (structure) => {
+  const { chunks } = structure;
 
-generator.addPlugin(reactComponentPlugin);
-generator.addPlugin(styledComponentsPlugin);
-generator.addPlugin(importStatementsPlugin);
-generator.addPostProcessor(prettierJS);
+  const propsChunks = [];
+  const styleChunks = [];
+  const otherChunks = [];
+
+  chunks.forEach((chunk) => {
+    if (chunk.name.includes("props")) {
+      propsChunks.push(chunk);
+    } else if (chunk.name.includes("style")) {
+      styleChunks.push(chunk);
+    } else if (!IGNORE_CHUNKS.includes(chunk.name)) {
+      otherChunks.push(chunk);
+    }
+  });
+
+  const orderedChunks = [...styleChunks, ...propsChunks, ...otherChunks];
+
+  orderedChunks.forEach((chunk) => {
+    if (chunk.name === "component-default-props") {
+      chunk.content.expression.left = types.identifier("props");
+    }
+
+    if (chunk.name === "jsx-component") {
+      chunk.content = chunk.content.declarations[0].init.body.body[0];
+    }
+  });
+
+  structure.chunks = orderedChunks;
+  return structure;
+};
+
+generator.addPlugin(astModifierPlugin);
 
 export const TeleportGeneratorPseudoReact = (props) => {
   async function generate() {
