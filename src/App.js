@@ -201,30 +201,28 @@ function App(props) {
   };
 
   return (
-    <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route path={"/flags"}>
-            <Flags {...passProps} />
-          </Route>
-          <Route path={"/scanner"}>
-            <NavigationWrapper {...passProps} />
-            <KeypomScanner />
-          </Route>
-          <Route path={"/create"}>
-            <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-            <Footer {...passProps} />
-          </Route>
-          <Route path={"/:widgetSrc*"}>
-            <BosLoaderBanner />
-            {/* <NavigationWrapper {...passProps} /> */}
-            <ViewPage {...passProps} />
-            <Footer {...passProps} />
-            <ActionButton {...passProps} />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router basename={process.env.PUBLIC_URL}>
+      <Switch>
+        <Route path={"/flags"}>
+          <Flags {...passProps} />
+        </Route>
+        <Route path={"/scanner"}>
+          <NavigationWrapper {...passProps} />
+          <KeypomScanner />
+        </Route>
+        <Route path={"/create"}>
+          <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+          <Footer {...passProps} />
+        </Route>
+        <Route path={"/:widgetSrc*"}>
+          <BosLoaderBanner />
+          {/* <NavigationWrapper {...passProps} /> */}
+          <ViewPage {...passProps} />
+          <Footer {...passProps} />
+          <ActionButton {...passProps} />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
