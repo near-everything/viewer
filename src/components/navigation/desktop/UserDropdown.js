@@ -8,9 +8,9 @@ import { NavLink } from "react-router-dom";
 import PretendModal from "../PretendModal";
 import { Pretend } from "../../icons/Pretend";
 import { StopPretending } from "../../icons/StopPretending";
-import { Link } from "react-router-dom";
-import { CreateWidget } from "../CreateWidget";
-import { NotificationWidget } from "../NotificationWidget";
+// import { Link } from "react-router-dom";
+// import { CreateWidget } from "../CreateWidget";
+// import { NotificationWidget } from "../NotificationWidget";
 
 const StyledDropdown = styled.div`
   button,
