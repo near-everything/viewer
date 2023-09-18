@@ -19,7 +19,7 @@ function Header() {
             <Nav.Link href="/education">Education</Nav.Link>
             <Nav.Link href="/components">Components</Nav.Link>
             <Nav.Link href="/projects">Projects</Nav.Link>
-            <Nav.Link href="/oppertunities">Oppertunities</Nav.Link>
+            <Nav.Link href="/opportunities">Opportunities</Nav.Link>
 
             <NavDropdown title="More" id="basic-nav-dropdown">
               <NavDropdown.Item href="/integrations">

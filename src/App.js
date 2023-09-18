@@ -44,7 +44,7 @@ import {
   Education,
   Components,
   Projects,
-  Oppertunities,
+  Opportunities,
   Integrations,
   Infrastructure,
   Gateways,
@@ -240,9 +240,9 @@ function App() {
       component: <Projects />,
     },
     {
-      name: "Oppertunities",
-      path: "/oppertunities",
-      component: <Oppertunities />,
+      name: "Opportunities",
+      path: "/opportunities",
+      component: <Opportunities />,
     },
     {
       name: "Integrations",
@@ -277,14 +277,6 @@ function App() {
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
               <Footer {...passProps} />
             </Route>
-            {/* <Route path={"/events"}>
-              <Events />
-              <Footer {...passProps} />
-            </Route>
-            <Route path={"/community"}>
-              <Community />
-              <Footer {...passProps} />
-            </Route> */}
             {routes.map((route, index) => (
               <Router key={`router-${index}`} path={route.path}>
                 {route.component}
