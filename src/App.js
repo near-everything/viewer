@@ -47,7 +47,7 @@ import Home from "./pages/Home";
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
 
-function App(props) {
+function App() {
   const [connected, setConnected] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const [signedAccountId, setSignedAccountId] = useState(null);
@@ -62,7 +62,7 @@ function App(props) {
   const account = useAccount();
   const accountId = account.accountId;
 
-  const location = window.location;
+  // const location = window.location;
 
   const livepeerClient = createReactClient({
     provider: studioProvider({
