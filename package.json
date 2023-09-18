@@ -50,7 +50,8 @@
     "prod:analyze": "npm run prod -- --env presets=analyze",
     "build": "npm run prod",
     "start": "npm run dev",
-    "dev-widgets": "~/.cargo/bin/bos-loader every.near --path widgets"
+    "dev-widgets": "~/.cargo/bin/bos-loader every.near --path widgets",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "browserslist": {
     "production": [
