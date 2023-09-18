@@ -37,6 +37,13 @@ import Footer from "./components/navigation/Footer";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 
+import RootLayout from "./components/layouts/root";
+import Events from "./pages/Events";
+import Apps from "./pages/Apps";
+import Community from "./pages/Community";
+import Explore from "./pages/Explore";
+import Home from "./pages/Home";
+
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
 
@@ -202,28 +209,47 @@ function App(props) {
 
   return (
     <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route path={"/flags"}>
-            <Flags {...passProps} />
-          </Route>
-          <Route path={"/scanner"}>
-            <NavigationWrapper {...passProps} />
-            <KeypomScanner />
-          </Route>
-          <Route path={"/create"}>
-            <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-            <Footer {...passProps} />
-          </Route>
-          <Route path={"/:widgetSrc*"}>
-            <BosLoaderBanner />
-            {/* <NavigationWrapper {...passProps} /> */}
-            <ViewPage {...passProps} />
-            <Footer {...passProps} />
-            <ActionButton {...passProps} />
-          </Route>
-        </Switch>
-      </Router>
+      <RootLayout>
+        <Router basename={process.env.PUBLIC_URL}>
+          <Switch>
+            <Route path={"/flags"}>
+              <Flags {...passProps} />
+            </Route>
+            <Route path={"/scanner"}>
+              <NavigationWrapper {...passProps} />
+              <KeypomScanner />
+            </Route>
+            <Route path={"/create"}>
+              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+              <Footer {...passProps} />
+            </Route>
+            <Route path={"/events"}>
+              <Events />
+              <Footer {...passProps} />
+            </Route>
+            <Route path={"/apps"}>
+              <Apps />
+              <Footer {...passProps} />
+            </Route>
+            <Route path={"/community"}>
+              <Community />
+              <Footer {...passProps} />
+            </Route>
+            <Route path={"/explore"}>
+              <Explore />
+              <Footer {...passProps} />
+            </Route>
+            <Route path={"/:widgetSrc*"}>
+              <BosLoaderBanner />
+              {/* <NavigationWrapper {...passProps} /> */}
+              {/* <ViewPage {...passProps} /> */}
+              <Home />
+              <Footer {...passProps} />
+              <ActionButton {...passProps} />
+            </Route>
+          </Switch>
+        </Router>
+      </RootLayout>
     </div>
   );
 }

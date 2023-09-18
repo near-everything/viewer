@@ -79,7 +79,7 @@ export default function ViewPage(props) {
   return (
     <div className="row">
       <div
-        className="d-inline-block position-relative overflow-hidden"
+        className="d-inline-block position-relative"
         style={{
           "--body-bottom-padding": "68px",
           paddingBottom: "var(--body-bottom-padding)",
