@@ -3,7 +3,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import NavDropdown from "react-bootstrap/NavDropdown";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 function Header() {
   return (
@@ -16,19 +16,20 @@ function Header() {
             {/* <Nav.Link href="/">Home</Nav.Link> */}
             <Nav.Link href="/events">Events</Nav.Link>
             <Nav.Link href="/community">Community</Nav.Link>
-            <Nav.Link href="/apps">Apps</Nav.Link>
-            <Nav.Link href="/explore">Explore</Nav.Link>
-            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+            <Nav.Link href="/education">Education</Nav.Link>
+            <Nav.Link href="/components">Components</Nav.Link>
+            <Nav.Link href="/projects">Projects</Nav.Link>
+            <Nav.Link href="/oppertunities">Oppertunities</Nav.Link>
+
+            <NavDropdown title="More" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/integrations">
+                Integrations
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="/infrastructure">
+                Infrastructure
               </NavDropdown.Item>
-            </NavDropdown> */}
+              <NavDropdown.Item href="/gateways">Gateways</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -38,11 +38,17 @@ import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 
 import RootLayout from "./components/layouts/root";
-import Events from "./pages/Events";
-import Apps from "./pages/Apps";
-import Community from "./pages/Community";
-import Explore from "./pages/Explore";
-import Home from "./pages/Home";
+import {
+  Events,
+  Community,
+  Education,
+  Components,
+  Projects,
+  Oppertunities,
+  Integrations,
+  Infrastructure,
+  Gateways,
+} from "./pages";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -207,6 +213,54 @@ function App() {
     documentationHref,
   };
 
+  const routes = [
+    {
+      name: "Events",
+      path: "/events",
+      component: <Events />,
+    },
+    {
+      name: "Community",
+      path: "/community",
+      component: <Community />,
+    },
+    {
+      name: "Education",
+      path: "/education",
+      component: <Education />,
+    },
+    {
+      name: "Components",
+      path: "/components",
+      component: <Components />,
+    },
+    {
+      name: "Projects",
+      path: "/projects",
+      component: <Projects />,
+    },
+    {
+      name: "Oppertunities",
+      path: "/oppertunities",
+      component: <Oppertunities />,
+    },
+    {
+      name: "Integrations",
+      path: "/integrations",
+      component: <Integrations />,
+    },
+    {
+      name: "Infrastructure",
+      path: "/infrastructure",
+      component: <Infrastructure />,
+    },
+    {
+      name: "Gateways",
+      path: "/gateways",
+      component: <Gateways />,
+    },
+  ];
+
   return (
     <div className="App">
       <RootLayout>
@@ -223,27 +277,24 @@ function App() {
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
               <Footer {...passProps} />
             </Route>
-            <Route path={"/events"}>
+            {/* <Route path={"/events"}>
               <Events />
-              <Footer {...passProps} />
-            </Route>
-            <Route path={"/apps"}>
-              <Apps />
               <Footer {...passProps} />
             </Route>
             <Route path={"/community"}>
               <Community />
               <Footer {...passProps} />
-            </Route>
-            <Route path={"/explore"}>
-              <Explore />
-              <Footer {...passProps} />
-            </Route>
+            </Route> */}
+            {routes.map((route, index) => (
+              <Router key={`router-${index}`} path={route.path}>
+                {route.component}
+                <Footer {...passProps} />
+              </Router>
+            ))}
             <Route path={"/:widgetSrc*"}>
               <BosLoaderBanner />
               {/* <NavigationWrapper {...passProps} /> */}
-              {/* <ViewPage {...passProps} /> */}
-              <Home />
+              <ViewPage {...passProps} />
               <Footer {...passProps} />
               <ActionButton {...passProps} />
             </Route>
