@@ -1,6 +1,8 @@
-import { createReactComponentGenerator } from "@teleporthq/teleport-component-generator-react";
-// import { createBOSComponentGenerator } from "@teleporthq/teleport-component-generator-bos";
 import React from "react";
+import { createReactComponentGenerator } from "@teleporthq/teleport-component-generator-react";
+import styledComponents from "@teleporthq/teleport-plugin-react-styled-components";
+import Mapping from "./BOS-mapping.json";
+import astModifierPlugin from "./astModifierPlugin";
 
 export const TeleportGenerator = (props) => {
   async function generateReact() {
@@ -17,7 +19,10 @@ export const TeleportGenerator = (props) => {
 
   async function generateBOS() {
     try {
-      const generator = createBOSComponentGenerator();
+      const generator = createReactComponentGenerator();
+      generator.addMapping(Mapping);
+      generator.addPlugin(styledComponents);
+      generator.addPlugin(astModifierPlugin);
       const uidl = props.getUIDL();
       const { files } = await generator.generateComponent(JSON.parse(uidl));
       props.onGenerate({ code: files[0].content });

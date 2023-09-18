@@ -1,0 +1,103 @@
+{
+  "elements": {
+    "container": {
+      "elementType": "div"
+    },
+    "group": {
+      "elementType": "div"
+    },
+    "text": {
+      "elementType": "span"
+    },
+    "linebreak": {
+      "elementType": "br",
+      "selfClosing": true
+    },
+    "image": {
+      "elementType": "img",
+      "attrs": {
+        "src": {
+          "type": "dynamic",
+          "content": {
+            "referenceType": "attr",
+            "id": "url"
+          }
+        }
+      },
+      "selfClosing": true
+    },
+    
+    "nav": {
+      "elementType": "div",
+      "dependency": {
+        "type": "package",
+        "path": "dangerous-html",
+        "version": "0.1.13",
+        "meta": {
+          "importJustPath": true
+        }
+      }
+    },
+
+    "video": {
+      "elementType": "div",
+      "dependency": {
+        "type": "package",
+        "path": "dangerous-html",
+        "version": "0.1.13",
+        "meta": {
+          "importJustPath": true
+        }
+      }
+    },
+    "source": {
+      "elementType": "div",
+      "dependency": {
+        "type": "package",
+        "path": "dangerous-html",
+        "version": "0.1.13",
+        "meta": {
+          "importJustPath": true
+        }
+      }
+    },
+    "form": {
+      "elementType": "div",
+      "dependency": {
+        "type": "package",
+        "path": "dangerous-html",
+        "version": "0.1.13",
+        "meta": {
+          "importJustPath": true
+        }
+      }
+    },
+    "html-node": {
+      "elementType": "dangerous-html",
+      "dependency": {
+        "type": "package",
+        "path": "dangerous-html",
+        "version": "0.1.13",
+        "meta": {
+          "importJustPath": true
+        }
+      }
+    },
+    "lottie-node": {
+      "elementType": "lottie-player",
+      "dependency": {
+        "type": "package",
+        "path": "@lottiefiles/lottie-player",
+        "version": "1.6.0",
+        "meta": {
+          "importJustPath": true
+        }
+      }
+    }
+
+  },
+  "events": {},
+  "attributes": {},
+  "illegalClassNames": ["", "Component","Image"],
+  "illegalPropNames": ["", "this","prop", "props", "state", "window", "document"]
+}

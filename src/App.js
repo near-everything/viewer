@@ -30,7 +30,6 @@ import { Camera } from "./components/custom/Camera";
 import { KeypomScanner } from "./components/custom/KeypomScanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { TeleportGenerator } from "./components/custom/TeleportGenerator";
-import { TeleportGeneratorPseudoReact } from "./components/custom/TeleportGeneratorPseudoReact";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 // import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
