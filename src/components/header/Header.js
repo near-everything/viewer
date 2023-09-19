@@ -88,10 +88,10 @@ function Header() {
                 Built with BOS
               </NavDropdown.Item>
               <NavDropdown.Item href="/projects/native-projects">
-                Native Projects on BOS
+                BOS Natives
               </NavDropdown.Item>
               <NavDropdown.Item href="/projects/bos-integration">
-                Projects with BOS
+                Integrated to BOS
               </NavDropdown.Item>
             </NavDropdownMenu>
 
