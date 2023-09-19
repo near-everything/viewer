@@ -38,17 +38,47 @@ import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 
 import RootLayout from "./components/layouts/root";
+
+// Page imports
+import { EventCalendar, LibraryEvents } from "./pages/events";
+
 import {
-  Events,
-  Community,
-  Education,
-  Components,
-  Projects,
-  Opportunities,
-  Integrations,
-  Infrastructure,
-  Gateways,
-} from "./pages";
+  GeneralCommunity,
+  DeveloperCommunity,
+  ProjectCommunity,
+  RegionalCommunity,
+} from "./pages/communities";
+
+import {
+  ComponentsDAO,
+  ComponentsDeFi,
+  ComponentsEVM,
+  ComponentsGaming,
+  ComponentsMore,
+  ComponentsNFT,
+} from "./pages/components";
+
+import {
+  EducationCodeReviews,
+  EducationOfficeHours,
+  EducationTutorials,
+  EducationWorkshops,
+} from "./pages/education";
+
+import {
+  OpportunitiesAccelerator,
+  OpportunitiesAmplification,
+  OpportunitiesFunding,
+  OpportunitiesIncubation,
+} from "./pages/opportunities";
+
+import {
+  ProjectsBuiltWithBOS,
+  ProjectsBOSIntegration,
+  ProjectsNativeProjects,
+} from "./pages/projects";
+
+import { Integrations, Infrastructure, Gateways } from "./pages/more";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -213,49 +243,132 @@ function App() {
     documentationHref,
   };
 
+  const eventRoutes = [
+    {
+      path: "/events/calendar",
+      component: <EventCalendar />,
+    },
+    {
+      path: "/events/library",
+      component: <LibraryEvents />,
+    },
+  ];
+
+  const communitiesRoutes = [
+    {
+      path: "/communities/developer",
+      component: <DeveloperCommunity />,
+    },
+    {
+      path: "/communities/project",
+      component: <ProjectCommunity />,
+    },
+    {
+      path: "/communities/regional",
+      component: <RegionalCommunity />,
+    },
+    {
+      path: "/communities/general-bos",
+      component: <GeneralCommunity />,
+    },
+  ];
+
+  const educationRoutes = [
+    {
+      path: "/education/tutorials",
+      component: <EducationTutorials />,
+    },
+    {
+      path: "/education/code-reviews",
+      component: <EducationCodeReviews />,
+    },
+    {
+      path: "/education/workshops",
+      component: <EducationWorkshops />,
+    },
+    {
+      path: "/education/office-hours",
+      component: <EducationOfficeHours />,
+    },
+  ];
+
+  const componentsRoutes = [
+    {
+      path: "/components/evm",
+      component: <ComponentsEVM />,
+    },
+    {
+      path: "/components/defi",
+      component: <ComponentsDeFi />,
+    },
+    {
+      path: "/components/nft",
+      component: <ComponentsNFT />,
+    },
+    {
+      path: "/components/dao",
+      component: <ComponentsDAO />,
+    },
+    {
+      path: "/components/gaming",
+      component: <ComponentsGaming />,
+    },
+    {
+      path: "/components/more",
+      component: <ComponentsMore />,
+    },
+  ];
+
+  const projectsRoutes = [
+    {
+      path: "/projects/built-with-bos",
+      component: <ProjectsBuiltWithBOS />,
+    },
+    {
+      path: "/projects/native-projects",
+      component: <ProjectsNativeProjects />,
+    },
+    {
+      path: "/projects/bos-integration",
+      component: <ProjectsBOSIntegration />,
+    },
+  ];
+
+  const opportunitiesRoutes = [
+    {
+      path: "/opportunities/funding",
+      component: <OpportunitiesFunding />,
+    },
+    {
+      path: "/opportunities/accelerator",
+      component: <OpportunitiesAccelerator />,
+    },
+    {
+      path: "/opportunities/incubation",
+      component: <OpportunitiesIncubation />,
+    },
+    {
+      path: "/opportunities/amplification",
+      component: <OpportunitiesAmplification />,
+    },
+  ];
+
   const routes = [
+    ...eventRoutes,
+    ...communitiesRoutes,
+    ...educationRoutes,
+    ...componentsRoutes,
+    ...projectsRoutes,
+    ...opportunitiesRoutes,
     {
-      name: "Events",
-      path: "/events",
-      component: <Events />,
-    },
-    {
-      name: "Community",
-      path: "/community",
-      component: <Community />,
-    },
-    {
-      name: "Education",
-      path: "/education",
-      component: <Education />,
-    },
-    {
-      name: "Components",
-      path: "/components",
-      component: <Components />,
-    },
-    {
-      name: "Projects",
-      path: "/projects",
-      component: <Projects />,
-    },
-    {
-      name: "Opportunities",
-      path: "/opportunities",
-      component: <Opportunities />,
-    },
-    {
-      name: "Integrations",
       path: "/integrations",
       component: <Integrations />,
     },
     {
-      name: "Infrastructure",
       path: "/infrastructure",
       component: <Infrastructure />,
     },
     {
-      name: "Gateways",
       path: "/gateways",
       component: <Gateways />,
     },
@@ -264,7 +377,7 @@ function App() {
   return (
     <div className="App">
       <RootLayout>
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename={""}>
           <Switch>
             <Route path={"/flags"}>
               <Flags {...passProps} />
@@ -277,8 +390,8 @@ function App() {
               <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
               <Footer {...passProps} />
             </Route>
-            {routes.map((route, index) => (
-              <Router key={`router-${index}`} path={route.path}>
+            {routes.map((route) => (
+              <Router key={`${route.path}`} path={route.path}>
                 {route.component}
                 <Footer {...passProps} />
               </Router>
