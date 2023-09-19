@@ -72,14 +72,14 @@ module.exports = function (env) {
               from: paths.publicPath,
               to: "assets",
               globOptions: {
-                ignore: ["*.DS_Store"],
+                ignore: ["*.DS_Store", "robots.txt"],
               },
               noErrorOnMissing: true,
             },
           ],
         }),
         new HTMLWebpackPlugin({
-          template: `${paths.publicPath}/index.html`,
+          template: `${paths.publicPath}/template.html`,
           favicon: `${paths.publicPath}/favicon.png`,
           robots: `${paths.publicPath}/robots.txt`,
           publicPath: "/",
