@@ -13,19 +13,6 @@
       "elementType": "br",
       "selfClosing": true
     },
-    "image": {
-      "elementType": "img",
-      "attrs": {
-        "src": {
-          "type": "dynamic",
-          "content": {
-            "referenceType": "attr",
-            "id": "url"
-          }
-        }
-      },
-      "selfClosing": true
-    },
     
     "nav": {
       "elementType": "div",
@@ -98,6 +85,6 @@
   },
   "events": {},
   "attributes": {},
-  "illegalClassNames": ["", "Component","Image"],
+  "illegalClassNames": ["", "Component"],
   "illegalPropNames": ["", "this","prop", "props", "state", "window", "document"]
 }

@@ -20,8 +20,8 @@ export const TeleportGenerator = (props) => {
   async function generateBOS() {
     try {
       const generator = createReactComponentGenerator();
-      generator.addMapping(Mapping);
       generator.addPlugin(styledComponents);
+      generator.addMapping(Mapping);
       generator.addPlugin(astModifierPlugin);
       const uidl = props.getUIDL();
       const { files } = await generator.generateComponent(JSON.parse(uidl));
@@ -31,6 +31,8 @@ export const TeleportGenerator = (props) => {
       console.error("error while generating component from uidl: " + e);
     }
   }
+
+  // async function generateBOSproject() {}
 
   return <button onClick={generateBOS}>Generate</button>;
 };

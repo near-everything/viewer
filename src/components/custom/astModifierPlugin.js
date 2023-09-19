@@ -1,5 +1,6 @@
 import React from "react";
 import * as types from "@babel/types";
+import { UIDLUtils } from "@teleporthq/teleport-shared";
 
 const IGNORE_CHUNKS = [
   "component-types-of-props",
@@ -10,11 +11,20 @@ const IGNORE_CHUNKS = [
 ];
 
 const astModifierPlugin = async (structure) => {
-  const { chunks } = structure;
+  const { chunks, uidl, options } = structure;
+  const componentChunk = chunks.find((chunk) => chunk.name === "jsx-component");
+
+  UIDLUtils.traverseElements(uidl.node, (element) => {
+    if (element.elementType === "img" && element.key === "image") {
+      const imageJSXNode = componentChunk.meta.nodesLookup[element.key];
+      imageJSXNode.openingElement.name.name = "ImageWrapper";
+      imageJSXNode.closingElement.name.name = "ImageWrapper";
+    }
+  });
 
   const newChunks = chunks.filter((chunk) => {
     if (IGNORE_CHUNKS.includes(chunk.name)) {
-      return false;
+      return;
     }
 
     if (chunk.name === "component-default-props") {
@@ -25,21 +35,17 @@ const astModifierPlugin = async (structure) => {
     if (chunk.name === "jsx-component") {
       chunk.content = chunk.content.declarations[0].init.body.body;
       chunk.linkAfter = ["component-default-props"];
-      chunk.content[0].argument.children.forEach((node) => {
-        if (node.openingElement?.name?.name === "Image") {
-          node.openingElement.name = types.JSXIdentifier("Img");
-        }
-      });
-    }
-    if (chunk.name === "Image") {
-      chunk.content.declarations[0].id = types.identifier("Img");
     }
 
-    return true;
+    if (chunk.name === "Image") {
+      chunk.name = "ImageWrapper";
+      chunk.content.declarations[0].id.name = "ImageWrapper";
+    }
+
+    return chunk;
   });
 
   structure.chunks = newChunks.reverse();
-  console.log(structure.chunks);
   return structure;
 };
 

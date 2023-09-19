@@ -3430,6 +3430,19 @@
     "@teleporthq/teleport-types" "^0.30.0"
     prettier "^2.3.1"
 
+"@teleporthq/teleport-project-generator@^0.30.0":
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator/-/teleport-project-generator-0.30.0.tgz#560c44a052a0e9e7f5cea3506f1c894fb98c921d"
+  integrity sha512-zcl0hg55YWvZtcuiF3lom57lpfaZief0yewtF983oGgNhGcmk8LP5ebj3+sgTivz0SGyWdOh3fZv61U9DxWqFg==
+  dependencies:
+    "@teleporthq/teleport-component-generator" "^0.30.0"
+    "@teleporthq/teleport-plugin-common" "^0.30.0"
+    "@teleporthq/teleport-plugin-import-statements" "^0.30.0"
+    "@teleporthq/teleport-shared" "^0.30.0"
+    "@teleporthq/teleport-types" "^0.30.0"
+    "@teleporthq/teleport-uidl-builders" "^0.30.0"
+    "@teleporthq/teleport-uidl-validator" "^0.30.0"
+
 "@teleporthq/teleport-shared@^0.16.3":
   version "0.16.3"
   resolved "https://registry.yarnpkg.com/@teleporthq/teleport-shared/-/teleport-shared-0.16.3.tgz#58d387363b45d4cdeff0726df652b5dbc293c22b"
