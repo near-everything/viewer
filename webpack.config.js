@@ -51,12 +51,15 @@ module.exports = function (env) {
           fs: false,
           path: require.resolve("path-browserify"),
           zlib: require.resolve("browserify-zlib"),
+          // assert: require.resolve("assert/"),
+          // process: require.resolve("process/browser"),
         },
         // Fix for using `yarn link "near-social-vm"`
         alias: {
           react: path.resolve(__dirname, "./node_modules/react"),
           "react-dom": path.resolve(__dirname, "./node_modules/react-dom"),
           "near-api-js": path.resolve(__dirname, "./node_modules/near-api-js"),
+          // process: "process/browser",
         },
       },
       plugins: [

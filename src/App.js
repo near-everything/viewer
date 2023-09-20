@@ -31,7 +31,7 @@ import { KeypomScanner } from "./components/custom/KeypomScanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { TeleportGenerator } from "./components/custom/TeleportGenerator";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
-import { useEthersProviderContext } from "./data/web3";
+// import { useEthersProviderContext } from "./data/web3";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
@@ -49,7 +49,7 @@ function App(props) {
   const [walletModal, setWalletModal] = useState(null);
   const [widgetSrc, setWidgetSrc] = useState(null);
 
-  const ethersProviderContext = useEthersProviderContext();
+  // const ethersProviderContext = useEthersProviderContext();
   useBosLoaderInitializer();
 
   const { initNear } = useInitNear();
@@ -187,30 +187,30 @@ function App(props) {
 
   return (
     <div className="App">
-      <EthersProviderContext.Provider value={ethersProviderContext}>
-        <Router basename={process.env.PUBLIC_URL}>
-          <Switch>
-            <Route path={"/flags"}>
-              <Flags {...passProps} />
-            </Route>
-            <Route path={"/scanner"}>
-              <NavigationWrapper {...passProps} />
-              <KeypomScanner />
-            </Route>
-            <Route path={"/create"}>
-              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-              <Footer {...passProps} />
-            </Route>
-            <Route path={"/:widgetSrc*"}>
-              <BosLoaderBanner />
-              {/* <NavigationWrapper {...passProps} /> */}
-              <ViewPage {...passProps} />
-              <Footer {...passProps} />
-              <ActionButton {...passProps} />
-            </Route>
-          </Switch>
-        </Router>
-      </EthersProviderContext.Provider>
+      {/* <EthersProviderContext.Provider value={ethersProviderContext}> */}
+      <Router basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <Route path={"/flags"}>
+            <Flags {...passProps} />
+          </Route>
+          <Route path={"/scanner"}>
+            <NavigationWrapper {...passProps} />
+            <KeypomScanner />
+          </Route>
+          <Route path={"/create"}>
+            <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+            <Footer {...passProps} />
+          </Route>
+          <Route path={"/:widgetSrc*"}>
+            <BosLoaderBanner />
+            {/* <NavigationWrapper {...passProps} /> */}
+            <ViewPage {...passProps} />
+            <Footer {...passProps} />
+            <ActionButton {...passProps} />
+          </Route>
+        </Switch>
+      </Router>
+      {/* </EthersProviderContext.Provider> */}
     </div>
   );
 }
