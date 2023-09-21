@@ -1,15 +1,3 @@
-import ComponentsDAO from "./DAO";
-import ComponentsDeFi from "./DeFi";
-import ComponentsEVM from "./EVM";
-import ComponentsGaming from "./Gaming";
-import ComponentsMore from "./More";
-import ComponentsNFT from "./NFT";
+import ComponentsPage from "./Components";
 
-export {
-  ComponentsDAO,
-  ComponentsDeFi,
-  ComponentsEVM,
-  ComponentsGaming,
-  ComponentsMore,
-  ComponentsNFT,
-};
+export { ComponentsPage };

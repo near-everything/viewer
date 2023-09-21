@@ -61,7 +61,8 @@ function Header() {
             </NavDropdownMenu>
 
             {/* Components */}
-            <NavDropdownMenu title="Components" id="basic-nav-dropdown">
+            <Nav.Link href="/components">Components</Nav.Link>
+            {/* <NavDropdownMenu title="Components" id="basic-nav-dropdown">
               <NavDropdown.Item href="/components/evm">
                 EVM Components
               </NavDropdown.Item>
@@ -80,7 +81,7 @@ function Header() {
               <NavDropdown.Item href="/components/more">
                 More Components
               </NavDropdown.Item>
-            </NavDropdownMenu>
+            </NavDropdownMenu> */}
 
             {/* Projects */}
             <NavDropdownMenu title="Projects" id="basic-nav-dropdown">

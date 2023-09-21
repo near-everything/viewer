@@ -49,14 +49,7 @@ import {
   RegionalCommunity,
 } from "./pages/communities";
 
-import {
-  ComponentsDAO,
-  ComponentsDeFi,
-  ComponentsEVM,
-  ComponentsGaming,
-  ComponentsMore,
-  ComponentsNFT,
-} from "./pages/components";
+import { ComponentsPage } from "./pages/components";
 
 import {
   EducationCodeReviews,
@@ -294,28 +287,8 @@ function App() {
 
   const componentsRoutes = [
     {
-      path: "/components/evm",
-      component: <ComponentsEVM />,
-    },
-    {
-      path: "/components/defi",
-      component: <ComponentsDeFi />,
-    },
-    {
-      path: "/components/nft",
-      component: <ComponentsNFT />,
-    },
-    {
-      path: "/components/dao",
-      component: <ComponentsDAO />,
-    },
-    {
-      path: "/components/gaming",
-      component: <ComponentsGaming />,
-    },
-    {
-      path: "/components/more",
-      component: <ComponentsMore />,
+      path: "/components",
+      component: <ComponentsPage />,
     },
   ];
 
