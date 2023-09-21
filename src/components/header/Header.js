@@ -3,12 +3,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavDropdown } from "react-bootstrap";
-
-import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
-
-// submenu css
-import "react-bootstrap-submenu/dist/index.css";
+import { NavDropdown, NavLink } from "react-bootstrap";
 
 function Header() {
   return (
@@ -29,7 +24,7 @@ function Header() {
             </NavDropdown>
 
             {/* Communities */}
-            <NavDropdownMenu title="Communities" id="basic-nav-dropdown">
+            <NavDropdown title="Communities" id="basic-nav-dropdown">
               <NavDropdown.Item href="/communities/developer">
                 Developer Communities
               </NavDropdown.Item>
@@ -42,10 +37,10 @@ function Header() {
               <NavDropdown.Item href="/communities/general-bos">
                 General BOS Communities
               </NavDropdown.Item>
-            </NavDropdownMenu>
+            </NavDropdown>
 
             {/* Education */}
-            <NavDropdownMenu title="Education" id="basic-nav-dropdown">
+            <NavDropdown title="Education" id="basic-nav-dropdown">
               <NavDropdown.Item href="/education/tutorials">
                 Library of Tutorials
               </NavDropdown.Item>
@@ -58,33 +53,13 @@ function Header() {
               <NavDropdown.Item href="/education/office-hours">
                 Office Hours
               </NavDropdown.Item>
-            </NavDropdownMenu>
+            </NavDropdown>
 
             {/* Components */}
             <Nav.Link href="/components">Components</Nav.Link>
-            {/* <NavDropdownMenu title="Components" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/components/evm">
-                EVM Components
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/components/defi">
-                DeFi Components
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/components/nft">
-                NFT Components
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/components/dao">
-                DAO Components
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/components/gaming">
-                Gaming Components
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/components/more">
-                More Components
-              </NavDropdown.Item>
-            </NavDropdownMenu> */}
 
             {/* Projects */}
-            <NavDropdownMenu title="Projects" id="basic-nav-dropdown">
+            <NavDropdown title="Projects" id="basic-nav-dropdown">
               <NavDropdown.Item href="/projects/built-with-bos">
                 Built with BOS
               </NavDropdown.Item>
@@ -94,10 +69,10 @@ function Header() {
               <NavDropdown.Item href="/projects/bos-integration">
                 Integrated to BOS
               </NavDropdown.Item>
-            </NavDropdownMenu>
+            </NavDropdown>
 
             {/* Opportunities */}
-            <NavDropdownMenu title="Opportunities" id="basic-nav-dropdown">
+            <NavDropdown title="Opportunities" id="basic-nav-dropdown">
               <NavDropdown.Item href="/opportunities/funding">
                 Funding Opportunities
               </NavDropdown.Item>
@@ -110,23 +85,13 @@ function Header() {
               <NavDropdown.Item href="/opportunities/amplification">
                 Amplification Channels
               </NavDropdown.Item>
-            </NavDropdownMenu>
+            </NavDropdown>
 
-            <NavDropdownMenu title="More" id="basic-nav-dropdown">
-              <DropdownSubmenu href="#action/3.1" title="Integrations">
-                <NavDropdown.Item href="/integrations">
-                  Integrations
-                </NavDropdown.Item>
-              </DropdownSubmenu>
-              <DropdownSubmenu href="#action/3.2" title="Infrastructure">
-                <NavDropdown.Item href="/infrastructure">
-                  Infrastructure
-                </NavDropdown.Item>
-              </DropdownSubmenu>
-              <DropdownSubmenu href="#action/3.3" title="Gateways">
-                <NavDropdown.Item href="/gateways">Gateways</NavDropdown.Item>
-              </DropdownSubmenu>
-            </NavDropdownMenu>
+            <NavDropdown title="More" id="basic-nav-dropdown">
+              <NavLink href="/integrations">Integrations</NavLink>
+              <NavLink href="/infrastructure">Infrastructure</NavLink>
+              <NavLink href="/gateways">Gateways</NavLink>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

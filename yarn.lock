@@ -10254,13 +10254,6 @@ raw-body@2.5.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-bootstrap-submenu@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/react-bootstrap-submenu/-/react-bootstrap-submenu-3.0.3.tgz#3d90e2dd8a101b6be2df793ce933b247f1d4be76"
-  integrity sha512-FRxIrqoRhQbBdt6SiMWf4E/5syk1OKQY0k0e6wvN79fmKYXYYdebvi1DfKSh2sbP6r4fo7ApzCYFxA4DfmaUdA==
-  dependencies:
-    react-bootstrap "^2.0.0"
-
 react-bootstrap-typeahead@^6.0.0, react-bootstrap-typeahead@^6.1.2:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/react-bootstrap-typeahead/-/react-bootstrap-typeahead-6.2.3.tgz#85aa956fe608a4463e297df7f714c9f8c2ffcd32"
@@ -10279,7 +10272,7 @@ react-bootstrap-typeahead@^6.0.0, react-bootstrap-typeahead@^6.1.2:
     scroll-into-view-if-needed "^2.2.20"
     warning "^4.0.1"
 
-react-bootstrap@^2.0.0, react-bootstrap@^2.5.0:
+react-bootstrap@^2.5.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-2.8.0.tgz#781f254b33090c1d50ed521b40697727267c6add"
   integrity sha512-e/aNtxl0Z2ozrIaR82jr6Zz7ss9GSoaXpQaxmvtDUsTZIq/XalkduR/ZXP6vbQHz2T4syvjA+4FbtwELxxmpww==
