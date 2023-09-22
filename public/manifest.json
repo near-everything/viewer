@@ -3,7 +3,7 @@
   "name": "DiscoverBOS",
   "icons": [
     {
-      "src": "/assets/favicon.png",
+      "src": "/favicon.png",
       "sizes": "1024x1024",
       "type": "image/png"
     }
@@ -14,11 +14,11 @@
   "background_color": "#ffffff",
 
   "index.html": "/index.html",
-  "assets/template.html": "/assets/template.html",
-  "assets/manifest.json": "/assets/manifest.json",
-  "robots.txt": "/assets/robots.txt",
-  "assets/_redirects": "/assets/_redirects",
-  "assets/CNAME": "/assets/CNAME",
-  "assets/.nojekyll": "/assets/.nojekyll",
+  "template.html": "/template.html",
+  "manifest.json": "/manifest.json",
+  "robots.txt": "/robots.txt",
+  "_redirects": "/_redirects",
+  "CNAME": "/CNAME",
+  ".nojekyll": "/.nojekyll",
   "main.js": "/main.bundle.js"
 }

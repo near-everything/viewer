@@ -70,7 +70,7 @@ module.exports = function (env) {
           patterns: [
             {
               from: paths.publicPath,
-              to: "assets",
+              to: "/",
               globOptions: {
                 ignore: ["*.DS_Store", "robots.txt"],
               },
@@ -89,7 +89,7 @@ module.exports = function (env) {
           process: "process/browser",
           Buffer: [require.resolve("buffer/"), "Buffer"],
         }),
-        new ManifestPlugin.WebpackManifestPlugin(),
+        // new ManifestPlugin.WebpackManifestPlugin(),
       ],
     },
     loadConfig(mode),
