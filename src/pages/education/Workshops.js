@@ -60,15 +60,15 @@ const links = [
     href: "https://youtu.be/RYGNBjdnYfg?si=oxx1EhRwFuNoyO-Q",
   },
   {
-    name: "*Open Sprints on Building on *BOS for Project Managers",
+    name: "Open Sprints on Building on BOS for Project Managers",
     href: "https://youtu.be/RsxuLJi5EvU?si=Gpn3_VazcZc2mpV7",
   },
   {
-    name: "*Top Influencers on BOS",
+    name: "Top Influencers on BOS",
     href: "https://youtu.be/R1aZdG_m2dQ?si=h1jrjbuq6miL6OP0",
   },
   {
-    name: "*How to see Who Are building what on BOS",
+    name: "How to see Who Are building what on BOS",
     href: "https://youtu.be/a2RuTZDr8_c?si=G6mazurxyVrmkTWE",
   },
 ];
