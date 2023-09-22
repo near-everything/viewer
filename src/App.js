@@ -364,10 +364,10 @@ function App() {
               <Footer {...passProps} />
             </Route>
             {routes.map((route) => (
-              <Router key={`${route.path}`} path={route.path}>
+              <Route key={`${route.path}`} path={route.path}>
                 {route.component}
                 <Footer {...passProps} />
-              </Router>
+              </Route>
             ))}
             <Route path={"/:widgetSrc*"}>
               <BosLoaderBanner />
