@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const paths = require("./config/paths");
 const path = require("path");
-const ManifestPlugin = require("webpack-manifest-plugin");
+// const ManifestPlugin = require("webpack-manifest-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -70,7 +70,7 @@ module.exports = function (env) {
           patterns: [
             {
               from: paths.publicPath,
-              to: "/",
+              // to: "/",
               globOptions: {
                 ignore: ["*.DS_Store", "robots.txt"],
               },
