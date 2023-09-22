@@ -80,6 +80,7 @@ const StyledDropdown = styled.div`
         }
       }
     }
+  }
 `;
 
 const ButtonRow = styled.div`

@@ -2,7 +2,7 @@ import { useCreateAsset } from "@livepeer/react";
 import React, { useEffect } from "react";
 
 export const LivepeerCreator = ({
-  name,
+  // name,
   video,
   metadata,
   Button,

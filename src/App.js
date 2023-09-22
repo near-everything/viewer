@@ -37,10 +37,47 @@ import Footer from "./components/navigation/Footer";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 
+import RootLayout from "./components/layouts/root";
+
+// Page imports
+import { EventCalendar, LibraryEvents } from "./pages/events";
+
+import {
+  GeneralCommunity,
+  DeveloperCommunity,
+  ProjectCommunity,
+  RegionalCommunity,
+} from "./pages/communities";
+
+import { ComponentsPage } from "./pages/components";
+
+import {
+  EducationCodeReviews,
+  EducationOfficeHours,
+  EducationTutorials,
+  EducationWorkshops,
+} from "./pages/education";
+
+import {
+  OpportunitiesAccelerator,
+  OpportunitiesAmplification,
+  OpportunitiesFunding,
+  OpportunitiesIncubation,
+} from "./pages/opportunities";
+
+import {
+  ProjectsBuiltWithBOS,
+  ProjectsBOSIntegration,
+  ProjectsNativeProjects,
+} from "./pages/projects";
+
+import { Integrations, Infrastructure, Gateways } from "./pages/more";
+// import Home from "./pages/Home";
+
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
 
-function App(props) {
+function App() {
   const [connected, setConnected] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const [signedAccountId, setSignedAccountId] = useState(null);
@@ -55,7 +92,7 @@ function App(props) {
   const account = useAccount();
   const accountId = account.accountId;
 
-  const location = window.location;
+  // const location = window.location;
 
   const livepeerClient = createReactClient({
     provider: studioProvider({
@@ -200,30 +237,153 @@ function App(props) {
     documentationHref,
   };
 
+  const eventRoutes = [
+    {
+      path: "/events/calendar",
+      component: <EventCalendar />,
+    },
+    {
+      path: "/events/library",
+      component: <LibraryEvents />,
+    },
+  ];
+
+  const communitiesRoutes = [
+    {
+      path: "/communities/developer",
+      component: <DeveloperCommunity />,
+    },
+    {
+      path: "/communities/project",
+      component: <ProjectCommunity />,
+    },
+    {
+      path: "/communities/regional",
+      component: <RegionalCommunity />,
+    },
+    {
+      path: "/communities/general-bos",
+      component: <GeneralCommunity />,
+    },
+  ];
+
+  const educationRoutes = [
+    {
+      path: "/education/tutorials",
+      component: <EducationTutorials />,
+    },
+    {
+      path: "/education/code-reviews",
+      component: <EducationCodeReviews />,
+    },
+    {
+      path: "/education/workshops",
+      component: <EducationWorkshops />,
+    },
+    {
+      path: "/education/office-hours",
+      component: <EducationOfficeHours />,
+    },
+  ];
+
+  const componentsRoutes = [
+    {
+      path: "/components",
+      component: <ComponentsPage />,
+    },
+  ];
+
+  const projectsRoutes = [
+    {
+      path: "/projects/built-with-bos",
+      component: <ProjectsBuiltWithBOS />,
+    },
+    {
+      path: "/projects/native-projects",
+      component: <ProjectsNativeProjects />,
+    },
+    {
+      path: "/projects/bos-integration",
+      component: <ProjectsBOSIntegration />,
+    },
+  ];
+
+  const opportunitiesRoutes = [
+    {
+      path: "/opportunities/funding",
+      component: <OpportunitiesFunding />,
+    },
+    {
+      path: "/opportunities/accelerator",
+      component: <OpportunitiesAccelerator />,
+    },
+    {
+      path: "/opportunities/incubation",
+      component: <OpportunitiesIncubation />,
+    },
+    {
+      path: "/opportunities/amplification",
+      component: <OpportunitiesAmplification />,
+    },
+  ];
+
+  const routes = [
+    ...eventRoutes,
+    ...communitiesRoutes,
+    ...educationRoutes,
+    ...componentsRoutes,
+    ...projectsRoutes,
+    ...opportunitiesRoutes,
+    {
+      path: "/integrations",
+      component: <Integrations />,
+    },
+    {
+      path: "/infrastructure",
+      component: <Infrastructure />,
+    },
+    {
+      path: "/gateways",
+      component: <Gateways />,
+    },
+  ];
+
   return (
     <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route path={"/flags"}>
-            <Flags {...passProps} />
-          </Route>
-          <Route path={"/scanner"}>
-            <NavigationWrapper {...passProps} />
-            <KeypomScanner />
-          </Route>
-          <Route path={"/create"}>
-            <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-            <Footer {...passProps} />
-          </Route>
-          <Route path={"/:widgetSrc*"}>
-            <BosLoaderBanner />
-            {/* <NavigationWrapper {...passProps} /> */}
-            <ViewPage {...passProps} />
-            <Footer {...passProps} />
-            <ActionButton {...passProps} />
-          </Route>
-        </Switch>
-      </Router>
+      <RootLayout>
+        <Router basename={""}>
+          <Switch>
+            <Route path={"/flags"}>
+              <Flags {...passProps} />
+            </Route>
+            <Route path={"/scanner"}>
+              <NavigationWrapper {...passProps} />
+              <KeypomScanner />
+            </Route>
+            <Route path={"/create"}>
+              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+              <Footer {...passProps} />
+            </Route>
+            {routes.map((route) => (
+              <Route key={`${route.path}`} path={route.path}>
+                {route.component}
+                <Footer {...passProps} />
+              </Route>
+            ))}
+            {/* <Route exact path={"/"}>
+              <Home />
+              <Footer {...passProps} />
+            </Route> */}
+            <Route path={"/:widgetSrc*"}>
+              <BosLoaderBanner />
+              {/* <NavigationWrapper {...passProps} /> */}
+              <ViewPage {...passProps} />
+              <Footer {...passProps} />
+              <ActionButton {...passProps} />
+            </Route>
+          </Switch>
+        </Router>
+      </RootLayout>
     </div>
   );
 }

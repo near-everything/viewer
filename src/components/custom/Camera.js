@@ -29,20 +29,25 @@ const ButtonContainer = styled.div`
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
 `;
 
 export const Camera = (props) => {
   const webcamRef = useRef(null);
-  const windowSize = useState([window.innerWidth, window.innerHeight]);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
 
   const FACING_MODE_USER = "user";
   const FACING_MODE_ENVIRONMENT = "environment";
 
-  const [facingMode, setFacingMode] = useState(props.facingMode || FACING_MODE_ENVIRONMENT);
+  const [facingMode, setFacingMode] = useState(
+    props.facingMode || FACING_MODE_ENVIRONMENT
+  );
 
   const switchCamera = useCallback(() => {
-    setFacingMode(prevState =>
+    setFacingMode((prevState) =>
       prevState === FACING_MODE_USER
         ? FACING_MODE_ENVIRONMENT
         : FACING_MODE_USER
@@ -74,7 +79,7 @@ export const Camera = (props) => {
 
   return (
     <Container>
-      <div style={{position: 'relative', width: '100%', height: '100%'}}>
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <Webcam
           audio={props.audio || false}
           width={props.width || "100%"}
@@ -83,21 +88,17 @@ export const Camera = (props) => {
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
           style={{
-            position: 'absolute',
-            right: '0',
-            bottom: '0',
-            height: '100%'
+            position: "absolute",
+            right: "0",
+            bottom: "0",
+            height: "100%",
           }}
           mirrored={props.facingMode === FACING_MODE_USER ? true : false}
         />
       </div>
       <ButtonContainer>
-        <Button onClick={capture}>
-          Capture photo
-        </Button>
-        <Button onClick={switchCamera}>
-          Switch Camera
-        </Button>
+        <Button onClick={capture}>Capture photo</Button>
+        <Button onClick={switchCamera}>Switch Camera</Button>
       </ButtonContainer>
     </Container>
   );

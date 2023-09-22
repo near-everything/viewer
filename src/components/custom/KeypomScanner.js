@@ -166,7 +166,7 @@ export const KeypomScanner = () => {
           </Content>
         </>
       );
-    default:
+    default: {
       let errorMsg = `Error: masterState.stage is ${masterStatus.stage}`;
       return (
         <>
@@ -182,5 +182,6 @@ export const KeypomScanner = () => {
           </Content>
         </>
       );
+    }
   }
 };
