@@ -3,7 +3,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavDropdown, NavLink } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 
 function Header() {
   return (
@@ -88,9 +88,13 @@ function Header() {
             </NavDropdown>
 
             <NavDropdown title="More" id="basic-nav-dropdown">
-              <NavLink href="/integrations">Integrations</NavLink>
-              <NavLink href="/infrastructure">Infrastructure</NavLink>
-              <NavLink href="/gateways">Gateways</NavLink>
+              <NavDropdown.Item href="/integrations">
+                Integrations
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/infrastructure">
+                Infrastructure
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/gateways">Gateways</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
