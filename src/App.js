@@ -73,6 +73,7 @@ import {
 
 import { Integrations, Infrastructure, Gateways } from "./pages/more";
 import Home from "./pages/Home";
+import HomeSelector from "./pages/home/HomeSelector";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -345,6 +346,10 @@ function App() {
     {
       path: "/gateways",
       component: <Gateways />,
+    },
+    {
+      path: "/homepage-selector",
+      component: <HomeSelector />,
     },
   ];
 
