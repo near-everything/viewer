@@ -72,7 +72,7 @@ import {
 } from "./pages/projects";
 
 import { Integrations, Infrastructure, Gateways } from "./pages/more";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -370,10 +370,10 @@ function App() {
                 <Footer {...passProps} />
               </Route>
             ))}
-            {/* <Route exact path={"/"}>
+            <Route exact path={"/"}>
               <Home />
               <Footer {...passProps} />
-            </Route> */}
+            </Route>
             <Route path={"/:widgetSrc*"}>
               <BosLoaderBanner />
               {/* <NavigationWrapper {...passProps} /> */}
