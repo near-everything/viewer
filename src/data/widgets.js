@@ -20,6 +20,7 @@ const TestnetWidgets = {
 const MainnetWidgets = {
   image: "mob.near/widget/Image",
   default: "efiz.near/widget/Things.index",
+  editor: "itexpert120-contra.near/widget/TestEditor",
   thing: "efiz.near/widget/every.thing.view",
   create: "efiz.near/widget/creator",
   header: {

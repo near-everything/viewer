@@ -22,7 +22,7 @@ export default function ViewPage(props) {
   const [widgetProps, setWidgetProps] = useState({});
   const redirectMapStore = useBosLoaderStore();
 
-  const src = widgetSrc || props.widgets.default;
+  const src = props.overrideSrc || widgetSrc || props.widgets.default;
   const setWidgetSrc = props.setWidgetSrc;
   const viewSourceWidget = props.widgets.viewSource;
 

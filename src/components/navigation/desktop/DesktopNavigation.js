@@ -95,13 +95,13 @@ export function DesktopNavigation(props) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="black"
-            width="64px"
-            height="64px"
+            width="48px"
+            height="38px"
           >
             <circle cx="12" cy="12" r="8" />
           </svg>
         </Link>
-        <div>
+        {/* <div>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -116,8 +116,8 @@ export function DesktopNavigation(props) {
               onFocus={() => {}}
             />
           </form>
-        </div>
-        <div className="user-section">
+        </div> */}
+        {/* <div className="user-section">
           {!props.signedIn && (
             <SignInButton onSignIn={() => props.requestSignIn()} />
           )}
@@ -141,7 +141,7 @@ export function DesktopNavigation(props) {
               <UserDropdown {...props} />
             </>
           )}
-        </div>
+        </div> */}
       </div>
     </StyledNavigation>
   );

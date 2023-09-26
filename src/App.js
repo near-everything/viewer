@@ -36,6 +36,9 @@ import { KeypomScanner } from "./components/custom/KeypomScanner";
 import Footer from "./components/navigation/Footer";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
+import { Tldraw } from "@tldraw/tldraw";
+import Thing from "./components/custom/Canvas";
+import Canvas from "./components/custom/Canvas";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -82,6 +85,9 @@ function App(props) {
           ],
         }),
         customElements: {
+          Canvas: (props) => {
+            return <Canvas {...props} />;
+          },
           Link: (props) => {
             if (!props.to && props.href) {
               props.to = props.href;
@@ -212,6 +218,10 @@ function App(props) {
         </Route>
         <Route path={"/create"}>
           <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+          <Footer {...passProps} />
+        </Route>
+        <Route path={"/editor"}>
+          <ViewPage overrideSrc={passProps.widgets.editor} {...passProps} />
           <Footer {...passProps} />
         </Route>
         <Route path={"/:widgetSrc*"}>
