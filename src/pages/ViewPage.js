@@ -38,17 +38,6 @@ export default function ViewPage(props) {
   }, [src, query, setWidgetSrc, viewSourceWidget]);
 
   function Thing({ path }) {
-    const jsonString = // this should happen in the Browser thing
-      '{"devhub": "devgovgigs.near/widget/Ideas", "form builder": "devgovgigs.near/widget/gigs-board.pages.Post?id=1098"}';
-    const jsonObject = JSON.parse(jsonString);
-
-    const myMap = new Map(Object.entries(jsonObject));
-
-    path = path.trim();
-    if (myMap.has(path)) {
-      path = myMap.get(path);
-    }
-
     const parts = path.split("/");
     if (parts[1] === "widget") {
       return (
