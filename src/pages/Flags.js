@@ -60,13 +60,3 @@ export default function Flags() {
     </Container>
   );
 }
-
-{
-  /* <Widget
-src="devs.near/widget/SetFlagButton"
-props={{
-  url: "https://everything.dev",
-  setFlags: setFlags,
-}}
-/> */
-}

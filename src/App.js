@@ -72,7 +72,8 @@ import {
 } from "./pages/projects";
 
 import { Integrations, Infrastructure, Gateways } from "./pages/more";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
+import HomeSelector from "./pages/home/HomeSelector";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -346,45 +347,47 @@ function App() {
       path: "/gateways",
       component: <Gateways />,
     },
+    {
+      path: "/homepage-selector",
+      component: <HomeSelector />,
+    },
   ];
 
   return (
-    <div className="App">
-      <RootLayout>
-        <Router basename={""}>
-          <Switch>
-            <Route path={"/flags"}>
-              <Flags {...passProps} />
-            </Route>
-            <Route path={"/scanner"}>
-              <NavigationWrapper {...passProps} />
-              <KeypomScanner />
-            </Route>
-            <Route path={"/create"}>
-              <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+    <RootLayout>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <Route path={"/flags"}>
+            <Flags {...passProps} />
+          </Route>
+          <Route path={"/scanner"}>
+            <NavigationWrapper {...passProps} />
+            <KeypomScanner />
+          </Route>
+          <Route path={"/create"}>
+            <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
+            <Footer {...passProps} />
+          </Route>
+          {routes.map((route) => (
+            <Route key={`${route.path}`} path={route.path}>
+              {route.component}
               <Footer {...passProps} />
             </Route>
-            {routes.map((route) => (
-              <Route key={`${route.path}`} path={route.path}>
-                {route.component}
-                <Footer {...passProps} />
-              </Route>
-            ))}
-            {/* <Route exact path={"/"}>
-              <Home />
-              <Footer {...passProps} />
-            </Route> */}
-            <Route path={"/:widgetSrc*"}>
-              <BosLoaderBanner />
-              {/* <NavigationWrapper {...passProps} /> */}
-              <ViewPage {...passProps} />
-              <Footer {...passProps} />
-              <ActionButton {...passProps} />
-            </Route>
-          </Switch>
-        </Router>
-      </RootLayout>
-    </div>
+          ))}
+          <Route exact path={"/"}>
+            <Home />
+            <Footer {...passProps} />
+          </Route>
+          <Route path={"/:widgetSrc*"}>
+            <BosLoaderBanner />
+            {/* <NavigationWrapper {...passProps} /> */}
+            <ViewPage {...passProps} />
+            <Footer {...passProps} />
+            <ActionButton {...passProps} />
+          </Route>
+        </Switch>
+      </Router>
+    </RootLayout>
   );
 }
 
