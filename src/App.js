@@ -25,6 +25,7 @@ import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
+import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 
 import RootLayout from "./components/layouts/root";
 
@@ -320,7 +321,7 @@ function App() {
           </Route>
           <Route path={"/scanner"}>
             <NavigationWrapper {...passProps} />
-            <KeypomScanner />
+            {/* <KeypomScanner /> */}
           </Route>
           <Route path={"/create"}>
             <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />

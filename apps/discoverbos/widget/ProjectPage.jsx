@@ -119,7 +119,7 @@ const tabs = [
     title: "Settings",
     module: () => (
       <Widget
-        src="devs.near/widget/project.settings"
+        src="devs.near/widget/ProjectSettings"
         props={{ thingId: projectId, data }}
       />
     ),
@@ -184,22 +184,24 @@ return (
     </div>
 
     <NavUnderline className="nav">
-      {tabs && tabs.map(({ iconClass, title }, index) =>
-        title ? (
-          <li className="nav-item" key={title}>
-            <div
-              className={[
-                "d-inline-flex gap-2",
-                state.selectedTab === title ? "nav-link active" : "nav-link",
-              ].join(" ")}
-              onClick={() => State.update({ selectedTab: tabs[index] })}
-            >
-              <i className={iconClass} />
-              <span>{title}</span>
-            </div>
-          </li>
-        ) : null
-      )}
+      {tabs &&
+        tabs.map(({ iconClass, title }, index) =>
+          title ? (
+            <li className="nav-item" key={title}>
+              <div
+                className={[
+                  "d-inline-flex gap-2",
+                  state.selectedTab === title ? "nav-link active" : "nav-link",
+                ].join(" ")}
+                style={{ cursor: "pointer" }}
+                onClick={() => State.update({ selectedTab: tabs[index] })}
+              >
+                <i className={iconClass} />
+                <span>{title}</span>
+              </div>
+            </li>
+          ) : null
+        )}
     </NavUnderline>
     <Content>
       <Module module={state.selectedTab.module} />

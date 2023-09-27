@@ -7,7 +7,7 @@ export default function ProjectsBuiltWithBOS() {
 
   return (
     <Widget
-      src="devs.near/widget/project.feed"  // this references a local widget in apps/discoverbos/widget/project/feed
+      src="devs.near/widget/ProjectFeed" // this references a local widget in apps/discoverbos/widget/project/feed
       config={{
         redirectMap: redirectMapStore.redirectMap,
       }}
