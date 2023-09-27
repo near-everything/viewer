@@ -12,6 +12,8 @@ Start development version:
 yarn dev
 ```
 
-This will start both the gateway and serve the [bos-workspace](https://github.com/sekaiking/bos-workspace).
+## Using Bos-Loader
 
-If local widgets are not updating, set the flag at localhost:3000/flags to the server location: 'http://127.0.0.1:4040/'
+Set up a workspace like here: [bos-workspace](https://github.com/sekaiking/bos-workspace)
+
+Set the flag at localhost:3000/flags

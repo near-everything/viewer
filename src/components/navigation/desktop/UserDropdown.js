@@ -179,7 +179,7 @@ export function UserDropdown(props) {
               to={`/${account.accountId}`}
             >
               <User />
-              my everything
+              my profile
             </NavLink>
           </li>
           <li>

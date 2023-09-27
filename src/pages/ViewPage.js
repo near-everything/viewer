@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from "react";
 import { Widget } from "near-social-vm";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "../hooks/useQuery";
 import { useHashRouterLegacy } from "../hooks/useHashRouterLegacy";
+import { useQuery } from "../hooks/useQuery";
 import { useBosLoaderStore } from "../stores/bos-loader";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  align-items: stretch;
+  padding-bottom: 48px;
+`;
 
 export default function ViewPage(props) {
   useHashRouterLegacy();
-
   const { widgetSrc } = useParams();
   const query = useQuery();
   const [widgetProps, setWidgetProps] = useState({});
   const redirectMapStore = useBosLoaderStore();
 
-  const src = widgetSrc || props.overrideSrc || props.widgets.default;
+  const src = widgetSrc || props.widgets.default;
   const setWidgetSrc = props.setWidgetSrc;
   const viewSourceWidget = props.widgets.viewSource;
 
@@ -66,16 +75,8 @@ export default function ViewPage(props) {
   }
 
   return (
-    <div className="row">
-      <div
-        className="d-inline-block position-relative"
-        style={{
-          "--body-bottom-padding": "68px",
-          paddingBottom: "var(--body-bottom-padding)",
-        }}
-      >
-        <Thing path={src} />
-      </div>
-    </div>
+    <Container>
+      <Thing path={src} />
+    </Container>
   );
 }
