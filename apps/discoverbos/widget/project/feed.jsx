@@ -28,7 +28,11 @@ return (
           href={`/devs.near/widget/project.page?projectId=${p.value.id}&creatorId=${p.accountId}`}
           style={{ textDecoration: "none" }}
         >
-          <Widget key={p} src={"devs.near/widget/project.card"} props={p} />
+          <Widget
+            key={p}
+            src={"devs.near/widget/project.card"}
+            props={{ projectId: p.value.id, creatorId: p.accountId }}
+          />
         </a>
       );
     }}
