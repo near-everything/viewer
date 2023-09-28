@@ -330,18 +330,18 @@ function App() {
           {routes.map((route) => (
             <Route key={`${route.path}`} path={route.path}>
               {route.component}
-              <Footer {...passProps} />
+              {/* <Footer {...passProps} /> */}
             </Route>
           ))}
           <Route exact path={"/"}>
             <Home />
-            <Footer {...passProps} />
+            {/* <Footer {...passProps} /> */}
           </Route>
           <Route path={"/:widgetSrc*"}>
             <BosLoaderBanner />
             {/* <NavigationWrapper {...passProps} /> */}
             <ViewPage {...passProps} />
-            <Footer {...passProps} />
+            {/* <Footer {...passProps} /> */}
             <ActionButton {...passProps} />
           </Route>
         </Switch>
