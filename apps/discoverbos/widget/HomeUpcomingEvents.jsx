@@ -242,9 +242,14 @@ const NavigationIndicator = () => {
 
   return (
     <div className="d-flex gap-2">
-      {state.events.map((_, idx) =>
-        idx === state.activeIndex ? FilledCircle : EmptyCircle
-      )}
+      {state.events.map((_, idx) => (
+        <div
+          onClick={() => State.update({ activeIndex: idx })}
+          style={{ cursor: "pointer" }}
+        >
+          {idx === state.activeIndex ? FilledCircle : EmptyCircle}
+        </div>
+      ))}
     </div>
   );
 };

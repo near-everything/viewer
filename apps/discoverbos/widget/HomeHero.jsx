@@ -106,20 +106,22 @@ const HeroSection = () => {
   `;
 
   const CategoryItem = ({ name }) => {
-    return (
-      <span
-        className="rounded-pill"
-        style={{
-          fontSize: "1rem",
-          fontWeight: 400,
-          padding: "2px 6px",
-          border: "1px solid #DCDCDC",
-          cursor: "pointer",
-        }}
-      >
-        {name}
-      </span>
-    );
+    const Pill = styled.span`
+      border-radius: 50rem;
+      font-size: 1rem;
+      font-weight: 400;
+      padding: 2px 6px;
+      border: 1px solid #dcdcdc;
+      cursor: pointer;
+
+      transition: all 300ms;
+
+      &:hover {
+        color: #03b172;
+        background: white;
+      }
+    `;
+    return <Pill>{name}</Pill>;
   };
 
   const InfoIcon = () => {
@@ -181,6 +183,7 @@ const HeroSection = () => {
                 <CategoryItem name="Type" />
                 <CategoryItem name="Widget" />
                 <CategoryItem name="Components" />
+                <CategoryItem name="Projects" />
                 <InfoIcon />
               </div>
             </div>

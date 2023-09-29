@@ -65,14 +65,28 @@ const ExploreCard = ({ title, description }) => {
     </svg>
   );
 
+  const Card = styled.div`
+    border-radius: 8px;
+    transition: all 300ms;
+    cursor: pointer;
+    &:hover {
+      background: #eee8dd;
+      svg {
+        transition: all 300ms;
+        filter: invert(42%) sepia(97%) saturate(649%) hue-rotate(117deg)
+          brightness(97%) contrast(98%);
+      }
+    }
+  `;
+
   return (
-    <div className="d-flex p-3 gap-3" style={{ width: 475 }}>
+    <Card className="d-flex p-3 gap-3" style={{ width: 475 }}>
       <div>{title === "Opportunities" ? OpportunityIcon : ResourceIcon}</div>
       <div>
         <Title className="mb-3">{title}</Title>
         <Description>{description}</Description>
       </div>
-    </div>
+    </Card>
   );
 };
 

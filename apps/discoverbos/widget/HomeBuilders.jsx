@@ -24,6 +24,7 @@ const BuilderCard = () => {
     width: 140px;
     height: 140px;
     border-radius: 50rem;
+    object-fit: cover;
   `;
 
   const Tag = styled.div`
