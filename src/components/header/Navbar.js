@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 function Logo() {
   return (
@@ -95,28 +98,85 @@ const AuthButton = styled.button`
 `;
 
 export default function Navbar() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const Nav = styled.nav`
+    height: 5.75rem;
+    padding: 24px 120px;
+
+    @media (width <= 1200px) {
+      padding: 24px 60px;
+    }
+
+    @media (width <= 990px) {
+      padding: 24px;
+    }
+  `;
+
+  const LinksDiv = styled.div`
+    display: flex;
+    gap: 2rem;
+
+    @media (width <= 1180px) {
+      gap: 1rem;
+    }
+
+    @media (width <= 900px) {
+      display: none;
+    }
+  `;
+
+  const MobileLinks = styled.div`
+    display: none;
+
+    @media (width <= 900px) {
+      display: block !important;
+    }
+  `;
+
   return (
-    <nav
-      className="w-100 d-flex justify-content-between align-items-center"
-      style={{
-        height: "5.75rem",
-        padding: "24px 120px",
-      }}
-    >
+    <Nav className="w-100 d-flex justify-content-between align-items-center">
       <a style={{ cursor: "pointer" }} href="/">
         <Logo />
       </a>
-      <div className="d-flex align-items-center" style={{ gap: "2rem" }}>
+      <LinksDiv className="align-items-center">
         <NavLinks href="#">Components</NavLinks>
         <NavLinks href="#">Projects</NavLinks>
         <NavLinks href="#">Resources</NavLinks>
         <NavLinks href="#">Community</NavLinks>
         <NavLinks href="#">About</NavLinks>
-        <div className="d-flex align-items center gap-3">
+        <div className="d-flex align-items center gap-md-1 gap-lg-3">
           <AuthButton>Sign in</AuthButton>
           <AuthButton className="sign-up">Create Account</AuthButton>
         </div>
-      </div>
-    </nav>
+      </LinksDiv>
+      <MobileLinks>
+        <Button variant="success" onClick={handleShow}>
+          <i className="bi bi-list"></i>
+        </Button>
+
+        <Offcanvas show={show} onHide={handleClose} placement="end">
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>DiscoverbOS</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <div className="d-flex flex-column gap-3">
+              <NavLinks href="#">Components</NavLinks>
+              <NavLinks href="#">Projects</NavLinks>
+              <NavLinks href="#">Resources</NavLinks>
+              <NavLinks href="#">Community</NavLinks>
+              <NavLinks href="#">About</NavLinks>
+              <div className="d-flex align-items center gap-2 gap-md-1 gap-lg-3">
+                <AuthButton>Sign in</AuthButton>
+                <AuthButton className="sign-up">Create Account</AuthButton>
+              </div>
+            </div>
+          </Offcanvas.Body>
+        </Offcanvas>
+      </MobileLinks>
+    </Nav>
   );
 }

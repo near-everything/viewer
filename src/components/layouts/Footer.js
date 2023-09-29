@@ -100,10 +100,44 @@ const LinkItem = styled.a`
 `;
 
 export default function Footer() {
+  const MainContainer = styled.div`
+    display: flex;
+    gap: 80px;
+
+    @media (width <= 900px) {
+      gap: 40px;
+      flex-direction: column;
+    }
+  `;
+
+  const RoundedDiv = styled.div`
+    padding: 32px 40px;
+    gap: 96px;
+
+    @media (width <= 900px) {
+      padding: 32px 20px;
+      gap: 48px;
+    }
+  `;
+
+  const LinksContainer = styled.div`
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+
+    @media (width <= 900px) {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (width <= 550px) {
+      flex-direction: column;
+    }
+  `;
   return (
     <footer
       style={{
-        height: "42.5rem",
+        minHeight: "42.5rem",
         width: "100%",
         background: "linear-gradient(90deg, #03B172 0%, #05EB97 100%)",
         padding: "40px 40px 24px 40px",
@@ -111,18 +145,16 @@ export default function Footer() {
       }}
       className="d-flex flex-column justify-content-center align-content-center"
     >
-      <div
+      <RoundedDiv
         style={{
           borderRadius: "16px",
           background: "#fff",
-          gap: 96,
-          padding: "32px 40px",
         }}
         className="w-100 h-100 d-flex flex-column"
       >
-        <div className="d-flex" style={{ gap: 80 }}>
+        <MainContainer>
           <div>{Logo}</div>
-          <div style={{ flex: 1 }} className="d-flex justify-content-between">
+          <LinksContainer>
             <div className="d-flex flex-column" style={{ gap: 32 }}>
               <div className="d-flex flex-column" style={{ gap: 4 }}>
                 <LinkHeader>PROJECTS</LinkHeader>
@@ -170,7 +202,7 @@ export default function Footer() {
                 <LinkItem href="#">Gateways</LinkItem>
               </div>
             </div>
-          </div>
+          </LinksContainer>
           <div className="d-flex flex-column gap-3">
             <button
               className="d-flex justify-content-center align-content-center"
@@ -202,9 +234,9 @@ export default function Footer() {
               Sign In
             </button>
           </div>
-        </div>
-        <div className="d-flex flex-column gap-3">
-          <div className="d-flex justify-content-between">
+        </MainContainer>
+        <div className="d-flex flex-column flex-lg-row align-items-start justify-content-between gap-3">
+          <div className="d-flex flex-column">
             <div className="d-flex gap-3">
               <SocialLink href="#">
                 <svg
@@ -263,47 +295,47 @@ export default function Footer() {
                 </svg>
               </SocialLink>
             </div>
-            <div>
+            <div className="d-flex align-items-end">
+              <svg
+                style={{ padding: "4.715px 7.611px 4.748px 7.606px" }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="61"
+                height="59"
+                viewBox="0 0 61 59"
+                fill="none"
+              >
+                <path
+                  d="M16.0578 5.08163C15.5438 7.74655 15.0612 10.3058 14.5693 12.8613C14.4735 13.3713 14.4053 13.731 14.1799 14.3506C14.0173 14.8124 13.6514 15.7844 13.1931 15.505C12.8386 15.2347 12.6214 14.9977 12.7019 14.0947C12.9215 11.7638 13.4861 9.48448 14.034 7.21999C14.5191 5.22072 14.9196 3.7036 15.4533 1.96012C15.7026 1.14588 16.2178 0.985796 16.9043 1.36689C17.5203 1.70914 18.1585 2.04951 18.6986 2.50124C20.6547 4.11929 22.5609 5.78191 24.493 7.43337C24.7343 7.63702 24.9347 7.7814 25.1872 8.06476C25.4899 8.4111 25.7293 8.64628 25.4591 9.00073C25.2055 9.34034 24.6564 9.09998 24.404 8.92416C22.2627 7.501 17.8945 4.49164 17.6255 4.38443C17.9203 5.90997 18.1612 7.32804 18.4819 8.73488C20.7614 18.5216 23.7192 28.0627 28.9064 36.7834C33.0124 43.6867 37.8648 49.9845 43.6841 55.5285C44.0256 55.8581 44.3431 56.2211 44.6421 56.5767C45.0542 57.0527 45.1844 57.3733 44.953 57.6035C44.4602 57.9768 44.0984 57.7251 43.7922 57.5493C43.1763 57.207 42.625 56.7294 42.0886 56.2684C34.9781 50.027 29.5883 42.4616 25.171 34.1552C20.6366 25.6302 18.1928 16.4444 16.5219 7.01856C16.4527 6.51804 16.1656 5.29657 16.0578 5.08163Z"
+                  fill="black"
+                />
+              </svg>
               <p
                 className="m-0"
                 style={{
-                  color: "#1B1819",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  lineHeight: "120%",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  lineHeight: "130%",
                 }}
               >
-                1901 Fake Address Street, Woohoo ,<br /> New York 11707
+                Follow us on Twitter, we are super active there!
               </p>
             </div>
           </div>
           <div className="d-flex align-items-end">
-            <svg
-              style={{ padding: "4.715px 7.611px 4.748px 7.606px" }}
-              xmlns="http://www.w3.org/2000/svg"
-              width="61"
-              height="59"
-              viewBox="0 0 61 59"
-              fill="none"
-            >
-              <path
-                d="M16.0578 5.08163C15.5438 7.74655 15.0612 10.3058 14.5693 12.8613C14.4735 13.3713 14.4053 13.731 14.1799 14.3506C14.0173 14.8124 13.6514 15.7844 13.1931 15.505C12.8386 15.2347 12.6214 14.9977 12.7019 14.0947C12.9215 11.7638 13.4861 9.48448 14.034 7.21999C14.5191 5.22072 14.9196 3.7036 15.4533 1.96012C15.7026 1.14588 16.2178 0.985796 16.9043 1.36689C17.5203 1.70914 18.1585 2.04951 18.6986 2.50124C20.6547 4.11929 22.5609 5.78191 24.493 7.43337C24.7343 7.63702 24.9347 7.7814 25.1872 8.06476C25.4899 8.4111 25.7293 8.64628 25.4591 9.00073C25.2055 9.34034 24.6564 9.09998 24.404 8.92416C22.2627 7.501 17.8945 4.49164 17.6255 4.38443C17.9203 5.90997 18.1612 7.32804 18.4819 8.73488C20.7614 18.5216 23.7192 28.0627 28.9064 36.7834C33.0124 43.6867 37.8648 49.9845 43.6841 55.5285C44.0256 55.8581 44.3431 56.2211 44.6421 56.5767C45.0542 57.0527 45.1844 57.3733 44.953 57.6035C44.4602 57.9768 44.0984 57.7251 43.7922 57.5493C43.1763 57.207 42.625 56.7294 42.0886 56.2684C34.9781 50.027 29.5883 42.4616 25.171 34.1552C20.6366 25.6302 18.1928 16.4444 16.5219 7.01856C16.4527 6.51804 16.1656 5.29657 16.0578 5.08163Z"
-                fill="black"
-              />
-            </svg>
             <p
               className="m-0"
               style={{
-                fontSize: "14px",
-                fontWeight: 500,
-                lineHeight: "130%",
+                color: "#1B1819",
+                fontSize: "12px",
+                fontWeight: 600,
+                lineHeight: "120%",
               }}
             >
-              Follow us on Twitter, we are super active there!
+              1901 Fake Address Street, Woohoo ,<br /> New York 11707
             </p>
           </div>
         </div>
-      </div>
+      </RoundedDiv>
       <Footnotes />
     </footer>
   );

@@ -224,7 +224,7 @@ const InfoSections = [ExploreData, LearnData, ConnectData, BuildData];
 
 return (
   <div>
-    <Widget src="devs.near/widget/HomeHero" />
+    {/* <Widget src="devs.near/widget/HomeHero" />
     <Widget src="devs.near/widget/HomeWhatIsBOS" />
 
     {InfoSections.map((section, idx) => (
@@ -238,6 +238,6 @@ return (
     <Widget src="devs.near/widget/HomeProjects" />
     <Widget src="devs.near/widget/HomeBuilders" />
     <Widget src="devs.near/widget/HomeUpcomingEvents" />
-    <Widget src="devs.near/widget/HomeExplore" />
+    <Widget src="devs.near/widget/HomeExplore" /> */}
   </div>
 );

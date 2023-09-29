@@ -5,9 +5,9 @@ import Footer from "./Footer";
 
 export default function RootLayout(props) {
   return (
-    <div className="d-flex flex-column">
+    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
-      <div className="mt-2 mb-5 flex-1">
+      <div className="flex-grow-1">
         <div style={{ maxWidth: "100%" }}>{props.children}</div>
       </div>
       <Footer />
