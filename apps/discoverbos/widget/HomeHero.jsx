@@ -1,7 +1,8 @@
-const ImageStack = () => {
-  const ImageItem = styled.div`
+const ImageStack = ({ images }) => {
+  const ImageItem = styled.img`
     width: 425.514px;
     height: 425.514px;
+    object-fit: cover;
 
     border-radius: 23px;
     background: #fffefe;
@@ -15,13 +16,12 @@ const ImageStack = () => {
   return (
     <div style={{ width: "496px", height: "482px" }}>
       <div className="position-relative">
-        <ImageItem>Image 2</ImageItem>
+        <ImageItem src={images[1]} />
         <ImageItem
           className="position-absolute"
           style={{ bottom: "-55.6px", left: "71.5px" }}
-        >
-          Image 1
-        </ImageItem>
+          src={images[0]}
+        />
       </div>
     </div>
   );
@@ -140,6 +140,11 @@ const HeroSection = () => {
     );
   };
 
+  const images = [
+    "https://plus.unsplash.com/premium_photo-1673338411083-47e01b496247?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
+    "https://images.unsplash.com/photo-1660742533971-eb413acbfb47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+  ];
+
   return (
     <div style={{ background: "#03B172" }}>
       <Container>
@@ -182,7 +187,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div>
-          <ImageStack />
+          <ImageStack images={images} />
         </div>
       </Container>
     </div>
