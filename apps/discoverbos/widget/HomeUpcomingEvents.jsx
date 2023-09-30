@@ -94,6 +94,7 @@ const Event = () => {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50%;
   `;
 
   const EventImage = styled.div`
@@ -101,6 +102,7 @@ const Event = () => {
     background: #f5f5f5;
     height: 100%;
     flex: 1;
+    width: 50%;
   `;
 
   const EventTime = styled.p`

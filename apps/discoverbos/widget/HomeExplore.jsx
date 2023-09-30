@@ -4,6 +4,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 120px;
+
+  @media (width <= 1730px) {
+    align-items: flex-start;
+  }
 `;
 
 const SectionHeading = styled.h2`

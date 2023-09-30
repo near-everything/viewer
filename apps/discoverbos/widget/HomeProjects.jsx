@@ -170,7 +170,7 @@ const FeaturedProjects = () => {
   `;
 
   const SectionDescription = styled.p`
-    width: 1042px;
+    max-width: 1042px;
     color: #1b1b18;
     font-size: 16px;
     font-style: normal;

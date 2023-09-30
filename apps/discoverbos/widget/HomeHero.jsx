@@ -43,7 +43,7 @@ const HeroSection = () => {
 
   const Heading = styled.h2`
     color: #fff;
-    font-family: Poppins;
+    font-family: "Poppins", sans-serif;
     font-size: 3rem;
     font-style: normal;
     line-height: 103.5%; /* 49.68px */
@@ -154,7 +154,6 @@ const HeroSection = () => {
           <Heading>
             <BoldWord>Discover</BoldWord>, <BoldWord>learn</BoldWord> and{" "}
             <BoldWord>build</BoldWord>
-            <br />
             the future of the BOS.
           </Heading>
           <div style={{ marginTop: "40px" }}>
