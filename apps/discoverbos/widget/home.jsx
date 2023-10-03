@@ -4,12 +4,12 @@ const FontDiv = styled.div`
 
 return (
   <FontDiv>
-    <Widget src="devs.near/widget/HomeHero" />
-    <Widget src="devs.near/widget/HomeWhatIsBOS" />
-    <Widget src="devs.near/widget/HomeSectionSwitcher" />
-    <Widget src="devs.near/widget/HomeProjects" />
-    <Widget src="devs.near/widget/HomeBuilders" />
-    <Widget src="devs.near/widget/HomeUpcomingEvents" />
-    <Widget src="devs.near/widget/HomeExplore" />
+    <Widget src="discover.near/widget/HomeHero" />
+    <Widget src="discover.near/widget/HomeWhatIsBOS" />
+    <Widget src="discover.near/widget/HomeSectionSwitcher" />
+    <Widget src="discover.near/widget/HomeProjects" />
+    <Widget src="discover.near/widget/HomeBuilders" />
+    <Widget src="discover.near/widget/HomeUpcomingEvents" />
+    <Widget src="discover.near/widget/HomeExplore" />
   </FontDiv>
 );

@@ -27,12 +27,12 @@ return (
       Item={(p) => {
         return (
           <a
-            href={`/devs.near/widget/ProjectPage?projectId=${p.value.id}&creatorId=${p.accountId}`}
+            href={`/discover.near/widget/ProjectPage?projectId=${p.value.id}&creatorId=${p.accountId}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Widget
               key={p}
-              src={"devs.near/widget/ProjectCard"}
+              src={"discover.near/widget/ProjectCard"}
               props={{ projectId: p.value.id, creatorId: p.accountId }}
             />
           </a>
