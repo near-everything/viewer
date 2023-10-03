@@ -52,6 +52,7 @@ const SectionPill = ({ name }) => {
 
 const SectionDetial = ({ text }) => {
   const Details = styled.p`
+    max-width: 280px;
     color: #767676;
     font-size: 16px;
     font-style: normal;
@@ -67,6 +68,10 @@ const WhatIsBOS = () => {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (width <= 800px) {
+      padding: 60px 16px;
+    }
   `;
 
   const SectionHeading = styled.h2`
@@ -77,6 +82,15 @@ const WhatIsBOS = () => {
     font-weight: 700;
     line-height: 103.5%; /* 49.68px */
     margin-bottom: 2rem;
+
+    @media (width <= 800px) {
+      color: #1b1b18;
+      font-family: Poppins;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 103.5%; /* 33.12px */
+    }
   `;
 
   const HeadingSpan = styled.span`
@@ -86,15 +100,33 @@ const WhatIsBOS = () => {
     font-style: normal;
     font-weight: 700;
     line-height: 103.5%;
+
+    @media (width <= 800px) {
+      color: #03b172;
+      font-family: Poppins;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 103.5%;
+    }
   `;
 
   const SectionParagraph = styled.p`
-    width: 1024px;
+    max-width: 1024px;
     color: #1b1b18;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 120.5%; /* 19.28px */
+
+    @media (width <= 800px) {
+      color: #1b1b18;
+      font-family: Mona Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 120.5%; /* 19.28px */
+    }
   `;
 
   const SectionBox = ({ title, text }) => {
@@ -125,9 +157,25 @@ const WhatIsBOS = () => {
     },
   ];
 
+  const ResponsiveContainer = styled.div`
+    gap: 80px;
+
+    @media (width <= 800px) {
+      gap: 32px;
+    }
+  `;
+
+  const SectionsContainer = styled.div`
+    @media (width <= 800px) {
+      /* flex-direction: column !important; */
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+  `;
+
   return (
     <Container>
-      <div className="d-flex flex-column" style={{ gap: "80px" }}>
+      <ResponsiveContainer className="d-flex flex-column w-100">
         <div>
           <SectionHeading>
             What is Discoverb<HeadingSpan>OS</HeadingSpan>?
@@ -139,15 +187,12 @@ const WhatIsBOS = () => {
             vitae.
           </SectionParagraph>
         </div>
-        <div
-          className="d-flex justify-content-between"
-          style={{ gap: "120px" }}
-        >
+        <SectionsContainer className="d-flex justify-content-between gap-3">
           {sections.map((section) => (
             <SectionBox {...section} key={`section-${Math.random()}`} />
           ))}
-        </div>
-      </div>
+        </SectionsContainer>
+      </ResponsiveContainer>
     </Container>
   );
 };

@@ -10,6 +10,16 @@ const {
   background,
 } = data;
 
+const openState = data.open || false;
+const mobileState = data.mobile || false;
+
+State.init({
+  open: openState,
+});
+
+const Switcher = props.switcher;
+const MobileSwitcher = props.mobileSwitcher;
+
 const SectionPill = ({ name }) => {
   const PillContainer = styled.div`
     display: flex;
@@ -103,6 +113,7 @@ const SectionHeading = ({ title }) => {
 
 const SectionInfo = ({ info }) => {
   const Info = styled.p`
+    max-width: 771px;
     color: #1b1b18;
     font-size: 1rem;
     font-style: normal;
@@ -182,15 +193,23 @@ const CTA = styled.button`
 `;
 
 const RelatedLinks = ({ relatedLinks }) => {
+  const Container = styled.div`
+    @media (width <= 800px) {
+      margin-bottom: 24px;
+    }
+  `;
   return (
-    <div style={{ marginTop: "40px" }} className="d-flex flex-column gap-2">
+    <Container
+      style={{ marginTop: "40px" }}
+      className="d-flex flex-column gap-2"
+    >
       <Related className="m-0">Related</Related>
       {relatedLinks.map((link) => (
         <div style={{ fontSize: 15 }} key={`${link.name}-${Math.random()}`}>
           <Links href={link.href}>{link.name}</Links> {link.details}
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
 
@@ -203,12 +222,39 @@ const HomeSection = () => {
     justify-content: center;
     gap: 120px;
     background: ${background === "colored" ? "#F4FDFA" : "white"};
+    width: 100%;
+
+    @media (width <= 800px) {
+      padding: 0;
+      display: block;
+    }
+  `;
+
+  const Mobile = styled.div`
+    &.selected-index {
+      svg {
+        filter: invert(42%) sepia(97%) saturate(649%) hue-rotate(117deg)
+          brightness(97%) contrast(98%);
+      }
+    }
   `;
 
   return (
     <SectionContainer key={Math.random()}>
-      <div style={{ flex: 1 }}>
-        <div className="d-flex flex-column" style={{ gap: "20px" }}>
+      <div style={{ flex: 1, width: "100%" }}>
+        {MobileSwitcher && (
+          <Mobile
+            className={`${state.open && "selected-index"}`}
+            style={{ marginBottom: 24 }}
+            onClick={() => State.update({ open: !state.open })}
+          >
+            <MobileSwitcher />
+          </Mobile>
+        )}
+        <div
+          className={`${state.open ? "d-flex" : "d-none"} flex-column`}
+          style={{ gap: "20px" }}
+        >
           <SectionPill name={title} />
           <SectionHeading title={title} />
           <SectionInfo info={description} />
@@ -216,11 +262,18 @@ const HomeSection = () => {
             {ctaIcon} {cta}
           </CTA>
         </div>
-        <RelatedLinks relatedLinks={relatedLinks} />
+        {(!mobileState || state.open) && (
+          <RelatedLinks relatedLinks={relatedLinks} />
+        )}
       </div>
-      <div>
+      {/* <div>
         <RectangleImageStack images={images} />
-      </div>
+      </div> */}
+      {Switcher && (
+        <div>
+          <Switcher />
+        </div>
+      )}
     </SectionContainer>
   );
 };

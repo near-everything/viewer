@@ -1,5 +1,6 @@
 State.init({
   buildersIndex: 0,
+  mobileIndex: 0,
 });
 
 const BuilderCard = () => {
@@ -18,6 +19,10 @@ const BuilderCard = () => {
     align-items: center;
     justify-content: center;
     padding: 16px;
+
+    @media (width <= 800px) {
+      width: 100%;
+    }
   `;
 
   const BuilderLogo = styled.img`
@@ -99,14 +104,14 @@ const BuilderCard = () => {
   return (
     <Card key={Math.random()}>
       <BuilderLogo src="https://plus.unsplash.com/premium_photo-1668004507519-20874dc42842?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2112&q=80" />
-      <div className="d-flex flex-column gap-2 align-items-center">
+      <div className="d-flex flex-column gap-2 align-items-center w-100">
         <BuilderName className="m-0">Builder Name</BuilderName>
         <div className="d-flex gap-1">
           <Tag>{HashTag} artist</Tag>
           <Tag>{HashTag} nft</Tag>
           <Tag>+3</Tag>
         </div>
-        <div className="d-flex justify-content-between w-100">
+        <div className="d-flex justify-content-center gap-4 w-100">
           <Stats title={"Posts"} count={"52"} />
           <Stats title={"Followers"} count={"21"} />
           <Stats title={"NFTs"} count={"7"} />
@@ -125,6 +130,11 @@ const FeaturedBuilders = () => {
     justify-content: center;
     gap: 80px;
     background: #f4fdfa;
+
+    @media (width <= 800px) {
+      padding: 60px 1rem;
+      gap: 40px;
+    }
   `;
 
   const SectionHeading = styled.h2`
@@ -134,6 +144,12 @@ const FeaturedBuilders = () => {
     font-style: normal;
     font-weight: 700;
     line-height: 103.5%; /* 49.68px */
+
+    @media (width <= 800px) {
+      font-size: 32px;
+      line-height: 103.5%; /* 33.12px */
+      margin-bottom: 2rem;
+    }
   `;
 
   const SectionDescription = styled.p`
@@ -143,6 +159,7 @@ const FeaturedBuilders = () => {
     font-style: normal;
     font-weight: 400;
     line-height: 120.5%; /* 19.28px */
+    margin: 0;
   `;
 
   const NavigationButton = styled.button`
@@ -189,12 +206,40 @@ const FeaturedBuilders = () => {
   ];
 
   const nextBuilders = () => {
-    console.log("clicked");
     State.update({ buildersIndex: state.buildersIndex + 4 });
   };
   const previousBuilders = () =>
     State.update({ buildersIndex: state.buildersIndex - 4 });
   const endIndex = state.buildersIndex + 4;
+
+  // Mobile
+  const nextMobile = () => {
+    State.update({ mobileIndex: state.mobileIndex + 1 });
+  };
+  const previousMobile = () =>
+    State.update({ mobileIndex: state.mobileIndex - 1 });
+  const mobileEndIndex = state.mobileIndex + 1;
+
+  const DesktopNavigation = styled.div`
+    @media (width <= 800px) {
+      display: none !important;
+    }
+  `;
+
+  const DesktopCards = styled.div`
+    @media (width <= 800px) {
+      display: none !important;
+    }
+  `;
+
+  const MobileCards = styled.div`
+    display: none;
+
+    @media (width <= 800px) {
+      display: block;
+      width: 100%;
+    }
+  `;
 
   return (
     <SectionContainer>
@@ -208,7 +253,7 @@ const FeaturedBuilders = () => {
             vitae.
           </SectionDescription>
         </div>
-        <div className="ms-auto d-flex gap-3 mt-auto">
+        <DesktopNavigation className="ms-auto d-flex gap-3 mt-auto">
           <NavigationButton
             disabled={state.buildersIndex === 0}
             className={state.buildersIndex === 0 && "inactive"}
@@ -221,13 +266,34 @@ const FeaturedBuilders = () => {
           >
             <i className="bi bi-chevron-right" onClick={nextBuilders}></i>
           </NavigationButton>
-        </div>
+        </DesktopNavigation>
       </div>
-      <div className="d-flex gap-5">
+      <DesktopCards className="d-flex gap-5 flex-wrap align-items-center w-100 justify-content-center">
         {builders.slice(state.buildersIndex, endIndex).map((_) => (
           <BuilderCard key={`Builder-${Math.random()}`} />
         ))}
-      </div>
+      </DesktopCards>
+      <MobileCards>
+        {builders.slice(state.mobileIndex, mobileEndIndex).map((_) => (
+          <BuilderCard key={`Builder-${Math.random()}`} />
+        ))}
+      </MobileCards>
+      <MobileCards>
+        <div className="d-flex justify-content-center w-100 gap-3">
+          <NavigationButton
+            disabled={state.mobileIndex === 0}
+            className={state.mobileIndex === 0 && "inactive"}
+          >
+            <i className="bi bi-chevron-left" onClick={previousMobile}></i>
+          </NavigationButton>
+          <NavigationButton
+            disabled={mobileEndIndex >= builders.length}
+            className={mobileEndIndex >= builders.length && "inactive"}
+          >
+            <i className="bi bi-chevron-right" onClick={nextMobile}></i>
+          </NavigationButton>
+        </div>
+      </MobileCards>
     </SectionContainer>
   );
 };

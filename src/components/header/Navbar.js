@@ -84,7 +84,7 @@ const AuthButton = styled.button`
   border: 1px solid #e3e3e0;
   background: #f3f3f2;
 
-  &.sign-up {
+  &.sign-in {
     color: #fff;
     background: #1b1b18;
   }
@@ -124,7 +124,7 @@ export default function Navbar() {
       gap: 1rem;
     }
 
-    @media (width <= 900px) {
+    @media (width <= 800px) {
       display: none;
     }
   `;
@@ -132,7 +132,7 @@ export default function Navbar() {
   const MobileLinks = styled.div`
     display: none;
 
-    @media (width <= 900px) {
+    @media (width <= 800px) {
       display: block !important;
     }
   `;
@@ -149,14 +149,22 @@ export default function Navbar() {
         <NavLinks href="#">Community</NavLinks>
         <NavLinks href="#">About</NavLinks>
         <div className="d-flex align-items center gap-md-1 gap-lg-3">
-          <AuthButton>Sign in</AuthButton>
-          <AuthButton className="sign-up">Create Account</AuthButton>
+          {/* <AuthButton>Sign in</AuthButton> */}
+          <AuthButton className="sign-in">Sign in</AuthButton>
         </div>
       </LinksDiv>
       <MobileLinks>
-        <Button variant="success" onClick={handleShow}>
-          <i className="bi bi-list"></i>
-        </Button>
+        <div className="d-flex gap-3">
+          <AuthButton>Create Account</AuthButton>
+          <Button
+            style={{ width: "32px", height: "32px" }}
+            className="rounded-circle p-0"
+            variant="dark"
+            onClick={handleShow}
+          >
+            <i className="bi bi-list"></i>
+          </Button>
+        </div>
 
         <Offcanvas show={show} onHide={handleClose} placement="end">
           <Offcanvas.Header closeButton>
@@ -171,7 +179,7 @@ export default function Navbar() {
               <NavLinks href="#">About</NavLinks>
               <div className="d-flex align-items center gap-2 gap-md-1 gap-lg-3">
                 <AuthButton>Sign in</AuthButton>
-                <AuthButton className="sign-up">Create Account</AuthButton>
+                <AuthButton className="sign-in">Create Account</AuthButton>
               </div>
             </div>
           </Offcanvas.Body>

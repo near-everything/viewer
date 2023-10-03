@@ -24,6 +24,30 @@ State.init({
   activeIndex: 0,
 });
 
+const MobileEvents = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1667808926971-5d2ce805edf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    name: "Event Name Goes Here: Right Here",
+    time: "Oct 4 10:30 AM EST",
+    tags: ["hackathon"],
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1667808926971-5d2ce805edf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    name: "Event Name Goes Here: Right Here",
+    time: "Oct 4 10:30 AM EST",
+    tags: ["online", "weekly"],
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1667808926971-5d2ce805edf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    name: "Event Name Goes Here: Right Here",
+    time: "Oct 4 10:30 AM EST",
+    tags: ["hackathon"],
+  },
+];
+
 const Tag = styled.div`
   margin-top: 1rem;
   color: #000;
@@ -55,6 +79,53 @@ const HashTag = (
   </svg>
 );
 
+const MobileCard = ({ event }) => {
+  const CardImage = styled.img`
+    height: 124px;
+    border-radius: 4px;
+    width: 100%;
+    object-fit: cover;
+  `;
+
+  const CardTitle = styled.h3`
+    color: #000;
+    font-family: Mona Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+  `;
+
+  const CardTime = styled.p`
+    color: #5c5f62;
+    font-family: Mona Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+  `;
+
+  return (
+    <div className="d-flex flex-column gap-3 align-items-center w-100">
+      <CardImage src={event.image} />
+      <div className="d-flex flex-column">
+        <CardTitle>{event.name}</CardTitle>
+        <CardTime>{event.time}</CardTime>
+      </div>
+      <div className="d-flex gap-2 me-auto">
+        {event.tags &&
+          event.tags.map((it) => (
+            <Tag>
+              {HashTag} {it}
+            </Tag>
+          ))}
+      </div>
+    </div>
+  );
+};
+
 const SectionHeading = ({ title }) => {
   const Heading = styled.h2`
     display: flex;
@@ -64,6 +135,18 @@ const SectionHeading = ({ title }) => {
     font-style: normal;
     font-weight: 700;
     line-height: 103.5%; /* 49.68px */
+    margin: 0;
+
+    @media (width <= 800px) {
+      color: #333;
+      font-feature-settings: "clig" off, "liga" off;
+      font-family: Mona Sans;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: -0.154px;
+    }
   `;
 
   return <Heading>{title}</Heading>;
@@ -76,7 +159,11 @@ const SectionInfo = ({ info }) => {
     font-style: normal;
     font-weight: 400;
     line-height: 120.5%; /* 19.28px */
-    width: 1042px;
+    max-width: 1042px;
+
+    @media (width <= 800px) {
+      display: none;
+    }
   `;
 
   return <Info>{info}</Info>;
@@ -259,6 +346,10 @@ const NavigationIndicator = () => {
 const UpcomingEvents = () => {
   const SectionContainer = styled.div`
     padding: 100px 120px;
+
+    @media (width <= 800px) {
+      padding: 60px 1rem;
+    }
   `;
 
   const onNextEvent = () =>
@@ -273,13 +364,52 @@ const UpcomingEvents = () => {
     });
   };
 
+  const DesktopContainer = styled.div`
+    @media (width <= 800px) {
+      display: none !important;
+    }
+  `;
+
+  const MobileContainer = styled.div`
+    display: none;
+
+    @media (width <= 800px) {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      margin-top: 32px;
+    }
+  `;
+
+  const CTA = styled.a`
+    display: flex;
+    width: 155px;
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 24px;
+    border: 1px solid #e3e3e0;
+    background: #f3f3f2;
+
+    color: #1b1b18;
+    font-family: Mona Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  `;
+
   return (
     <SectionContainer key={Math.random()}>
       <div className="d-flex flex-column w-100" style={{ gap: "20px" }}>
         <SectionHeading title={"Upcoming Events"} />
         <SectionInfo info="Lorem ipsum dolor sit amet consectetur. Tortor risus ipsum amet tincidunt facilisis massa. Rutrum ultrices tellus porttitor diam. Purus mauris amet nulla hendrerit neque sed eros quam. Sed odio vitae." />
       </div>
-      <div
+      <DesktopContainer
         className="w-100 d-flex align-items-center justify-content-center flex-column gap-3"
         style={{ marginTop: "32px" }}
       >
@@ -293,7 +423,13 @@ const UpcomingEvents = () => {
           </EventsNavigation>
         </div>
         <NavigationIndicator />
-      </div>
+      </DesktopContainer>
+      <MobileContainer>
+        {MobileEvents.map((it) => (
+          <MobileCard event={it} />
+        ))}
+        <CTA href="#">Event Calendar</CTA>
+      </MobileContainer>
     </SectionContainer>
   );
 };

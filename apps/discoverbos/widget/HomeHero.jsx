@@ -11,19 +11,56 @@ const ImageStack = ({ images }) => {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (width <= 800px) {
+      width: 246.575px;
+      height: 256.037px;
+    }
+  `;
+
+  const Container = styled.div`
+    width: 496px;
+    height: 482px;
+
+    @media (width <= 800px) {
+      width: 287.5px;
+      height: 289px;
+    }
+  `;
+
+  const AbsoluteImage = styled.img`
+    width: 425.514px;
+    height: 425.514px;
+    object-fit: cover;
+
+    border-radius: 23px;
+    background: #fffefe;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    bottom: -55.6px;
+    left: 71.5px;
+
+    @media (width <= 800px) {
+      width: 246.575px;
+      height: 256.037px;
+
+      left: 41.42px;
+      bottom: -33.46px;
+    }
   `;
 
   return (
-    <div style={{ width: "496px", height: "482px" }}>
+    <Container>
       <div className="position-relative">
         <ImageItem src={images[1]} />
-        <ImageItem
-          className="position-absolute"
-          style={{ bottom: "-55.6px", left: "71.5px" }}
-          src={images[0]}
-        />
+        <AbsoluteImage src={images[0]} />
       </div>
-    </div>
+    </Container>
   );
 };
 
@@ -35,6 +72,13 @@ const HeroSection = () => {
     align-items: center;
     flex: 1;
     gap: 140px;
+
+    @media (width <= 800px) {
+      flex-direction: column-reverse;
+      gap: 60px;
+
+      padding: 60px 16px;
+    }
   `;
 
   const BoldWord = styled.span`
@@ -42,11 +86,16 @@ const HeroSection = () => {
   `;
 
   const Heading = styled.h2`
+    max-width: 628px;
     color: #fff;
     font-family: "Poppins", sans-serif;
     font-size: 3rem;
     font-style: normal;
     line-height: 103.5%; /* 49.68px */
+
+    @media (width <= 800px) {
+      font-size: 30px;
+    }
   `;
 
   const InputContainer = styled.div`
@@ -110,15 +159,17 @@ const HeroSection = () => {
       border-radius: 50rem;
       font-size: 1rem;
       font-weight: 400;
-      padding: 2px 6px;
+      padding: 2px 1rem;
       border: 1px solid #dcdcdc;
       cursor: pointer;
+      background: #fff;
+      color: #03b172;
 
       transition: all 300ms;
 
       &:hover {
-        color: #03b172;
-        background: white;
+        color: #fff;
+        background: #03b172;
       }
     `;
     return <Pill>{name}</Pill>;
@@ -147,6 +198,14 @@ const HeroSection = () => {
     "https://images.unsplash.com/photo-1660742533971-eb413acbfb47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
   ];
 
+  const CategoriesContainer = styled.div`
+    @media (width <= 800px) {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 1rem;
+    }
+  `;
+
   return (
     <div style={{ background: "#03B172" }}>
       <Container>
@@ -167,7 +226,7 @@ const HeroSection = () => {
                 <i className="bi bi-search"></i>
               </Button>
             </InputContainer>
-            <div
+            <CategoriesContainer
               className="d-flex align-items-center"
               style={{
                 color: "white",
@@ -177,7 +236,7 @@ const HeroSection = () => {
               }}
             >
               <p className="m-0 me-2">Categories: </p>
-              <div className="d-flex gap-2 align-items-center">
+              <div className="d-flex gap-2 align-items-center flex-wrap">
                 <CategoryItem name="Thing" />
                 <CategoryItem name="Type" />
                 <CategoryItem name="Widget" />
@@ -185,7 +244,7 @@ const HeroSection = () => {
                 <CategoryItem name="Projects" />
                 <InfoIcon />
               </div>
-            </div>
+            </CategoriesContainer>
           </div>
         </div>
         <div>
