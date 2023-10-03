@@ -106,7 +106,7 @@ const SectionHeading = ({ title }) => {
   return (
     <Heading>
       {title}
-      <Span>OS</Span>
+      <Span>BOS</Span>
     </Heading>
   );
 };

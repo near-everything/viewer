@@ -186,7 +186,7 @@ const WhatIsBOS = () => {
       <ResponsiveContainer className="d-flex flex-column w-100">
         <div>
           <SectionHeading>
-            What is Discoverb<HeadingSpan>OS</HeadingSpan>?
+            What is Discover<HeadingSpan>BOS</HeadingSpan>?
           </SectionHeading>
           <SectionParagraph>
             Lorem ipsum dolor sit amet consectetur. Tortor risus ipsum amet
