@@ -193,6 +193,11 @@ const FeaturedBuilders = () => {
       background: #c0c0c0;
       cursor: not-allowed;
     }
+
+    @media (width <= 800px) {
+      width: 35px;
+      height: 35px;
+    }
   `;
 
   const builders = [
