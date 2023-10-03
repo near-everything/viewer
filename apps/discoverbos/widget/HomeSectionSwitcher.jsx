@@ -465,7 +465,7 @@ const MobileSwitcher = ({ index, selected }) => {
   return (
     <>
       <Widget
-        src="devs.near/widget/HomeSection"
+        src="discover.near/widget/HomeSection"
         props={{
           data: { ...InfoSections[index], mobile: true },
           mobileSwitcher: Switcher,
@@ -479,7 +479,7 @@ return (
   <>
     <Desktop className="d-flex align-items-center">
       <Widget
-        src="devs.near/widget/HomeSection"
+        src="discover.near/widget/HomeSection"
         props={{
           data: { ...InfoSections[state.selectedIndex] },
           switcher: Switcher,

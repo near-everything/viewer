@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Widget
-        src="itexpert120-contra.near/widget/Homepage"
+        src="discover.near/widget/Home"
         config={{
           redirectMap: redirectMapStore.redirectMap,
         }}
