@@ -104,7 +104,7 @@ const ExploreCard = ({ title, description, icon }) => {
   `;
 
   return (
-    <Card className="d-flex p-3 gap-3" style={{ maxWidth: 475 }}>
+    <Card className="d-flex p-3 gap-3" style={{ maxWidth: "475" }}>
       <div>{icon}</div>
       <div>
         <Title className="mb-3">{title}</Title>
@@ -262,12 +262,12 @@ const ExploreImage = styled.img`
 
 return (
   <Container>
-    <div>
+    {/* <div>
       <ExploreImage src="https://images.unsplash.com/photo-1660742533971-eb413acbfb47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" />
-    </div>
+    </div> */}
     <div>
       <SectionHeading>Explore Even More</SectionHeading>
-      <div className="d-flex flex-wrap" style={{ gap: 40 }}>
+      <div className="d-flex flex-wrap align-items-center" style={{ gap: 40 }}>
         {cards.map((card) => (
           <ExploreCard
             title={card.title}

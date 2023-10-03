@@ -13,7 +13,7 @@ const SectionPill = ({ name }) => {
 
   const SectionName = styled.p`
     color: #1b1b18;
-    font-size: 1rem;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -130,11 +130,19 @@ const WhatIsBOS = () => {
   `;
 
   const SectionBox = ({ title, text }) => {
+    const Card = styled.div`
+      @media (width <= 800px) {
+        border-radius: 8px;
+        background: #f4fdfa;
+        width: 100%;
+        padding: 1rem;
+      }
+    `;
     return (
-      <div className="d-flex flex-column gap-3">
+      <Card className="d-flex flex-column gap-3">
         <SectionPill name={title} />
         <SectionDetial text={text} />
-      </div>
+      </Card>
     );
   };
 
@@ -169,7 +177,7 @@ const WhatIsBOS = () => {
     @media (width <= 800px) {
       /* flex-direction: column !important; */
       flex-wrap: wrap;
-      gap: 60px;
+      gap: 60px !important;
     }
   `;
 

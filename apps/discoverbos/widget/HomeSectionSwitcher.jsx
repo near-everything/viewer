@@ -433,7 +433,7 @@ const MobileSwitcher = ({ index, selected }) => {
   const Switcher = () => {
     const Container = styled.div`
       border-radius: 8px;
-      border: 1.5px solid var(--Munsell-Green, #03b172);
+      border: 1px solid #afafaf;
       background: #fff;
       display: flex;
       padding: 16px;
