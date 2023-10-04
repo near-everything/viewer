@@ -80,7 +80,6 @@ const StyledDropdown = styled.div`
         }
       }
     }
-  }
 `;
 
 const ButtonRow = styled.div`
@@ -176,7 +175,7 @@ const Core = (props) => {
               to={`/${account.accountId}`}
             >
               <User />
-              my profile
+              my everything
             </NavLink>
           </li>
           {/* <li>

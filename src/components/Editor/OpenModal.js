@@ -24,7 +24,7 @@ export default function OpenModal(props) {
           type="text"
           value={widgetSrc}
           onChange={(e) =>
-            setWidgetSrc(e.target.value.replaceAll(/[^a-zA-Z0-9_.\-/]/g, ""))
+            setWidgetSrc(e.target.value.replaceAll(/[^a-zA-Z0-9_.\-\/]/g, ""))
           }
         />
       </Modal.Body>
