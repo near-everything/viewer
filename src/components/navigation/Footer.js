@@ -77,13 +77,12 @@ const Footer = (props) => {
         onSubmit={(e) => {
           e.preventDefault();
           history.push(`/${e.target[0].value}`);
-          history.refresh();
         }}
       >
         <Input
           type="text"
           className="classic"
-          placeholder="browse discoverBOS..."
+          placeholder="browse everything..."
         />
         <Button type="submit">
           <i className="bi bi-search"></i>

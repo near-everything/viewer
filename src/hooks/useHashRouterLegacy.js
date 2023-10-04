@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 export function useHashRouterLegacy() {
   const history = useHistory();

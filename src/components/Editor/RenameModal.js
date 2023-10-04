@@ -24,7 +24,7 @@ export default function RenameModal(props) {
           type="text"
           value={newName}
           onChange={(e) =>
-            setNewName(e.target.value.replaceAll(/[^a-zA-Z0-9_.-]/g, ""))
+            setNewName(e.target.value.replaceAll(/[^a-zA-Z0-9_.\-]/g, ""))
           }
         />
       </Modal.Body>

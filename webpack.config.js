@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const paths = require("./config/paths");
 const path = require("path");
-// const ManifestPlugin = require("webpack-manifest-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -70,16 +70,16 @@ module.exports = function (env) {
           patterns: [
             {
               from: paths.publicPath,
-              // to: "/",
+              to: "assets",
               globOptions: {
-                ignore: ["*.DS_Store", "robots.txt"],
+                ignore: ["*.DS_Store"],
               },
               noErrorOnMissing: true,
             },
           ],
         }),
         new HTMLWebpackPlugin({
-          template: `${paths.publicPath}/template.html`,
+          template: `${paths.publicPath}/index.html`,
           favicon: `${paths.publicPath}/favicon.png`,
           robots: `${paths.publicPath}/robots.txt`,
           publicPath: "/",
@@ -89,7 +89,7 @@ module.exports = function (env) {
           process: "process/browser",
           Buffer: [require.resolve("buffer/"), "Buffer"],
         }),
-        // new ManifestPlugin.WebpackManifestPlugin(),
+        new ManifestPlugin.WebpackManifestPlugin(),
       ],
     },
     loadConfig(mode),

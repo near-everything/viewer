@@ -53,27 +53,27 @@ const StyledNavigation = styled.div`
   }
 `;
 
-// const StyledInput = styled.input`
-//   border: none;
-//   outline: none;
-//   box-shadow: none !important;
-//   height: 3rem;
-//   font-size: 1.5em;
-//   font-family: Arial, Times, serif;
-//   line-height: 2em;
-//   font-weight: 400;
-//   cursor: pointer;
-//   text-align: left;
-//   width: 100%;
+const StyledInput = styled.input`
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+  height: 3rem;
+  font-size: 1.5em;
+  font-family: Arial, Times, serif;
+  line-height: 2em;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
 
-//   &::placeholder {
-//     font-size: 1.5em;
-//   }
+  &::placeholder {
+    font-size: 1.5em;
+  }
 
-//   &:focus {
-//     /* Add styles for focus state here if needed */
-//   }
-// `;
+  &:focus {
+    /* Add styles for focus state here if needed */
+  }
+`;
 
 export function DesktopNavigation(props) {
   const history = useHistory();

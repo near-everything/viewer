@@ -1,9 +1,9 @@
 {
-  "short_name": "DiscoverBOS",
-  "name": "DiscoverBOS",
+  "short_name": "every",
+  "name": "everything",
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "favicon.png",
       "sizes": "1024x1024",
       "type": "image/png"
     }
@@ -11,14 +11,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#333333",
-  "background_color": "#ffffff",
-
-  "index.html": "/index.html",
-  "template.html": "/template.html",
-  "manifest.json": "/manifest.json",
-  "robots.txt": "/robots.txt",
-  "_redirects": "/_redirects",
-  "CNAME": "/CNAME",
-  ".nojekyll": "/.nojekyll",
-  "main.js": "/main.bundle.js"
+  "background_color": "#ffffff"
 }
