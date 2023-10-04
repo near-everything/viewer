@@ -12,11 +12,11 @@ export default function Home() {
           redirectMap: redirectMapStore.redirectMap,
         }}
       />
-      <div className="mx-5">
+      {/* <div className="mx-5">
         <small>
           Edit your homepage <a href="/homepage-selector">here</a>
         </small>
-      </div>
+      </div> */}
     </div>
   );
 }

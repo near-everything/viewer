@@ -17,8 +17,8 @@ return (
     <Feed
       index={{
         action: "every",
-        key: "group", // TODO: change to project
-        options: {
+        key: "group", // TODO: change to project 
+        options: { // nft:mrbrownnft.near
           limit: 10,
           order: "desc",
           accountId: undefined,
