@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from "react";
 import { Widget } from "near-social-vm";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "../hooks/useQuery";
 import { useHashRouterLegacy } from "../hooks/useHashRouterLegacy";
+import { useQuery } from "../hooks/useQuery";
 import { useBosLoaderStore } from "../stores/bos-loader";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  align-items: stretch;
+  padding-bottom: 48px;
+`;
 
 export default function ViewPage(props) {
   useHashRouterLegacy();
-
   const { widgetSrc } = useParams();
   const query = useQuery();
   const [widgetProps, setWidgetProps] = useState({});
   const redirectMapStore = useBosLoaderStore();
 
-  const src = widgetSrc || props.overrideSrc || props.widgets.default;
+  const src = widgetSrc || props.widgets.default;
   const setWidgetSrc = props.setWidgetSrc;
   const viewSourceWidget = props.widgets.viewSource;
 
@@ -38,17 +47,6 @@ export default function ViewPage(props) {
   }, [src, query, setWidgetSrc, viewSourceWidget]);
 
   function Thing({ path }) {
-    const jsonString = // this should happen in the Browser thing
-      '{"devhub": "devgovgigs.near/widget/Ideas", "form builder": "devgovgigs.near/widget/gigs-board.pages.Post?id=1098"}';
-    const jsonObject = JSON.parse(jsonString);
-
-    const myMap = new Map(Object.entries(jsonObject));
-
-    path = path.trim();
-    if (myMap.has(path)) {
-      path = myMap.get(path);
-    }
-
     const parts = path.split("/");
     if (parts[1] === "widget") {
       return (
@@ -77,16 +75,8 @@ export default function ViewPage(props) {
   }
 
   return (
-    <div className="row">
-      <div
-        className="d-inline-block position-relative overflow-hidden"
-        style={{
-          "--body-bottom-padding": "68px",
-          paddingBottom: "var(--body-bottom-padding)",
-        }}
-      >
-        <Thing path={src} />
-      </div>
-    </div>
+    <Container>
+      <Thing path={src} />
+    </Container>
   );
 }

@@ -1,9 +1,4 @@
 import { sanitizeUrl } from "@braintree/sanitize-url";
-import {
-  LivepeerConfig,
-  createReactClient,
-  studioProvider,
-} from "@livepeer/react";
 import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
@@ -23,24 +18,57 @@ import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { ActionButton } from "./components/common/buttons/ActionButton";
-import { Camera } from "./components/custom/Camera";
-import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
-import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
-import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
+import Footer from "./components/navigation/Footer";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
-import { KeypomScanner } from "./components/custom/KeypomScanner";
-import Footer from "./components/navigation/Footer";
-import { BosLoaderBanner } from "./components/BosLoaderBanner";
-import { MonacoEditor } from "./components/custom/MonacoEditor";
+import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
+
+import RootLayout from "./components/layouts/root";
+
+// Page imports
+import { EventCalendar, LibraryEvents } from "./pages/events";
+
+import {
+  DeveloperCommunity,
+  GeneralCommunity,
+  ProjectCommunity,
+  RegionalCommunity,
+} from "./pages/communities";
+
+import { ComponentsPage } from "./pages/components";
+
+import {
+  EducationCodeReviews,
+  EducationOfficeHours,
+  EducationTutorials,
+  EducationWorkshops,
+} from "./pages/education";
+
+import {
+  OpportunitiesAccelerator,
+  OpportunitiesAmplification,
+  OpportunitiesFunding,
+  OpportunitiesIncubation,
+} from "./pages/opportunities";
+
+import {
+  ProjectsBOSIntegration,
+  ProjectsBuiltWithBOS,
+  ProjectsNativeProjects,
+} from "./pages/projects";
+
+import { Integrations, Infrastructure, Gateways } from "./pages/more";
+import Home from "./pages/Home";
+import HomeSelector from "./pages/home/HomeSelector";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
 
-function App(props) {
+function App() {
   const [connected, setConnected] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const [signedAccountId, setSignedAccountId] = useState(null);
@@ -54,14 +82,6 @@ function App(props) {
   const near = useNear();
   const account = useAccount();
   const accountId = account.accountId;
-
-  const location = window.location;
-
-  const livepeerClient = createReactClient({
-    provider: studioProvider({
-      apiKey: "c8323290-27a8-403b-858d-8baee19925c1",
-    }),
-  });
 
   useEffect(() => {
     initNear &&
@@ -91,29 +111,6 @@ function App(props) {
               props.to = sanitizeUrl(props.to);
             }
             return <Link {...props} />;
-          },
-          KeypomScanner: (props) => {
-            return <KeypomScanner {...props} />;
-          },
-          Camera: (props) => {
-            return <Camera {...props} />;
-          },
-          MonacoEditor: (props) => {
-            return <MonacoEditor {...props} />;
-          },
-          LivepeerPlayer: (props) => {
-            return (
-              <LivepeerConfig client={livepeerClient}>
-                <LivepeerPlayer {...props} />
-              </LivepeerConfig>
-            );
-          },
-          LivepeerCreator: (props) => {
-            return (
-              <LivepeerConfig client={livepeerClient}>
-                <LivepeerCreator {...props} />
-              </LivepeerConfig>
-            );
           },
         },
       });
@@ -200,8 +197,123 @@ function App(props) {
     documentationHref,
   };
 
+  const eventRoutes = [
+    {
+      path: "/events/calendar",
+      component: <EventCalendar />,
+    },
+    {
+      path: "/events/library",
+      component: <LibraryEvents />,
+    },
+  ];
+
+  const communitiesRoutes = [
+    {
+      path: "/communities/developer",
+      component: <DeveloperCommunity />,
+    },
+    {
+      path: "/communities/project",
+      component: <ProjectCommunity />,
+    },
+    {
+      path: "/communities/regional",
+      component: <RegionalCommunity />,
+    },
+    {
+      path: "/communities/general-bos",
+      component: <GeneralCommunity />,
+    },
+  ];
+
+  const educationRoutes = [
+    {
+      path: "/education/tutorials",
+      component: <EducationTutorials />,
+    },
+    {
+      path: "/education/code-reviews",
+      component: <EducationCodeReviews />,
+    },
+    {
+      path: "/education/workshops",
+      component: <EducationWorkshops />,
+    },
+    {
+      path: "/education/office-hours",
+      component: <EducationOfficeHours />,
+    },
+  ];
+
+  const componentsRoutes = [
+    {
+      path: "/components",
+      component: <ComponentsPage />,
+    },
+  ];
+
+  const projectsRoutes = [
+    {
+      path: "/projects/built-with-bos",
+      component: <ProjectsBuiltWithBOS />,
+    },
+    {
+      path: "/projects/native-projects",
+      component: <ProjectsNativeProjects />,
+    },
+    {
+      path: "/projects/bos-integration",
+      component: <ProjectsBOSIntegration />,
+    },
+  ];
+
+  const opportunitiesRoutes = [
+    {
+      path: "/opportunities/funding",
+      component: <OpportunitiesFunding />,
+    },
+    {
+      path: "/opportunities/accelerator",
+      component: <OpportunitiesAccelerator />,
+    },
+    {
+      path: "/opportunities/incubation",
+      component: <OpportunitiesIncubation />,
+    },
+    {
+      path: "/opportunities/amplification",
+      component: <OpportunitiesAmplification />,
+    },
+  ];
+
+  const routes = [
+    ...eventRoutes,
+    ...communitiesRoutes,
+    ...educationRoutes,
+    ...componentsRoutes,
+    ...projectsRoutes,
+    ...opportunitiesRoutes,
+    {
+      path: "/integrations",
+      component: <Integrations />,
+    },
+    {
+      path: "/infrastructure",
+      component: <Infrastructure />,
+    },
+    {
+      path: "/gateways",
+      component: <Gateways />,
+    },
+    {
+      path: "/homepage-selector",
+      component: <HomeSelector />,
+    },
+  ];
+
   return (
-    <div className="App">
+    <RootLayout>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path={"/flags"}>
@@ -209,22 +321,32 @@ function App(props) {
           </Route>
           <Route path={"/scanner"}>
             <NavigationWrapper {...passProps} />
-            <KeypomScanner />
+            {/* <KeypomScanner /> */}
           </Route>
           <Route path={"/create"}>
             <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
             <Footer {...passProps} />
           </Route>
+          {routes.map((route) => (
+            <Route key={`${route.path}`} path={route.path}>
+              {route.component}
+              {/* <Footer {...passProps} /> */}
+            </Route>
+          ))}
+          <Route exact path={"/"}>
+            <Home />
+            {/* <Footer {...passProps} /> */}
+          </Route>
           <Route path={"/:widgetSrc*"}>
             <BosLoaderBanner />
             {/* <NavigationWrapper {...passProps} /> */}
             <ViewPage {...passProps} />
-            <Footer {...passProps} />
+            {/* <Footer {...passProps} /> */}
             <ActionButton {...passProps} />
           </Route>
         </Switch>
       </Router>
-    </div>
+    </RootLayout>
   );
 }
 
