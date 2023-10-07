@@ -1,0 +1,1 @@
+// I think this could take a layout and any necessary components either from settings or from a JSON file

@@ -2,10 +2,6 @@
 
 /*__@import:everything/sdk__*/
 
-hello();
-
-return <p>hello world</p>
-
 
 // it could also be a wrapper module
 // const [name, setName] = useState("");

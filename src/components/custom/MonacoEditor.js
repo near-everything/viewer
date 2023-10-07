@@ -4,17 +4,17 @@ import parserBabel from "prettier/parser-babel";
 import React, { useCallback, useState } from "react";
 
 export const MonacoEditor = (props) => {
-  const { value, path, language, onChange } = props;
-  const [code, setCode] = useState(value);
+  const { defaultValue, path, language, onChange } = props;
+  const [code, setCode] = useState(defaultValue);
 
   const reformat = useCallback(
-    (path, code) => {
+    (code) => {
       try {
         const formattedCode = prettier.format(code, {
           parser: language === "json" ? "json" : "babel",
           plugins: [parserBabel],
         });
-        updateCode(path, formattedCode);
+        updateCode(formattedCode);
       } catch (e) {
         console.log(e);
       }
@@ -23,18 +23,7 @@ export const MonacoEditor = (props) => {
   );
 
   const updateCode = useCallback(
-    (path, code) => {
-      // cache.localStorageSet(
-      //   StorageDomain,
-      //   {
-      //     path,
-      //     type: StorageType.Code,
-      //   },
-      //   {
-      //     code,
-      //     time: Date.now(),
-      //   }
-      // );
+    (code) => {
       setCode(code);
       onChange(code);
     },
@@ -43,13 +32,14 @@ export const MonacoEditor = (props) => {
 
   return (
     <Editor
+      defaultValue={defaultValue}
       value={code}
       path={path}
       height={"100%"}
       defaultLanguage={language}
-      onChange={(code) => updateCode(path, code)}
+      onChange={(code) => updateCode(code)}
       wrapperProps={{
-        onBlur: () => reformat(path, code),
+        onBlur: () => reformat(code),
       }}
     />
   );
