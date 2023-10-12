@@ -1,23 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import Draggable from "react-draggable";
 
-import { useFlags } from '../hooks/useFlags';
-import { useBosLoaderStore } from '../stores/bos-loader';
-import React from 'react';
-
-const Banner = styled.div`
-  background: #fff2cd;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  min-height: 2rem;
-  column-gap: 8px;
-
-  p {
-    margin: 0;
-    color: #664d04;
-  }
-`;
+import { useFlags } from "../hooks/useFlags";
+import { useBosLoaderStore } from "../stores/bos-loader";
+import React from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Button = styled.button`
   all: unset;
@@ -25,6 +12,46 @@ const Button = styled.button`
   height: 16px;
   line-height: 16px;
   color: #664d04;
+
+  border-radius: 100rem;
+
+  &:active,
+  &:hover {
+    outline: none;
+    border: none;
+  }
+`;
+
+const Floating = styled.div`
+  position: fixed;
+  top: 7rem;
+  right: 1rem;
+  width: max-content;
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  border-radius: 50rem;
+  padding: 8px 16px;
+  text-align: center;
+
+  background: #fff2cd;
+  color: #664d04;
+
+  @media screen and (max-width: 800px) {
+    top: 4rem;
+    right: 0.5rem;
+  }
+`;
+
+const Container = styled.a`
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 export function BosLoaderBanner() {
@@ -37,23 +64,39 @@ export function BosLoaderBanner() {
     }
   }
 
+  function onRefresh() {
+    window.location.reload();
+  }
+
   if (!redirectMapStore.loaderUrl) return null;
 
   return (
-    <Banner>
-      <div>
-        <p>Loading components from: {redirectMapStore.loaderUrl}</p>
-        {redirectMapStore.failedToLoad && (
-          <p style={{ color: 'red' }}>
-            BOS Loader fetch error, see console logs. CORS errors may be misleading and mean your endpoint cannot be
-            reached
-          </p>
-        )}
-      </div>
-
-      <Button type="button" onClick={closeBanner}>
-        <i className="ph-fill ph-x-circle" />
-      </Button>
-    </Banner>
+    <Draggable position={null}>
+      <Floating>
+        <OverlayTrigger
+          key={"bos-loader"}
+          placement={"bottom"}
+          overlay={
+            <Tooltip>
+              {redirectMapStore.failedToLoad
+                ? "Check console.log. CORS errors may be misleading"
+                : redirectMapStore.loaderUrl}
+            </Tooltip>
+          }
+        >
+          <Container href={"/flags"}>
+            {redirectMapStore.failedToLoad
+              ? "BOS Loader fetch error"
+              : "Loading components"}
+          </Container>
+        </OverlayTrigger>
+        <Button type="button" onClick={closeBanner}>
+          <i className="bi bi-x" />
+        </Button>
+        <Button type="button" onClick={onRefresh}>
+          <i className="bi bi-arrow-clockwise"></i>
+        </Button>
+      </Floating>
+    </Draggable>
   );
 }
