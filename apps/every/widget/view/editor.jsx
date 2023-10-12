@@ -23,7 +23,7 @@ const Footer = styled.div`
 
 const defaultValue = "";
 const language = "json";
-const [path, setPath] = useState("");
+const [path, setPath] = useState(props.path || "");
 
 if (path) {
   const parts = path.split("/");
@@ -40,14 +40,14 @@ if (path) {
   }
 }
 
-const [code, setCode] = useState(value);
+const [code, setCode] = useState(defaultValue);
 
-function onPublish() {
+function onCreate() {
   const parts = path.split("/");
   Social.set({
     [parts[1]]: {
       [parts[2]]: {
-        "": JSON.stringify(code),
+        "": code,
       },
     },
   });
@@ -56,7 +56,11 @@ function onPublish() {
 return (
   <Container>
     <Header>
-      <input onBlur={(e) => setPath(e.target.value)} placeholder={"path"} />
+      <input
+        defaultValue={path}
+        onBlur={(e) => setPath(e.target.value)}
+        placeholder={"path"}
+      />
     </Header>
     <EditorContainer>
       <Widget
@@ -71,7 +75,9 @@ return (
       />
     </EditorContainer>
     <Footer>
-      <button onClick={onPublish}>Publish</button>
+      <button onClick={onCreate} disabled={!code || code === "null"}>
+        Create
+      </button>
     </Footer>
   </Container>
 );
