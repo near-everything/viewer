@@ -30,9 +30,6 @@ const MainnetWidgets = {
   left: {
     menu: "efiz.near/widget/every.app.left.menu"
   },
-  action: {
-    button: "efiz.near/widget/every.app.action.button"
-  },
   viewSource: "mob.near/widget/WidgetSource",
   widgetMetadataEditor: "mob.near/widget/WidgetMetadataEditor",
   widgetMetadata: "mob.near/widget/WidgetMetadata",
