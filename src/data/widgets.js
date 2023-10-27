@@ -22,6 +22,7 @@ const MainnetWidgets = {
   default: "efiz.near/widget/Things.index",
   editor: "itexpert120-contra.near/widget/TestEditor",
   thing: "efiz.near/widget/every.thing.view",
+  action: "efiz.near/widget/action",
   create: "efiz.near/widget/creator",
   header: {
     mobile: "efiz.near/widget/every.app.header.mobile"

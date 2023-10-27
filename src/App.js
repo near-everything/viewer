@@ -216,6 +216,10 @@ function App(props) {
           <NavigationWrapper {...passProps} />
           <KeypomScanner />
         </Route>
+        <Route path={"/action"}>
+          <ViewPage overrideSrc={passProps.widgets.action} {...passProps} />
+          <Footer {...passProps} />
+        </Route>
         <Route path={"/create"}>
           <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
           <Footer {...passProps} />

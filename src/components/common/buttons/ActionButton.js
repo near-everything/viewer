@@ -29,11 +29,9 @@ const StyledActionButton = styled.div`
 `;
 
 export function ActionButton(props) {
-  return <StyledActionButton />;
-}
-
-{
-  /* <Link to="/create">
+  return (
+    <Link to="/action">
       <StyledActionButton />
-    </Link> */
+    </Link>
+  );
 }
