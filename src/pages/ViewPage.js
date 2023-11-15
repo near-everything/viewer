@@ -5,6 +5,7 @@ import { useHashRouterLegacy } from "../hooks/useHashRouterLegacy";
 import { useQuery } from "../hooks/useQuery";
 import { useBosLoaderStore } from "../stores/bos-loader";
 import styled from "styled-components";
+import { ActionButton } from "../components/common/buttons/ActionButton";
 
 const Container = styled.div`
   display: flex;
@@ -86,8 +87,11 @@ export default function ViewPage(props) {
   }
 
   return (
-    <Container>
-      <Thing path={src} />
-    </Container>
+    <>
+      <Container>
+        <Thing path={src} />
+      </Container>
+      <ActionButton {...props} widgetSrc={src} />
+    </>
   );
 }

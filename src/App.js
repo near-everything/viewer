@@ -237,7 +237,6 @@ function App(props) {
           {/* <NavigationWrapper {...passProps} /> */}
           <ViewPage {...passProps} />
           <Footer {...passProps} />
-          <ActionButton {...passProps} />
         </Route>
       </Switch>
     </Router>
