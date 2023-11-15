@@ -19,7 +19,8 @@ const TestnetWidgets = {
 
 const MainnetWidgets = {
   image: "mob.near/widget/Image",
-  default: "efiz.near/widget/Things.index",
+  default: "chaotictempest.near/widget/Search",
+  search: "chaotictempest.near/widget/Search",
   editor: "itexpert120-contra.near/widget/TestEditor",
   thing: "efiz.near/widget/every.thing.view",
   action: "efiz.near/widget/action",

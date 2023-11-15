@@ -228,6 +228,10 @@ function App(props) {
           <ViewPage overrideSrc={passProps.widgets.editor} {...passProps} />
           <Footer {...passProps} />
         </Route>
+        <Route path={"/search"}>
+          <ViewPage overrideSrc={passProps.widgets.search} {...passProps} />
+          <Footer {...passProps} />
+        </Route>
         <Route path={"/:widgetSrc*"}>
           <BosLoaderBanner />
           {/* <NavigationWrapper {...passProps} /> */}
