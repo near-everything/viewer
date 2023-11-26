@@ -8977,7 +8977,7 @@ near-seed-phrase@0.2.0, near-seed-phrase@^0.2.0:
     near-hd-key "^1.2.1"
     tweetnacl "^1.0.2"
 
-"near-social-vm@git+https://github.com/NearSocial/VM.git#replace-in-with-hasownproperty":
+"near-social-vm@git+https://github.com/NearSocial/VM.git#f3b74c72d8af79d39b36bb13869a940f2b195844":
   version "2.5.2"
   resolved "git+https://github.com/NearSocial/VM.git#f3b74c72d8af79d39b36bb13869a940f2b195844"
   dependencies:
