@@ -23,22 +23,19 @@ import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { ActionButton } from "./components/common/buttons/ActionButton";
+import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { Camera } from "./components/custom/Camera";
+import Canvas from "./components/custom/Canvas";
+import { KeypomScanner } from "./components/custom/KeypomScanner";
+import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
 import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
+import Footer from "./components/navigation/Footer";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
-import { KeypomScanner } from "./components/custom/KeypomScanner";
-import Footer from "./components/navigation/Footer";
-import { BosLoaderBanner } from "./components/BosLoaderBanner";
-import { MonacoEditor } from "./components/custom/MonacoEditor";
-import { Tldraw } from "@tldraw/tldraw";
-import Thing from "./components/custom/Canvas";
-import Canvas from "./components/custom/Canvas";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -57,8 +54,6 @@ function App(props) {
   const near = useNear();
   const account = useAccount();
   const accountId = account.accountId;
-
-  const location = window.location;
 
   const livepeerClient = createReactClient({
     provider: studioProvider({
@@ -124,16 +119,6 @@ function App(props) {
         },
       });
   }, [initNear]);
-
-  // useEffect(() => {
-  //   if (
-  //     !location.search.includes("?account_id") &&
-  //     !location.search.includes("&account_id") &&
-  //     (location.search || location.href.includes("/?#"))
-  //   ) {
-  //     window.history.replaceState({}, "/", "/" + location.hash);
-  //   }
-  // }, [location]);
 
   useEffect(() => {
     if (!near) {
@@ -230,10 +215,7 @@ function App(props) {
         </Route>
         <Route path={"/:widgetSrc*"}>
           <BosLoaderBanner />
-          {/* <NavigationWrapper {...passProps} /> */}
           <ViewPage {...passProps} />
-          {/* <Footer {...passProps} /> */}
-          {/* <ActionButton {...passProps} /> */}
         </Route>
       </Switch>
     </Router>
