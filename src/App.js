@@ -1,4 +1,3 @@
-import { sanitizeUrl } from "@braintree/sanitize-url";
 import {
   LivepeerConfig,
   createReactClient,
@@ -17,6 +16,7 @@ import "App.scss";
 import Big from "big.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle";
+import { isValidAttribute } from "dompurify";
 import "error-polyfill";
 import { useAccount, useInitNear, useNear, utils } from "near-social-vm";
 import React, { useCallback, useEffect, useState } from "react";
@@ -26,12 +26,10 @@ import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { Camera } from "./components/custom/Camera";
 import Canvas from "./components/custom/Canvas";
-import { KeypomScanner } from "./components/custom/KeypomScanner";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
 import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
 import Footer from "./components/navigation/Footer";
-import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
@@ -89,12 +87,11 @@ function App(props) {
               delete props.href;
             }
             if (props.to) {
-              props.to = sanitizeUrl(props.to);
+              props.to = isValidAttribute("a", "href", props.to)
+                ? props.to
+                : "about:blank";
             }
             return <Link {...props} />;
-          },
-          KeypomScanner: (props) => {
-            return <KeypomScanner {...props} />;
           },
           Camera: (props) => {
             return <Camera {...props} />;
@@ -196,10 +193,6 @@ function App(props) {
       <Switch>
         <Route path={"/flags"}>
           <Flags {...passProps} />
-        </Route>
-        <Route path={"/scanner"}>
-          <NavigationWrapper {...passProps} />
-          <KeypomScanner />
         </Route>
         <Route path={"/action"}>
           <ViewPage overrideSrc={passProps.widgets.action} {...passProps} />
