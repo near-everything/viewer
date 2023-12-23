@@ -1,4 +1,3 @@
-import { sanitizeUrl } from "@braintree/sanitize-url";
 import {
   LivepeerConfig,
   createReactClient,
@@ -17,28 +16,26 @@ import "App.scss";
 import Big from "big.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle";
+import { isValidAttribute } from "dompurify";
 import "error-polyfill";
 import { useAccount, useInitNear, useNear, utils } from "near-social-vm";
 import React, { useCallback, useEffect, useState } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import { ActionButton } from "./components/common/buttons/ActionButton";
 import { Camera } from "./components/custom/Camera";
+import Canvas from "./components/custom/Canvas";
+import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
 import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
+import Footer from "./components/navigation/Footer";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import ViewPage from "./pages/ViewPage";
-import { KeypomScanner } from "./components/custom/KeypomScanner";
-import Footer from "./components/navigation/Footer";
-import { BosLoaderBanner } from "./components/BosLoaderBanner";
-import { MonacoEditor } from "./components/custom/MonacoEditor";
-import { Tldraw } from "@tldraw/tldraw";
-import Thing from "./components/custom/Canvas";
-import Canvas from "./components/custom/Canvas";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -94,12 +91,13 @@ function App(props) {
               delete props.href;
             }
             if (props.to) {
-              props.to = sanitizeUrl(props.to);
+              props.to =
+                typeof props.to === "string" &&
+                isValidAttribute("a", "href", props.to)
+                  ? props.to
+                  : "about:blank";
             }
             return <Link {...props} />;
-          },
-          KeypomScanner: (props) => {
-            return <KeypomScanner {...props} />;
           },
           Camera: (props) => {
             return <Camera {...props} />;
@@ -121,6 +119,9 @@ function App(props) {
               </LivepeerConfig>
             );
           },
+        },
+        config: {
+          defaultFinality: undefined,
         },
       });
   }, [initNear]);
@@ -211,10 +212,6 @@ function App(props) {
       <Switch>
         <Route path={"/flags"}>
           <Flags {...passProps} />
-        </Route>
-        <Route path={"/scanner"}>
-          <NavigationWrapper {...passProps} />
-          <KeypomScanner />
         </Route>
         <Route path={"/action"}>
           <ViewPage overrideSrc={passProps.widgets.action} {...passProps} />

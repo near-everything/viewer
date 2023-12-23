@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-import { useClearCurrentComponent } from "../hooks/useClearCurrentComponent";
-import { useFlags } from "../hooks/useFlags";
 import React, { useState } from "react";
+import { useFlags } from "../hooks/useFlags";
 
 const Container = styled.div`
   display: flex;
@@ -32,19 +31,13 @@ export default function Flags() {
   const [flags, setFlags] = useFlags();
   const [url, setUrl] = useState(flags?.bosLoaderUrl || "");
 
-  useClearCurrentComponent();
-
   return (
     <Container className="container-xl">
-      <h1>
-        Flags
-      </h1>
+      <h1>Flags</h1>
 
       <Form>
         <InputGrid>
-          <p>
-            BOS Loader Url
-          </p>
+          <p>BOS Loader Url</p>
 
           <input
             className="form-control"
@@ -57,16 +50,20 @@ export default function Flags() {
         <button
           onClick={() => setFlags({ bosLoaderUrl: url })}
           style={{ marginLeft: "auto" }}
-        >Save</button>
+        >
+          Save
+        </button>
       </Form>
     </Container>
   );
-};
+}
 
-{/* <Widget
+{
+  /* <Widget
 src="devs.near/widget/SetFlagButton"
 props={{
   url: "https://everything.dev",
   setFlags: setFlags,
 }}
-/> */}
+/> */
+}
