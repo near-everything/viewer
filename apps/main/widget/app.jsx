@@ -54,7 +54,7 @@ const Content = styled.div`
   overflow: scroll;
 `;
 
-const defaultRoute = "efiz.near/widget/Tree";
+const defaultRoute = "efiz.near/widget/Things.index";
 const [selectedItem, setSelectedItem] = useState(route || defaultRoute);
 
 const handleItemClick = (item) => {
@@ -65,6 +65,10 @@ const routes = [
   {
     path: "efiz.near/widget/Tree",
     icon: "bi bi-house",
+  },
+  {
+    path: "efiz.near/widget/Things.index",
+    icon: "bi bi-globe",
   },
   {
     path: "chaotictempest.near/widget/Search",
@@ -83,12 +87,24 @@ const routes = [
     icon: "bi bi-people",
   },
   {
-    path: "efiz.near/widget/Mapbox",
+    path: "hack.near/widget/Map.tutorial",
     icon: "bi bi-map",
   },
   {
     path: "mintbase.near/widget/nft-marketplace",
     icon: "bi bi-cart",
+  },
+  {
+    path: "devs.near/widget/Module.Feed.demo",
+    icon: "bi bi-boxes",
+  },
+  {
+    path: "efiz.near/widget/voyager.index",
+    icon: "bi bi-rocket",
+  },
+  {
+    path: "efiz.near/widget/App.index",
+    icon: "bi bi-camera-video",
   },
 ];
 
