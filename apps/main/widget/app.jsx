@@ -106,6 +106,10 @@ const routes = [
     path: "efiz.near/widget/App.index",
     icon: "bi bi-camera-video",
   },
+  {
+    path: "hyperfiles.near/widget/app",
+    icon: "bi bi-files",
+  },
 ];
 
 return (
