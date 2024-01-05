@@ -110,6 +110,10 @@ const routes = [
     path: "hyperfiles.near/widget/app",
     icon: "bi bi-files",
   },
+  {
+    path: "efiz.near/widget/SocialGraph",
+    icon: "bi bi-stars",
+  },
 ];
 
 return (
