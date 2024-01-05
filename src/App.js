@@ -213,7 +213,7 @@ function App(props) {
         <Route path={"/flags"}>
           <Flags {...passProps} />
         </Route>
-        <Route path={"/action"}>
+        {/* <Route path={"/action"}>
           <ViewPage overrideSrc={passProps.widgets.action} {...passProps} />
           <Footer {...passProps} />
         </Route>
@@ -224,13 +224,13 @@ function App(props) {
         <Route path={"/editor"}>
           <ViewPage overrideSrc={passProps.widgets.editor} {...passProps} />
           <Footer {...passProps} />
-        </Route>
+        </Route> */}
         <Route path={"/:widgetSrc*"}>
           <BosLoaderBanner />
           {/* <NavigationWrapper {...passProps} /> */}
           <ViewPage {...passProps} />
-          <Footer {...passProps} />
-          <ActionButton {...passProps} />
+          {/* <Footer {...passProps} /> */}
+          {/* <ActionButton {...passProps} /> */}
         </Route>
       </Switch>
     </Router>
