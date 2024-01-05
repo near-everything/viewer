@@ -27,7 +27,7 @@ const ButtonGroup = styled.div`
 
 const Button = styled.button`
   width: 48px;
-  height: 48px;
+  min-height: 48px;
 
   border: 2px outset #333;
   background-color: #f5f5f5;
@@ -119,16 +119,20 @@ const routes = [
 return (
   <Container>
     <Sidebar>
-      <ButtonGroup>
+      <ButtonGroup
+        style={{ maxHeight: "calc(100% - 50px)", overflow: "scroll" }}
+      >
         {routes.map((route) => (
           <Button onClick={() => handleItemClick(route.path)}>
             <i className={route.icon}></i>
           </Button>
         ))}
       </ButtonGroup>
-      <ButtonGroup>
-      <Button
-          onClick={() => handleItemClick(`mob.near/widget/WidgetSource?src=${selectedItem}`)}
+      <ButtonGroup style={{ marginTop: "8px" }}>
+        <Button
+          onClick={() =>
+            handleItemClick(`mob.near/widget/WidgetSource?src=${selectedItem}`)
+          }
         >
           <i className={"bi bi-code"}></i>
         </Button>
