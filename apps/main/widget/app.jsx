@@ -54,67 +54,71 @@ const Content = styled.div`
   overflow: scroll;
 `;
 
-const defaultRoute = "efiz.near/widget/Things.index";
-const [selectedItem, setSelectedItem] = useState(route || defaultRoute);
-
-const handleItemClick = (item) => {
-  setSelectedItem(item);
-};
-
-const routes = [
-  {
+const routes = {
+  home: {
     path: "efiz.near/widget/Tree",
     icon: "bi bi-house",
   },
-  {
+  discover: {
     path: "efiz.near/widget/Things.index",
     icon: "bi bi-globe",
   },
-  {
+  search: {
     path: "chaotictempest.near/widget/Search",
     icon: "bi bi-search",
   },
-  {
+  create: {
     path: "create.near/widget/home",
     icon: "bi bi-hammer",
   },
-  {
+  events: {
     path: "itexpert120-contra.near/widget/Events",
     icon: "bi bi-calendar",
   },
-  {
+  social: {
     path: "mob.near/widget/N",
     icon: "bi bi-people",
   },
-  {
+  map: {
     path: "hack.near/widget/Map.tutorial",
     icon: "bi bi-map",
   },
-  {
+  marketplace: {
     path: "mintbase.near/widget/nft-marketplace",
     icon: "bi bi-cart",
   },
-  {
+  blocks: {
     path: "devs.near/widget/Module.Feed.demo",
     icon: "bi bi-boxes",
   },
-  {
+  voyager: {
     path: "efiz.near/widget/voyager.index",
     icon: "bi bi-rocket",
   },
-  {
+  video: {
     path: "efiz.near/widget/App.index",
     icon: "bi bi-camera-video",
   },
-  {
+  files: {
     path: "hyperfiles.near/widget/app",
     icon: "bi bi-files",
   },
-  {
+  graph: {
     path: "efiz.near/widget/SocialGraph",
     icon: "bi bi-stars",
   },
-];
+  plugins: {
+    path: "embeds.near/widget/Plugin.Index",
+    icon: "bi bi-plug",
+  },
+};
+
+const defaultRoute = routes["discover"];
+const [activeRoute, setActiveRoute] = useState(routes[route] ?? defaultRoute);
+
+const handleItemClick = (item) => {
+  setActiveRoute(item);
+};
 
 return (
   <Container>
@@ -122,22 +126,30 @@ return (
       <ButtonGroup
         style={{ maxHeight: "calc(100% - 50px)", overflow: "scroll" }}
       >
-        {routes.map((route) => (
-          <Button onClick={() => handleItemClick(route.path)}>
-            <i className={route.icon}></i>
-          </Button>
-        ))}
+        {(Object.keys(routes) || []).map((k) => {
+          const route = routes[k];
+          return (
+            <Button key={k} onClick={() => handleItemClick(route)}>
+              <i className={route.icon}></i>
+            </Button>
+          );
+        })}
       </ButtonGroup>
       <ButtonGroup style={{ marginTop: "8px" }}>
         <Button
           onClick={() =>
-            handleItemClick(`mob.near/widget/WidgetSource?src=${selectedItem}`)
+            handleItemClick({
+              path: "mob.near/widget/WidgetSource",
+              props: { src: activeRoute.path },
+            })
           }
         >
           <i className={"bi bi-code"}></i>
         </Button>
         <Button
-          onClick={() => handleItemClick("mob.near/widget/NotificationFeed")}
+          onClick={() =>
+            handleItemClick({ path: "mob.near/widget/NotificationFeed" })
+          }
         >
           <i className={"bi bi-bell"}></i>
         </Button>
@@ -153,7 +165,14 @@ return (
       </ButtonGroup>
     </Sidebar>
     <Content>
-      <Widget src={selectedItem} props={passProps} />
+      <Widget
+        src="every.near/widget/thing"
+        props={{
+          path: activeRoute.path,
+          ...(passProps || {}), // do we want to do this?
+          ...(activeRoute.props || {}),
+        }}
+      />
     </Content>
   </Container>
 );
