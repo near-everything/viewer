@@ -24,18 +24,15 @@ import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
-import { ActionButton } from "./components/common/buttons/ActionButton";
 import { Camera } from "./components/custom/Camera";
 import Canvas from "./components/custom/Canvas";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
 import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
-import Footer from "./components/navigation/Footer";
-import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
-import ViewPage from "./pages/ViewPage";
+import Viewer from "./pages/Viewer";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -213,24 +210,9 @@ function App(props) {
         <Route path={"/flags"}>
           <Flags {...passProps} />
         </Route>
-        {/* <Route path={"/action"}>
-          <ViewPage overrideSrc={passProps.widgets.action} {...passProps} />
-          <Footer {...passProps} />
-        </Route>
-        <Route path={"/create"}>
-          <ViewPage overrideSrc={passProps.widgets.create} {...passProps} />
-          <Footer {...passProps} />
-        </Route>
-        <Route path={"/editor"}>
-          <ViewPage overrideSrc={passProps.widgets.editor} {...passProps} />
-          <Footer {...passProps} />
-        </Route> */}
-        <Route path={"/:widgetSrc*"}>
+        <Route path={"/:path*"}>
           <BosLoaderBanner />
-          {/* <NavigationWrapper {...passProps} /> */}
-          <ViewPage {...passProps} />
-          {/* <Footer {...passProps} /> */}
-          {/* <ActionButton {...passProps} /> */}
+          <Viewer {...passProps} />
         </Route>
       </Switch>
     </Router>

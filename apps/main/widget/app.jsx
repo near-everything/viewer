@@ -1,4 +1,195 @@
-const { route, ...passProps } = props;
+/**
+ * Every app is structured the same
+ */
+
+const { page, layout, loading, ...passProps } = props;
+
+const { AppLayout } =
+  VM.require("devhub.near/widget/devhub.components.templates.AppLayout") ||
+  (() => {});
+
+if (!AppLayout) return <Widget src={loading} loading={<p>Loading...</p>} />;
+if (!page) page = "home";
+
+const Theme = styled.div`
+  a {
+    color: inherit;
+  }
+`;
+
+const routes = {
+  home: {
+    path: "hack.near/widget/dev.social",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-house",
+    },
+  },
+  discover: {
+    path: "efiz.near/widget/Things.index",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-globe",
+    },
+  },
+  tree: {
+    path: "efiz.near/widget/Tree",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-tree",
+    },
+  },
+  search: {
+    path: "chaotictempest.near/widget/Search",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-search",
+    },
+  },
+  create: {
+    path: "create.near/widget/home",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-plus-circle",
+    },
+  },
+  events: {
+    path: "itexpert120-contra.near/widget/Events",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-calendar",
+    },
+  },
+  editor: {
+    path: "every.near/widget/editor",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-pencil",
+    },
+  },
+  hashtag: {
+    path: "efiz.near/widget/every.hashtag",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-hash",
+    },
+  },
+  social: {
+    path: "mob.near/widget/N",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-people",
+    },
+  },
+  map: {
+    path: "hack.near/widget/Map.tutorial",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-map",
+    },
+  },
+  marketplace: {
+    path: "mintbase.near/widget/nft-marketplace",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-cart",
+    },
+  },
+  blocks: {
+    path: "devs.near/widget/Module.Feed.demo",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-boxes",
+    },
+  },
+  voyager: {
+    path: "efiz.near/widget/voyager.index",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-rocket",
+    },
+  },
+  video: {
+    path: "efiz.near/widget/App.index",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-camera-video",
+    },
+  },
+  files: {
+    path: "hyperfiles.near/widget/app",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-files",
+    },
+  },
+  graph: {
+    path: "efiz.near/widget/SocialGraph",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-stars",
+    },
+  },
+  plugins: {
+    path: "embeds.near/widget/Plugin.Index",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-plug",
+    },
+  },
+  build: {
+    path: "buildhub.near/widget/Feed",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-hammer",
+    },
+  },
+  music: {
+    path: "jaswinder.near/widget/MusicPlayer-Harmonic",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-music-note",
+    },
+  },
+};
+
+function Router({ active, routes }) {
+  const routeParts = active.split(".");
+
+  let currentRoute = routes;
+  let src = "";
+  let defaultProps = {};
+
+  for (let part of routeParts) {
+    if (currentRoute[part]) {
+      currentRoute = currentRoute[part];
+      src = currentRoute.path;
+
+      // If the route has special initializations, you can add them to extraProps
+      if (currentRoute.init) {
+        defaultProps = { ...defaultProps, ...currentRoute.init };
+      }
+    } else {
+      // Handle 404 or default case for unknown routes
+      return <p>404 Not Found</p>;
+    }
+  }
+
+  return (
+    <Widget
+      src="every.near/widget/thing"
+      props={{ path: src, ...passProps, ...extraProps }}
+    />
+  );
+}
+
+// return (
+//   <Theme>
+//     <AppLayout page={page}>
+//       <Router active={page} routes={routes} />
+//     </AppLayout>
+//   </Theme>
+// );
 
 const Container = styled.div`
   display: flex;
@@ -54,70 +245,10 @@ const Content = styled.div`
   overflow: scroll;
 `;
 
-const routes = {
-  home: {
-    path: "efiz.near/widget/Tree",
-    icon: "bi bi-house",
-  },
-  discover: {
-    path: "efiz.near/widget/Things.index",
-    icon: "bi bi-globe",
-  },
-  search: {
-    path: "chaotictempest.near/widget/Search",
-    icon: "bi bi-search",
-  },
-  create: {
-    path: "create.near/widget/home",
-    icon: "bi bi-hammer",
-  },
-  events: {
-    path: "itexpert120-contra.near/widget/Events",
-    icon: "bi bi-calendar",
-  },
-  social: {
-    path: "mob.near/widget/N",
-    icon: "bi bi-people",
-  },
-  map: {
-    path: "hack.near/widget/Map.tutorial",
-    icon: "bi bi-map",
-  },
-  marketplace: {
-    path: "mintbase.near/widget/nft-marketplace",
-    icon: "bi bi-cart",
-  },
-  blocks: {
-    path: "devs.near/widget/Module.Feed.demo",
-    icon: "bi bi-boxes",
-  },
-  voyager: {
-    path: "efiz.near/widget/voyager.index",
-    icon: "bi bi-rocket",
-  },
-  video: {
-    path: "efiz.near/widget/App.index",
-    icon: "bi bi-camera-video",
-  },
-  files: {
-    path: "hyperfiles.near/widget/app",
-    icon: "bi bi-files",
-  },
-  graph: {
-    path: "efiz.near/widget/SocialGraph",
-    icon: "bi bi-stars",
-  },
-  plugins: {
-    path: "embeds.near/widget/Plugin.Index",
-    icon: "bi bi-plug",
-  },
-};
+const [activeRoute, setActiveRoute] = useState(page);
 
-const defaultRoute = routes["discover"];
-const [activeRoute, setActiveRoute] = useState(routes[route] ?? defaultRoute);
-
-const handleItemClick = (item) => {
-  setActiveRoute(item);
+const handleLinkClick = (path) => {
+  setActiveRoute(path);
 };
 
 return (
@@ -129,8 +260,8 @@ return (
         {(Object.keys(routes) || []).map((k) => {
           const route = routes[k];
           return (
-            <Button key={k} onClick={() => handleItemClick(route)}>
-              <i className={route.icon}></i>
+            <Button key={k} onClick={() => handleLinkClick(k)}>
+              <i className={route.init.icon}></i>
             </Button>
           );
         })}
@@ -138,9 +269,9 @@ return (
       <ButtonGroup style={{ marginTop: "8px" }}>
         <Button
           onClick={() =>
-            handleItemClick({
+            handleLinkClick({
               path: "mob.near/widget/WidgetSource",
-              props: { src: activeRoute.path },
+              props: { src: activeRoute },
             })
           }
         >
@@ -148,7 +279,7 @@ return (
         </Button>
         <Button
           onClick={() =>
-            handleItemClick({ path: "mob.near/widget/NotificationFeed" })
+            handleLinkClick({ path: "mob.near/widget/NotificationFeed" })
           }
         >
           <i className={"bi bi-bell"}></i>
@@ -165,182 +296,7 @@ return (
       </ButtonGroup>
     </Sidebar>
     <Content>
-      <Widget
-        src="every.near/widget/thing"
-        props={{
-          path: activeRoute.path,
-          ...(passProps || {}), // do we want to do this?
-          ...(activeRoute.props || {}),
-        }}
-      />
+      <Router active={activeRoute} routes={routes} />
     </Content>
   </Container>
 );
-
-// // Import our modules
-// const { AppLayout } = VM.require(
-//   "devhub.near/widget/devhub.components.templates.AppLayout"
-// );
-
-// if (!AppLayout) {
-//   return <p>Loading modules...</p>;
-// }
-
-// // CSS styles to be used across the app.
-// // Define fonts here, as well as any other global styles.
-// const Theme = styled.div`
-//   a {
-//     color: inherit;
-//   }
-
-//   .attractable {
-//     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-//     transition: box-shadow 0.6s;
-
-//     &:hover {
-//       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-//     }
-//   }
-// `;
-
-// if (!page) {
-//   // If no page is specified, we default to the feed page TEMP
-//   page = "home";
-// }
-
-// // This is our navigation, rendering the page based on the page parameter
-// function Page() {
-//   const routes = page.split(".");
-//   switch (routes[0]) {
-//     case "home": {
-//       return (
-//         <Widget src="devhub.near/widget/devhub.page.home" props={passProps} />
-//       );
-//     }
-//     // ?page=communities
-//     case "communities": {
-//       return (
-//         <Widget
-//           src={"devhub.near/widget/devhub.page.communities"}
-//           props={passProps}
-//         />
-//       );
-//     }
-//     // ?page=community
-//     case "community": {
-//       return (
-//         // Considering to consolsidate this into a single widget,
-//         // where each level handles its own routing.
-//         // Modularizing a page just like we do with addons
-//         <Widget
-//           src={"devhub.near/widget/devhub.entity.community.Provider"}
-//           props={{
-//             ...passProps,
-//             Children: (p) => {
-//               // passing props from the Provider into the Children
-//               switch (routes[1]) {
-//                 // ?page=community.configuration
-//                 case "configuration": {
-//                   return (
-//                     <Widget
-//                       src={
-//                         "devhub.near/widget/devhub.page.community.configuration"
-//                       }
-//                       props={{
-//                         ...passProps,
-//                         ...p,
-//                       }}
-//                     />
-//                   );
-//                 }
-//                 // ?page=community
-//                 default: {
-//                   return (
-//                     <Widget
-//                       src={"devhub.near/widget/devhub.page.community.index"}
-//                       props={{
-//                         ...passProps,
-//                         ...p,
-//                       }}
-//                     />
-//                   );
-//                 }
-//               }
-//             },
-//           }}
-//         />
-//       );
-//     }
-//     // ?page=feed
-//     case "feed": {
-//       return (
-//         <Widget src={"devhub.near/widget/devhub.page.feed"} props={passProps} />
-//       );
-//     }
-//     // ?page=create
-//     case "create": {
-//       return (
-//         <Widget
-//           src={"devhub.near/widget/devhub.page.create"}
-//           props={passProps}
-//         />
-//       );
-//     }
-//     // ?page=about
-//     case "about": {
-//       return (
-//         <Widget
-//           src={"devhub.near/widget/devhub.page.about"}
-//           props={passProps}
-//         />
-//       );
-//     }
-//     case "contribute": {
-//       return (
-//         <Widget
-//           src={"devhub.near/widget/devhub.page.contribute"}
-//           props={passProps}
-//         />
-//       );
-//     }
-//     case "profile": {
-//       return (
-//         <Widget
-//           src={"devhub.near/widget/devhub.page.profile"}
-//           props={passProps}
-//         />
-//       );
-//     }
-//     // ?page=blog
-//     case "blog": {
-//       return (
-//         <Widget src={"devhub.near/widget/devhub.page.blog"} props={passProps} />
-//       );
-//     }
-//     case "post": {
-//       return (
-//         <Widget src={"devhub.near/widget/devhub.page.post"} props={passProps} />
-//       );
-//     }
-//     case "admin": {
-//       return (
-//         <Widget
-//           src={"devhub.near/widget/devhub.page.admin.index"}
-//           props={passProps}
-//         />
-//       );
-//     }
-//     default: {
-//       // TODO: 404 page
-//       return <p>404</p>;
-//     }
-//   }
-// }
-
-// return (
-//   <Theme>
-//     <AppLayout page={page}>
-//       <Page />
-//     </AppLayout>
-//   </Theme>
-// );
