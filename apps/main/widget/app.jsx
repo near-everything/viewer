@@ -2,8 +2,11 @@
  * Every app is structured the same
  */
 
-const { page, layout, loading, ...passProps } = props;
+const { page, layout, routes, loading, ...passProps } = props;
 
+routes = JSON.parse(routes);
+
+if (!routes) return <p>Invalid routes</p>;
 // const { AppLayout } =
 //   VM.require("devhub.near/widget/devhub.components.templates.AppLayout") ||
 //   (() => {});
@@ -16,7 +19,6 @@ const Theme = styled.div`
     color: inherit;
   }
 `;
-
 
 function Router({ active, routes }) {
   const routeParts = active.split(".");
@@ -113,8 +115,11 @@ const Content = styled.div`
 const [activeRoute, setActiveRoute] = useState(page);
 
 const handleLinkClick = (path) => {
+  console.log("handleLinkClick", path);
   setActiveRoute(path);
 };
+
+return <p>{`${typeof JSON.parse(routes)}, length: ${JSON.stringify(JSON.parse(routes()))}`}</p>;
 
 return (
   <Container>
