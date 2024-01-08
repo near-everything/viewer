@@ -4,11 +4,11 @@
 
 const { page, layout, loading, ...passProps } = props;
 
-const { AppLayout } =
-  VM.require("devhub.near/widget/devhub.components.templates.AppLayout") ||
-  (() => {});
+// const { AppLayout } =
+//   VM.require("devhub.near/widget/devhub.components.templates.AppLayout") ||
+//   (() => {});
 
-if (!AppLayout) return <Widget src={loading} loading={<p>Loading...</p>} />;
+// if (!AppLayout) return <Widget src={loading} loading={<p>Loading...</p>} />;
 if (!page) page = "home";
 
 const Theme = styled.div`
@@ -17,141 +17,6 @@ const Theme = styled.div`
   }
 `;
 
-const routes = {
-  home: {
-    path: "hack.near/widget/dev.social",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-house",
-    },
-  },
-  discover: {
-    path: "efiz.near/widget/Things.index",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-globe",
-    },
-  },
-  tree: {
-    path: "efiz.near/widget/Tree",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-tree",
-    },
-  },
-  search: {
-    path: "chaotictempest.near/widget/Search",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-search",
-    },
-  },
-  create: {
-    path: "create.near/widget/home",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-plus-circle",
-    },
-  },
-  events: {
-    path: "itexpert120-contra.near/widget/Events",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-calendar",
-    },
-  },
-  editor: {
-    path: "every.near/widget/editor",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-pencil",
-    },
-  },
-  hashtag: {
-    path: "efiz.near/widget/every.hashtag",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-hash",
-    },
-  },
-  social: {
-    path: "mob.near/widget/N",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-people",
-    },
-  },
-  map: {
-    path: "hack.near/widget/Map.tutorial",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-map",
-    },
-  },
-  marketplace: {
-    path: "mintbase.near/widget/nft-marketplace",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-cart",
-    },
-  },
-  blocks: {
-    path: "devs.near/widget/Module.Feed.demo",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-boxes",
-    },
-  },
-  voyager: {
-    path: "efiz.near/widget/voyager.index",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-rocket",
-    },
-  },
-  video: {
-    path: "efiz.near/widget/App.index",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-camera-video",
-    },
-  },
-  files: {
-    path: "hyperfiles.near/widget/app",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-files",
-    },
-  },
-  graph: {
-    path: "efiz.near/widget/SocialGraph",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-stars",
-    },
-  },
-  plugins: {
-    path: "embeds.near/widget/Plugin.Index",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-plug",
-    },
-  },
-  build: {
-    path: "buildhub.near/widget/Feed",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-hammer",
-    },
-  },
-  music: {
-    path: "jaswinder.near/widget/MusicPlayer-Harmonic",
-    blockHeight: "final",
-    init: {
-      icon: "bi bi-music-note",
-    },
-  },
-};
 
 function Router({ active, routes }) {
   const routeParts = active.split(".");

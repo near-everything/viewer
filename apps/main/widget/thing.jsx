@@ -2,6 +2,10 @@ const path = props.path; // every piece of data on social contract has a path
 const blockHeight = props.blockHeight || "final"; // and a blockHeight (~version)
 const options = props.options;
 
+if (!path) {
+  return <p>No path provided.</p>;
+}
+
 // split the path
 const parts = path.split("/");
 const creatorId = parts[0];
