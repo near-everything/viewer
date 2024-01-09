@@ -2,13 +2,12 @@
  * Every app is structured the same
  */
 
-const { page, layout, loading, ...passProps } = props;
+const { page, layout, loading, routes, ...passProps } = props;
 
 // const { AppLayout } =
 //   VM.require("devhub.near/widget/devhub.components.templates.AppLayout") ||
 //   (() => {});
 
-// if (!AppLayout) return <Widget src={loading} loading={<p>Loading...</p>} />;
 if (!page) page = "home";
 
 const Theme = styled.div`

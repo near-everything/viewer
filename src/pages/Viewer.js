@@ -25,7 +25,7 @@ function Viewer(props) {
 
   if (!code) {
     // prioritize code if provided
-    src = path || "efiz.near/thing/5ac821ac";
+    src = path || "every.near/widget/app";
     if (src) {
       src = src.substring(src.lastIndexOf("/", src.indexOf(".near")) + 1);
     } else {
@@ -55,10 +55,10 @@ function Viewer(props) {
   return (
     <>
       <Widget
-        src={"every.near/widget/thing"}
+        src={src}
         code={code}
         props={{
-          path: src,
+          // path: src,
           ...passProps,
         }}
         config={{ redirectMap }}
