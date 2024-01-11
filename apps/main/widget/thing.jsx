@@ -312,7 +312,7 @@ function Thing() {
       return <Widget src={path} props={props} />;
     }
     case "account": {
-      return <Widget src="efiz.near/widget/Tree" props={{ rootPath: path }} />;
+      return <Widget src="mob.near/widget/ProfilePage" props={{ accountId: path }} />;
     }
     case "settings": {
       // Standardize path to {accountId}/settings/**

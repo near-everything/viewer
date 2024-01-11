@@ -1,7 +1,6 @@
 /**
  * Every app is structured the same
  */
-
 const { page, layout, loading, routes, ...passProps } = props;
 
 // const { AppLayout } =
@@ -42,7 +41,7 @@ function Router({ active, routes }) {
   return (
     <Widget
       src="every.near/widget/thing"
-      props={{ path: src, ...passProps, ...extraProps }}
+      props={{ ...passProps, ...extraProps, path: src }}
     />
   );
 }
@@ -148,15 +147,7 @@ return (
         >
           <i className={"bi bi-bell"}></i>
         </Button>
-        <Widget
-          src={"mob.near/widget/ProfileImage"}
-          props={{
-            accountId: account.accountId,
-            className: "d-inline-block",
-            imageClassName: "rounded-circle w-100 h-100",
-            style: { width: "42px", height: "42px" },
-          }}
-        />
+        <div style={{ width: "48px", height: "48px" }}></div>
       </ButtonGroup>
     </Sidebar>
     <Content>

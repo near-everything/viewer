@@ -33,7 +33,7 @@ export default function PretendModal(props) {
         </div>
         <div className="mt-2">
           <Widget
-            src={props.widgets.profileInlineBlock}
+            src={"mob.near/widget/Profile.InlineBlock"}
             props={{ accountId }}
           />
         </div>

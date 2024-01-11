@@ -25,7 +25,7 @@ function Viewer(props) {
 
   if (!code) {
     // prioritize code if provided
-    src = path || "every.near/widget/app";
+    src = path || "every.near/widget/core";
     if (src) {
       src = src.substring(src.lastIndexOf("/", src.indexOf(".near")) + 1);
     } else {
@@ -33,6 +33,8 @@ function Viewer(props) {
       src = "every.near/widget/app";
     }
   }
+
+  console.log("src", src)
 
   const [redirectMap, setRedirectMap] = useState(null);
   useEffect(() => {
@@ -55,10 +57,10 @@ function Viewer(props) {
   return (
     <>
       <Widget
-        src={src}
+        src={src.split("/") && src.split("/").length === 1 ? "every.near/widget/thing" : src}
         code={code}
         props={{
-          // path: src,
+          path: src,
           ...passProps,
         }}
         config={{ redirectMap }}
