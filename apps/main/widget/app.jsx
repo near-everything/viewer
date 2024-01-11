@@ -15,6 +15,7 @@ const Theme = styled.div`
   }
 `;
 
+const [extraProps, setExtraProps] = useState({});
 
 function Router({ active, routes }) {
   const routeParts = active.split(".");
@@ -110,8 +111,9 @@ const Content = styled.div`
 
 const [activeRoute, setActiveRoute] = useState(page);
 
-const handleLinkClick = (path) => {
+const handleLinkClick = (path, passProps) => {
   setActiveRoute(path);
+  setExtraProps(passProps);
 };
 
 return (
@@ -122,6 +124,9 @@ return (
       >
         {(Object.keys(routes) || []).map((k) => {
           const route = routes[k];
+          if (route.hide) {
+            return null;
+          }
           return (
             <Button key={k} onClick={() => handleLinkClick(k)}>
               <i className={route.init.icon}></i>
@@ -131,18 +136,13 @@ return (
       </ButtonGroup>
       <ButtonGroup style={{ marginTop: "8px" }}>
         <Button
-          onClick={() =>
-            handleLinkClick({
-              path: "mob.near/widget/WidgetSource",
-              props: { src: activeRoute },
-            })
-          }
+          onClick={() => handleLinkClick("inspect", { src: routes[activeRoute].path })}
         >
           <i className={"bi bi-code"}></i>
         </Button>
         <Button
           onClick={() =>
-            handleLinkClick({ path: "mob.near/widget/NotificationFeed" })
+            handleLinkClick("notifications")
           }
         >
           <i className={"bi bi-bell"}></i>

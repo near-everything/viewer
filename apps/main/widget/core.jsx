@@ -135,6 +135,21 @@ const routes = {
       icon: "bi bi-music-note",
     },
   },
+  inspect: {
+    path: "mob.near/widget/WidgetSource",
+    blockHeight: "final",
+    hide: true,
+  },
+  notifications: {
+    path: "mob.near/widget/NotificationFeed",
+    blockHeight: "final",
+    hide: true,
+  },
 };
 
-return <Widget src={"every.near/widget/app"} props={{ routes, path: "", ...props }} />;
+return (
+  <Widget
+    src={"every.near/widget/app"}
+    props={{ routes, path: "", ...props }}
+  />
+);
