@@ -34,8 +34,6 @@ function Viewer(props) {
     }
   }
 
-  console.log("src", src)
-
   const [redirectMap, setRedirectMap] = useState(null);
   useEffect(() => {
     (async () => {
@@ -54,10 +52,13 @@ function Viewer(props) {
     })();
   }, []);
 
+  src = src.split("/") && src.split("/").length === 1 ? "every.near/widget/thing" : src;
+  
+
   return (
     <>
       <Widget
-        src={src.split("/") && src.split("/").length === 1 ? "every.near/widget/thing" : src}
+        src={path ? "every.near/widget/thing" : src}
         code={code}
         props={{
           path: src,

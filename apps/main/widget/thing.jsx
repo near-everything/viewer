@@ -259,19 +259,19 @@ function Thing() {
         console.log(
           `edge case: thing ${path} had an invalid type: ${thingType}`
         );
-        typeObj = {
-          widgets: {
-            view: "every.near/widget/app", // this is temp cuz I know it's the app type
-          },
-        };
+        // typeObj = {
+        //   widgets: {
+        //     view: "every.near/widget/app", // this is temp cuz I know it's the app type
+        //   },
+        // };
       }
-      const { get } = VM.require(thing.adapter || (() => {}));
+      // const { get } = VM.require(thing.adapter || (() => {}));
 
-      if (get) {
-        const passProps = get(thing.reference);
-        console.log("passProps", passProps);
-        return (<Widget src={widgetSrc} props={passProps} />);
-      }
+      // if (get) {
+      //   const passProps = get(thing.reference);
+      //   console.log("passProps", passProps);
+      //   return (<Widget src={widgetSrc} props={passProps} />);
+      // }
       // determine the widget to render this thing (is there a default view?)
       const widgetSrc =
         options?.templateOverride ||

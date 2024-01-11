@@ -135,6 +135,13 @@ const routes = {
       icon: "bi bi-music-note",
     },
   },
+  core: {
+    path: "efiz.near/thing/core",
+    blockHeight: "final",
+    init: {
+      icon: "bi bi-dot",
+    },
+  },
   inspect: {
     path: "mob.near/widget/WidgetSource",
     blockHeight: "final",
