@@ -1,7 +1,9 @@
 /**
  * Every app is structured the same
  */
-const { page, layout, loading, routes, ...passProps } = props;
+const { page, layout, loading, ...passProps } = props;
+
+const { routes } = props.data
 
 // const { AppLayout } =
 //   VM.require("devhub.near/widget/devhub.components.templates.AppLayout") ||

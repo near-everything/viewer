@@ -259,11 +259,11 @@ function Thing() {
         console.log(
           `edge case: thing ${path} had an invalid type: ${thingType}`
         );
-        // typeObj = {
-        //   widgets: {
-        //     view: "every.near/widget/app", // this is temp cuz I know it's the app type
-        //   },
-        // };
+        typeObj = {
+          widgets: {
+            view: "every.near/widget/app", // this is temp cuz I know it's the app type
+          },
+        };
       }
       // const { get } = VM.require(thing.adapter || (() => {}));
 
@@ -293,7 +293,7 @@ function Thing() {
       return (
         <Widget
           src={widgetSrc}
-          props={{ data: thing.data, path, blockHeight }}
+          props={{ data: thing, path, blockHeight }}
         />
       );
     }
