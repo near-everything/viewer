@@ -9,7 +9,7 @@ import { LogOut } from "./icons/LogOut";
 import { Pretend } from "./icons/Pretend";
 import { StopPretending } from "./icons/StopPretending";
 import { User } from "./icons/User";
-import PretendModal from "./navigation/PretendModal";
+import PretendModal from "./PretendModal";
 
 const CoreBackdrop = styled.div`
   position: fixed;

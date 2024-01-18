@@ -84,7 +84,6 @@ module.exports = function (env) {
           robots: `${paths.publicPath}/robots.txt`,
           publicPath: "/",
         }),
-        new webpack.ProgressPlugin(),
         new webpack.ProvidePlugin({
           process: "process/browser",
           Buffer: [require.resolve("buffer/"), "Buffer"],

@@ -24,6 +24,7 @@ import "react-bootstrap-typeahead/css/Typeahead.bs5.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
+import Core from "./components/Core";
 import { Camera } from "./components/custom/Camera";
 import Canvas from "./components/custom/Canvas";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
@@ -33,7 +34,6 @@ import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import Viewer from "./pages/Viewer";
-import Core from "./components/Core";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -209,6 +209,7 @@ function App(props) {
     <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path={"/flags"}>
+          <BosLoaderBanner />
           <Flags {...passProps} />
         </Route>
         <Route path={"/:path*"}>
