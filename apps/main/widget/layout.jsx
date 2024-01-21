@@ -63,7 +63,11 @@ const Button = styled.button`
 `;
 
 const { NavLink } = props || {
-  NavLink: ({ to, children }) => <Link key={to} to={`/?page=${to}`}>{children}</Link>,
+  NavLink: ({ to, children }) => (
+    <Link key={to} to={`/?page=${to}`}>
+      {children}
+    </Link>
+  ),
 };
 
 const AppHeader = ({ page, routes }) => (
@@ -84,7 +88,7 @@ const AppHeader = ({ page, routes }) => (
       })}
     </ButtonGroup>
     <ButtonGroup style={{ marginTop: "8px" }}>
-      <NavLink to={"inspect"} params={{ src: routes[activeRoute].path }}>
+      <NavLink to={`inspect&src=${routes[page].path}`}>
         <Button>
           <i className={"bi bi-code"}></i>
         </Button>

@@ -21,7 +21,7 @@ function Viewer({ code }) {
     const defaultSrc = "every.near/widget/core"; // default widget to load
     const pathSrc = path || defaultSrc; // if no path, load default widget
     return pathSrc;
-    // const lastSlashIndex = pathSrc.lastIndexOf("/", pathSrc.indexOf(".near")); // this, we know is a path in socialdb
+    // const lastSlashIndex = pathSrc.lastIndexOf("/", pathSrc.indexOf(".near")); 
     // return lastSlashIndex !== -1
     //   ? pathSrc.substring(lastSlashIndex + 1)
     //   : defaultSrc;
