@@ -17,7 +17,6 @@ const Theme = styled.div`
   }
 `;
 
-const [extraProps, setExtraProps] = useState({});
 const [activeRoute, setActiveRoute] = useState(page);
 
 useEffect(() => {
@@ -36,7 +35,6 @@ function Router({ active, routes }) {
       currentRoute = currentRoute[part];
       src = currentRoute.path;
 
-      // If the route has special initializations, you can add them to extraProps
       if (currentRoute.init) {
         defaultProps = { ...defaultProps, ...currentRoute.init };
       }
@@ -50,7 +48,7 @@ function Router({ active, routes }) {
     <div key={active}>
       <Widget
         src="every.near/widget/thing"
-        props={{ ...passProps, ...extraProps, path: src }}
+        props={{ ...passProps, ...defaultProps, path: src }}
       />
     </div>
   );

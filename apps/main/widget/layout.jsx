@@ -101,32 +101,12 @@ const AppHeader = ({ page, routes }) => (
       <div style={{ width: "48px", height: "48px" }}></div>
     </ButtonGroup>
   </Sidebar>
-  // <Widget
-  //   src="devhub.near/widget/devhub.components.organism.Navbar"
-  //   props={{
-  //     page: page,
-  //     ...props,
-  //   }}
-  // />
 );
 
 const Footer = (props) => {
   return (
     <></>
-    // <Widget
-    //   src="devhub.near/widget/devhub.components.organism.NewsLetter"
-    //   props={{
-    //     ...props,
-    //   }}
-    // />
   );
-};
-
-// const [activeRoute, setActiveRoute] = useState(page);
-
-const handleLinkClick = (path, passProps) => {
-  setActiveRoute(path);
-  setExtraProps(passProps);
 };
 
 // Define the new component that follows the AppLayout pattern
