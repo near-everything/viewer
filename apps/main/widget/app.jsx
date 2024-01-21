@@ -18,6 +18,7 @@ const Theme = styled.div`
 `;
 
 const [extraProps, setExtraProps] = useState({});
+const [activeRoute, setActiveRoute] = useState(page);
 
 function Router({ active, routes }) {
   const routeParts = active.split(".");
