@@ -6,7 +6,7 @@ const { page, layout, loading, ...passProps } = props;
 const { routes } = props.data;
 
 const { AppLayout } = VM.require("every.near/widget/layout") || {
-  AppLayout: () => <>hello</>,
+  AppLayout: () => <>Layout loading...</>,
 };
 
 if (!page) page = "home";

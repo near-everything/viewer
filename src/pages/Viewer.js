@@ -8,17 +8,6 @@ function Viewer({ code }) {
   const { path } = useParams(); // get path from url, could be socialdb path or relative to "core"
   const location = useLocation(); // get query params from url
   const searchParams = new URLSearchParams(location.search);
-  // const [passProps, setPassProps] = useState({});
-
-  // useEffect(() => {
-  //   const searchParams = new URLSearchParams(location.search);
-  //   setPassProps(
-  //     Array.from(searchParams.entries()).reduce((props, [key, value]) => {
-  //       props[key] = value;
-  //       return props;
-  //     }, {})
-  //   );
-  // }, [location]);
 
   // create props from params
   const passProps = useMemo(() => {
