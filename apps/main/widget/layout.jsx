@@ -63,7 +63,7 @@ const Button = styled.button`
 `;
 
 const { NavLink } = props || {
-  NavLink: ({ to, children }) => <Link to={`/page=${to}`}>{children}</Link>,
+  NavLink: ({ to, children }) => <Link key={to} to={`/?page=${to}`}>{children}</Link>,
 };
 
 const AppHeader = ({ page, routes }) => (

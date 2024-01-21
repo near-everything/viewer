@@ -20,6 +20,10 @@ const Theme = styled.div`
 const [extraProps, setExtraProps] = useState({});
 const [activeRoute, setActiveRoute] = useState(page);
 
+useEffect(() => {
+  setActiveRoute(page);
+}, [page]);
+
 function Router({ active, routes }) {
   const routeParts = active.split(".");
 
@@ -43,21 +47,14 @@ function Router({ active, routes }) {
   }
 
   return (
-    <p>{src}</p>
-    // <Widget
-    //   src="every.near/widget/thing"
-    //   props={{ ...passProps, ...extraProps, path: src }}
-    // />
+    <div key={active}>
+      <Widget
+        src="every.near/widget/thing"
+        props={{ ...passProps, ...extraProps, path: src }}
+      />
+    </div>
   );
 }
-
-// return (
-//   <Theme>
-//     <AppLayout page={page}>
-//       <Router active={page} routes={routes} />
-//     </AppLayout>
-//   </Theme>
-// );
 
 const Container = styled.div`
   display: flex;
@@ -73,7 +70,7 @@ const Content = styled.div`
 return (
   <Theme>
     <Container>
-      <AppLayout page={route} routes={routes}>
+      <AppLayout page={activeRoute} routes={routes}>
         <Content>
           <Router active={activeRoute} routes={routes} />
         </Content>
