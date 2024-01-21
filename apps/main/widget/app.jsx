@@ -3,7 +3,7 @@
  */
 const { page, layout, loading, ...passProps } = props;
 
-const { routes } = props.data
+const { routes } = props.data;
 
 const { AppLayout } = VM.require("every.near/widget/layout") || {
   AppLayout: () => <>hello</>,
@@ -43,10 +43,11 @@ function Router({ active, routes }) {
   }
 
   return (
-    <Widget
-      src="every.near/widget/thing"
-      props={{ ...passProps, ...extraProps, path: src }}
-    />
+    <p>{src}</p>
+    // <Widget
+    //   src="every.near/widget/thing"
+    //   props={{ ...passProps, ...extraProps, path: src }}
+    // />
   );
 }
 
@@ -70,7 +71,7 @@ const Content = styled.div`
 `;
 
 return (
-  <Theme> 
+  <Theme>
     <Container>
       <AppLayout page={route} routes={routes}>
         <Content>

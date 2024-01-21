@@ -1,3 +1,7 @@
+const { href } = VM.require("every.near/widget/utils.url") || {
+  href: (v) => console.log("href: ", v),
+};
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,6 +62,10 @@ const Button = styled.button`
   }
 `;
 
+const { NavLink } = props || {
+  NavLink: ({ to, children }) => <Link to={`/page=${to}`}>{children}</Link>,
+};
+
 const AppHeader = ({ page, routes }) => (
   <Sidebar>
     <ButtonGroup style={{ maxHeight: "calc(100% - 50px)", overflow: "scroll" }}>
@@ -67,27 +75,25 @@ const AppHeader = ({ page, routes }) => (
           return null;
         }
         return (
-          <Button
-            key={k}
-            onClick={() => handleLinkClick(k)}
-            className={`${page === k ? "active" : ""} `}
-          >
-            <i className={route.init.icon}></i>
-          </Button>
+          <NavLink to={k}>
+            <Button key={k} className={`${page === k ? "active" : ""} `}>
+              <i className={route.init.icon}></i>
+            </Button>
+          </NavLink>
         );
       })}
     </ButtonGroup>
     <ButtonGroup style={{ marginTop: "8px" }}>
-      <Button
-        onClick={() =>
-          handleLinkClick("inspect", { src: routes[activeRoute].path })
-        }
-      >
-        <i className={"bi bi-code"}></i>
-      </Button>
-      <Button onClick={() => handleLinkClick("notifications")}>
-        <i className={"bi bi-bell"}></i>
-      </Button>
+      <NavLink to={"inspect"} params={{ src: routes[activeRoute].path }}>
+        <Button>
+          <i className={"bi bi-code"}></i>
+        </Button>
+      </NavLink>
+      <NavLink to={"notifications"}>
+        <Button>
+          <i className={"bi bi-bell"}></i>
+        </Button>
+      </NavLink>
       <div style={{ width: "48px", height: "48px" }}></div>
     </ButtonGroup>
   </Sidebar>

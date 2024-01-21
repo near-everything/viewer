@@ -1,72 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Widget } from "near-social-vm";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useEffect, useMemo, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 const SESSION_STORAGE_REDIRECT_MAP_KEY = "nearSocialVMredirectMap";
 
-function Viewer(props) {
-  const { code } = props;
-  const { path } = useParams();
-  const [passProps, setPassProps] = useState({});
-  const location = useLocation();
+function Viewer({ code }) {
+  const { path } = useParams(); // get path from url, could be socialdb path or relative to "core"
+  const location = useLocation(); // get query params from url
+  const searchParams = new URLSearchParams(location.search);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    setPassProps(
-      Array.from(searchParams.entries()).reduce((props, [key, value]) => {
-        props[key] = value;
-        return props;
-      }, {})
-    );
+  // create props from params
+  const passProps = useMemo(() => {
+    return Array.from(searchParams.entries()).reduce((props, [key, value]) => {
+      props[key] = value;
+      return props;
+    }, {});
   }, [location]);
 
-  let src;
-
-  if (!code) {
-    // prioritize code if provided
-    src = path || "every.near/widget/core";
-    if (src) {
-      src = src.substring(src.lastIndexOf("/", src.indexOf(".near")) + 1);
-    } else {
-      console.log("why am I here?");
-      src = "every.near/widget/app";
-    }
-  }
+  const src = useMemo(() => {
+    const defaultSrc = "every.near/widget/core"; // default widget to load
+    const pathSrc = path || defaultSrc; // if no path, load default widget
+    const lastSlashIndex = pathSrc.lastIndexOf("/", pathSrc.indexOf(".near")); // this, we know is a path in socialdb
+    return lastSlashIndex !== -1
+      ? pathSrc.substring(lastSlashIndex + 1)
+      : defaultSrc;
+  }, [path]);
 
   const [redirectMap, setRedirectMap] = useState(null);
-  useEffect(() => {
-    (async () => {
-      const localStorageFlags = JSON.parse(localStorage.getItem("flags"));
 
-      if (localStorageFlags?.bosLoaderUrl) {
-        setRedirectMap(
-          (await fetch(localStorageFlags.bosLoaderUrl).then((r) => r.json()))
-            .components
+  useEffect(() => {
+    const fetchRedirectMap = async () => {
+      try {
+        const localStorageFlags = JSON.parse(
+          localStorage.getItem("flags") || "{}"
         );
-      } else {
-        setRedirectMap(
-          JSON.parse(sessionStorage.getItem(SESSION_STORAGE_REDIRECT_MAP_KEY))
-        );
+        let redirectMapData;
+
+        if (localStorageFlags.bosLoaderUrl) {
+          const response = await fetch(localStorageFlags.bosLoaderUrl);
+          const data = await response.json();
+          redirectMapData = data.components;
+        } else {
+          redirectMapData = JSON.parse(
+            sessionStorage.getItem(SESSION_STORAGE_REDIRECT_MAP_KEY) || "{}"
+          );
+        }
+        setRedirectMap(redirectMapData);
+      } catch (error) {
+        console.error("Error fetching redirect map:", error);
       }
-    })();
+    };
+    fetchRedirectMap();
   }, []);
 
-  src = src.split("/") && src.split("/").length === 1 ? "every.near/widget/thing" : src;
-  
+  console.log(
+    `gateway rendering: ${src} with props: ${JSON.stringify(passProps)}`
+  );
 
   return (
-    <>
-      <Widget
-        src={path ? "every.near/widget/thing" : src}
-        code={code}
-        props={{
-          path: src,
-          ...passProps,
-        }}
-        config={{ redirectMap }}
-      />
-    </>
+    <Widget
+      src={!code && path ? "every.near/widget/thing" : src}
+      code={code}
+      props={{
+        path: src,
+        ...passProps,
+      }}
+      config={{ redirectMap }}
+    />
   );
 }
 
