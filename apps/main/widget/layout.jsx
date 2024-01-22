@@ -1,7 +1,3 @@
-const { href } = VM.require("every.near/widget/utils.url") || {
-  href: (v) => console.log("href: ", v),
-};
-
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -73,40 +69,43 @@ const { NavLink } = props || {
 const AppHeader = ({ page, routes }) => (
   <Sidebar>
     <ButtonGroup style={{ maxHeight: "calc(100% - 50px)", overflow: "scroll" }}>
-      {(Object.keys(routes) || []).map((k) => {
-        const route = routes[k];
-        if (route.hide) {
-          return null;
-        }
-        return (
-          <NavLink to={k}>
-            <Button key={k} className={`${page === k ? "active" : ""} `}>
-              <i className={route.init.icon}></i>
+      {routes &&
+        (Object.keys(routes) || []).map((k) => {
+          const route = routes[k];
+          if (route.hide) {
+            return null;
+          }
+          return (
+            <NavLink to={k}>
+              <Button key={k} className={`${page === k ? "active" : ""} `}>
+                <i className={route.init.icon}></i>
+              </Button>
+            </NavLink>
+          );
+        })}
+    </ButtonGroup>
+    {routes && (
+      <>
+        <ButtonGroup style={{ marginTop: "8px" }}>
+          <NavLink to={`inspect&src=${routes[page].path}`}>
+            <Button>
+              <i className={"bi bi-code"}></i>
             </Button>
           </NavLink>
-        );
-      })}
-    </ButtonGroup>
-    <ButtonGroup style={{ marginTop: "8px" }}>
-      <NavLink to={`inspect&src=${routes[page].path}`}>
-        <Button>
-          <i className={"bi bi-code"}></i>
-        </Button>
-      </NavLink>
-      <NavLink to={"notifications"}>
-        <Button>
-          <i className={"bi bi-bell"}></i>
-        </Button>
-      </NavLink>
-      <div style={{ width: "48px", height: "48px" }}></div>
-    </ButtonGroup>
+          <NavLink to={"notifications"}>
+            <Button>
+              <i className={"bi bi-bell"}></i>
+            </Button>
+          </NavLink>
+          <div style={{ width: "48px", height: "48px" }}></div>
+        </ButtonGroup>
+      </>
+    )}
   </Sidebar>
 );
 
 const Footer = (props) => {
-  return (
-    <></>
-  );
+  return <></>;
 };
 
 // Define the new component that follows the AppLayout pattern
