@@ -26,7 +26,6 @@ import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { BosLoaderBanner } from "./components/BosLoaderBanner";
 import Core from "./components/Core";
 import { Camera } from "./components/custom/Camera";
-import Canvas from "./components/custom/Canvas";
 import { MonacoEditor } from "./components/custom/MonacoEditor";
 import { LivepeerCreator } from "./components/custom/livepeer/LivepeerCreator";
 import { LivepeerPlayer } from "./components/custom/livepeer/LivepeerPlayer";
@@ -34,6 +33,7 @@ import { NetworkId, Widgets } from "./data/widgets";
 import { useBosLoaderInitializer } from "./hooks/useBosLoaderInitializer";
 import Flags from "./pages/Flags";
 import Viewer from "./pages/Viewer";
+import TldrawCanvas from "./components/custom/tldraw/Canvas";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";
@@ -81,7 +81,7 @@ function App(props) {
         }),
         customElements: {
           Canvas: (props) => {
-            return <Canvas {...props} />;
+            return <TldrawCanvas {...props} />;
           },
           Link: (props) => {
             if (!props.to && props.href) {
