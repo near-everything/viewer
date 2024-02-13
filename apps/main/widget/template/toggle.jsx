@@ -80,21 +80,23 @@ const ContentContainer = styled.div`
   width: 100%;
 `;
 
-const ToggleLayout = ({ basePath, page, routes, children, ...props }) => {
+const ToggleLayout = ({
+  page,
+  routes,
+  children,
+  NavLink,
+  ...props
+}) => {
   return (
     <Container>
       <ContentContainer key={page}>{children}</ContentContainer>
       <CoreBackdrop className="core__auth">
         <CoreBox className="classic">
-          <Link
-            to={`${basePath}?page=${Object.keys(routes).find(
-              (key) => key !== page
-            )}`}
-          >
+          <NavLink to={Object.keys(routes).find((key) => key !== page)}>
             <Button onClick={() => {}} style={{ width: "48px", padding: 0 }}>
               swap
             </Button>
-          </Link>
+          </NavLink>
         </CoreBox>
       </CoreBackdrop>
     </Container>

@@ -25,50 +25,64 @@ const { ToggleLayout } = VM.require("every.near/widget/template.toggle") || {
   ToggleLayout: () => <></>,
 };
 
-// const { Router } = VM.require("devs.near/widget/Router") || {
-//   Router: () => <></>,
-// }
+function Router({
+  basePath,
+  active,
+  routes,
+  depth,
+  PageNotFound,
+  passProps,
+  children,
+}) {
+  if (!depth) depth = 1;
+  if (!PageNotFound) PageNotFound = () => <p>404 Not Found</p>;
+
+  let currentRoute = routes[active];
+
+  if (!currentRoute) {
+    // Handle 404 or default case for unknown routes
+    return <PageNotFound />;
+  }
+
+  const src = currentRoute.path;
+
+  // Determine the parameter name based on depth
+  let param;
+  switch (depth) {
+    case 1:
+      param = "page";
+      break;
+    case 2:
+      param = "tab";
+      break;
+    case 3:
+      param = "view";
+      break;
+    default:
+      // This should set the src as the new baseUrl, reset the depth
+      console.error("Unsupported depth:", depth);
+      return <p>Error: Unsupported depth</p>;
+  }
+
+  // Construct the currentPath dynamically based on depth
+  const currentPath = (a) =>
+    `${basePath}${depth === 1 ? "?" : "&"}${param}=${a}`;
+
+  function NavLink({ to, children }) {
+    console.log("using custom link", currentPath);
+    return <Link to={`${currentPath(to)}`}>{children}</Link>;
+  }
+
+  return (
+    <div key={active}>
+      {children && children({ src, currentPath, depth, NavLink })}
+    </div>
+  );
+}
 
 if (!page) page = Object.keys(routes)[0] || "write";
 
 const Root = styled.div``;
-
-function Router({ active, routes }) {
-  // this may be converted to a module at devs.near/widget/Router
-  const routeParts = active.split(".");
-
-  let currentRoute = routes;
-  let src = "";
-  let defaultProps = {};
-
-  for (let part of routeParts) {
-    if (currentRoute[part]) {
-      currentRoute = currentRoute[part];
-      src = currentRoute.path;
-
-      if (currentRoute.init) {
-        defaultProps = { ...defaultProps, ...currentRoute.init };
-      }
-    } else {
-      // Handle 404 or default case for unknown routes
-      return <p>404 Not Found</p>;
-    }
-  }
-
-  return (
-    <div key={active} style={{ pointerEvents: "all" }}>
-      <Widget
-        src={src}
-        props={{
-          currentPath: `/buildhub.near/widget/app?page=${page}`,
-          page: tab,
-          ...passProps,
-          ...defaultProps,
-        }}
-      />
-    </div>
-  );
-}
 
 const Container = styled.div`
   display: flex;
@@ -82,22 +96,21 @@ const Content = styled.div`
 
 return (
   <Root>
-    <Container>
-      <ToggleLayout
-        basePath="/every.near/widget/creator"
-        page={page}
-        routes={routes}
-        {...props}
-      >
-        <Content>
-          <Router
-            basePath="/every.near/widget/creator"
-            active={page}
-            routes={routes}
-            passProps={passProps}
-          />
-        </Content>
-      </ToggleLayout>
-    </Container>
+    <Router
+      basePath="?page=editor" // this should come from widgetSrc (gateway should handling trimmings)
+      active={page}
+      routes={routes}
+      passProps={passProps}
+      depth={2}
+      children={(routerProps) => (
+        <Container>
+          <ToggleLayout page={tab} routes={routes} {...routerProps} {...props}>
+            <Content>
+              <Widget src={routerProps.src} props={routerProps} />
+            </Content>
+          </ToggleLayout>
+        </Container>
+      )}
+    />
   </Root>
 );

@@ -1,70 +1,47 @@
-const routes = props.routes;
-if (!routes) {
-  routes = [];
-}
-const Navigator = props.Navigator;
+function Router({ basePath, active, routes, depth, PageNotFound, passProps, children }) {
+  if (!depth) depth = 1;
+  if (!PageNotFound) PageNotFound = () => <p>404 Not Found</p>;
 
-State.init({
-  CurrentWidget: null,
-});
+  let currentRoute = routes[active];
 
-function init() {
-  if (!state.CurrentWidget) {
-    // TODO: check from local storage or props
-    const initialSrc = Object.values(props.routes)[0].src;
-    State.update({ CurrentWidget: initialSrc });
-    // () => <Widget src={initialSrc.path} blockHeight={initialSrc.blockHeight} />
+  if (!currentRoute) {
+    // Handle 404 or default case for unknown routes
+    return <PageNotFound />;
   }
-}
 
-init();
+  const src = currentRoute.path;
 
-// Function to handle navigation
-function handleNavigate(newRoute, passProps) {
-  const currentSrc = props.routes[newRoute]?.src;
-  State.update({ CurrentWidget: currentSrc, passProps });
-}
+  // Determine the parameter name based on depth
+  let param;
+  switch (depth) {
+    case 1:
+      param = "page";
+      break;
+    case 2:
+      param = "tab";
+      break;
+    case 3:
+      param = "view";
+      break;
+    default:
+      // This should set the src as the new baseUrl, reset the depth
+      console.error("Unsupported depth:", depth);
+      return <p>Error: Unsupported depth</p>;
+  }
 
-// const activePage = pages.find((p) => p.active);
+  // Construct the currentPath dynamically based on depth
+  const currentPath = (a) => `${basePath}${depth === 1 ? "?" : "&"}${param}=${a}`;
 
-// const navigate = (v, params) => {
-//   State.update({ page: v, project: params?.project });
-//   const url = Url.construct("#//*__@appAccount__*//widget/home", params);
-//   Storage.set("url", url);
-// };
+  function NavLink({ to, children }) {
+    console.log("using custom link", currentPath);
+    return <Link to={`${currentPath(to)}`}>{children}</Link>;
+  }
 
-function RouterLink({ to, children, passProps }) {
   return (
-    <span
-      onClick={() => handleNavigate(to, passProps)}
-      key={"link-to-" + to}
-      style={{ cursor: "pointer" }}
-    >
-      {children}
-    </span>
+    <div key={active}>
+      {children && children({ src, currentPath, depth, NavLink })}
+    </div>
   );
 }
 
-// Render the current widget or a default message if the route is not found
-return (
-  <div>
-    {/* Navigation buttons -- this should be passed to a Navigator widget */}
-    <div>
-      <Widget
-        src={Navigator.src.path || "devs.near/widget/Navigator"}
-        blockHeight={Navigator.src.blockHeight || "final"}
-        props={{ RouterLink, routes: props.routes }}
-      />
-    </div>
-    {/** This could already render all of the children, but just put them as display none (lazy loading) */}
-    {state.CurrentWidget ? (
-      <Widget
-        src={state.CurrentWidget.path}
-        blockHeight={state.CurrentWidget.blockHeight}
-        props={{ RouterLink, ...state.passProps }}
-      />
-    ) : (
-      <div>{JSON.stringify(state.CurrentWidget)}</div>
-    )}
-  </div>
-);
+return { Router };
