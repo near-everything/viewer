@@ -1,8 +1,17 @@
 import { Widget } from "near-social-vm";
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import styled from "styled-components";
 
 const SESSION_STORAGE_REDIRECT_MAP_KEY = "nearSocialVMredirectMap";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  align-items: stretch;
+`;
 
 function Viewer({ code }) {
   const { path } = useParams(); // get path from url, could be socialdb path or relative to "core"
@@ -21,7 +30,7 @@ function Viewer({ code }) {
     const defaultSrc = "every.near/widget/core"; // default widget to load
     const pathSrc = path || defaultSrc; // if no path, load default widget
     return pathSrc;
-    // const lastSlashIndex = pathSrc.lastIndexOf("/", pathSrc.indexOf(".near")); 
+    // const lastSlashIndex = pathSrc.lastIndexOf("/", pathSrc.indexOf(".near"));
     // return lastSlashIndex !== -1
     //   ? pathSrc.substring(lastSlashIndex + 1)
     //   : defaultSrc;
@@ -59,15 +68,17 @@ function Viewer({ code }) {
   );
 
   return (
-    <Widget
-      src={!code && path ? "every.near/widget/thing" : src}
-      code={code} // prioritize code
-      props={{
-        path: src,
-        ...passProps,
-      }}
-      config={{ redirectMap }}
-    />
+    <Container>
+      <Widget
+        src={!code && path ? "every.near/widget/thing" : src}
+        code={code} // prioritize code
+        props={{
+          path: src,
+          ...passProps,
+        }}
+        config={{ redirectMap }}
+      />
+    </Container>
   );
 }
 

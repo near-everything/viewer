@@ -71,3 +71,36 @@ a {
     justify-content: center !important;
   }
 }
+
+
+/* ------ tldraw ----- */
+
+.tldraw__editor {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.tldrawLogo {
+	position: absolute;
+	z-index: 290;
+	bottom: 0px;
+	right: 0px;
+}
+
+.tldrawLogo__mobile {
+	bottom: 60px;
+}
+
+.tldraw__shareZone {
+	pointer-events: all;
+}
+
+.tldraw__topZone {
+	pointer-events: all;
+}
