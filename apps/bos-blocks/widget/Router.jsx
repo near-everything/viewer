@@ -1,3 +1,7 @@
+const { href } = VM.require("buildhub.near/widget/lib.url") || {
+  href: () => "/",
+};
+
 function Router({ basePath, active, routes, depth, PageNotFound, passProps, children }) {
   if (!depth) depth = 1;
   if (!PageNotFound) PageNotFound = () => <p>404 Not Found</p>;
@@ -30,11 +34,11 @@ function Router({ basePath, active, routes, depth, PageNotFound, passProps, chil
   }
 
   // Construct the currentPath dynamically based on depth
-  const currentPath = (a) => `${basePath}${depth === 1 ? "?" : "&"}${param}=${a}`;
+  const currentPath = (a) => `/${basePath}${depth === 1 ? "?" : "&"}${param}=${a}`;
 
   function NavLink({ to, children }) {
     console.log("using custom link", currentPath);
-    return <Link to={`${currentPath(to)}`}>{children}</Link>;
+    return <Link to={`${currentPath(to)}`}>{children}</Link>; // maybe we replace with href?
   }
 
   return (
