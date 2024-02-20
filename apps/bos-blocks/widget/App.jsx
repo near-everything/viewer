@@ -2,7 +2,9 @@ const { Router } = VM.require("devs.near/widget/Router") || {
   Router: () => <></>,
 };
 
-const Root = styled.div``;
+const Root = styled.div`
+  
+`;
 
 const Container = styled.div`
   display: flex;
