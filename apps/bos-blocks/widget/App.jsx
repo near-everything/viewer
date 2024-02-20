@@ -36,6 +36,7 @@ const App = ({
         routes={routes}
         passProps={passProps}
         depth={depth ?? 1}
+        PageNotFound={() => <p>404 Not Found</p>} // routes[404]
         children={(routerProps) => (
           <Container>
             <Layout

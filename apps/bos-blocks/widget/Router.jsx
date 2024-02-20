@@ -17,8 +17,8 @@ function Router({ basePath, active, routes, depth, PageNotFound, passProps, chil
 
   // Determine the parameter name based on depth
   let param;
-  switch (depth) {
-    case 1:
+  switch (depth) { // we could determine depth from current path
+    case 1: // take baseUrl and router param prop
       param = "page";
       break;
     case 2:
