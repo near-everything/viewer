@@ -1,17 +1,37 @@
-const CSS = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+const config = {
+  theme: {},
+  layout: {
+    src: "devs.near/widget/Layout",
+    props: {
+      variant: "standard",
+    },
+  },
+  blocks: {
+    // these get passed to the layout and children
+    Header: () => <></>,
+    Footer: () => <></>, // customize your footer
+  },
+  router: {
+    param: "page",
+    routes: {
+      home: {
+        path: "every.near/widget/page.home",
+        blockHeight: "final",
+        init: {
+          name: "Home",
+        },
+        default: true,
+      },
+    },
+  },
+};
+
+const Root = styled.div`
+  // you can override classnames here
 `;
 
 return (
-  <CSS>
-    <h1>everything.dev</h1>
-    <img
-      src="https://ipfs.near.social/ipfs/bafkreidhy7zo33wqjxhqsv2dd6dp2wzloitaa4lmj3rzq5zvcdtp2smeaa"
-      alt="under construction"
-    />
-  </CSS>
+  <Root>
+    <Widget src="every.near/widget/app.view" props={{ config, ...props }} />
+  </Root>
 );
