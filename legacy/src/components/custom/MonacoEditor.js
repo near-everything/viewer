@@ -12,7 +12,7 @@ export const MonacoEditor = (props) => {
       try {
         const formattedCode = prettier.format(code, {
           parser: language === "json" ? "json" : "babel",
-          plugins: [parserBabel],
+          // plugins: [parserBabel],
         });
         updateCode(path, formattedCode);
       } catch (e) {

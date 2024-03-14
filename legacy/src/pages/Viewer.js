@@ -27,7 +27,7 @@ function Viewer({ code }) {
   }, [location]);
 
   const src = useMemo(() => {
-    const defaultSrc = "every.near/widget/core"; // default widget to load
+    const defaultSrc = "every.near/widget/feed"; // default widget to load
     const pathSrc = path || defaultSrc; // if no path, load default widget
     return pathSrc;
     // const lastSlashIndex = pathSrc.lastIndexOf("/", pathSrc.indexOf(".near"));
@@ -77,6 +77,7 @@ function Viewer({ code }) {
           ...passProps,
         }}
         config={{ redirectMap }}
+        loading={<></>}
       />
     </Container>
   );
