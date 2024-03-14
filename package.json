@@ -11,7 +11,11 @@
   "keywords": [],
   "devDependencies": {
     "bos-workspace": "github:NEARBuilders/bos-workspace#1.0.0.wip",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "prettier": "^2.8.8"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": "prettier --write --ignore-unknown"
   },
   "workspaces": [
     "gateway"
