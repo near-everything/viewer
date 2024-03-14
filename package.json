@@ -1,0 +1,14 @@
+{
+  "name": "viewer",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "bw": "bos-workspace",
+    "dev": "concurrently \"pnpm run bw dev\" \"npm run serve -- --env mode=development\""
+  },
+  "keywords": [],
+  "devDependencies": {
+    "bos-workspace": "github:NEARBuilders/bos-workspace#1.0.0.wip",
+    "concurrently": "^8.2.2"
+  }
+}
