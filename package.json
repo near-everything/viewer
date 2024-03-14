@@ -4,11 +4,16 @@
   "description": "",
   "scripts": {
     "bw": "bos-workspace",
-    "dev": "concurrently \"pnpm run bw dev\" \"npm run serve -- --env mode=development\""
+    "dev": "concurrently \"pnpm run dev:gateway\" \"pnpm run dev:apps\"",
+    "dev:gateway": "cd gateway && pnpm run start",
+    "dev:apps": "pnpm run bw ws dev"
   },
   "keywords": [],
   "devDependencies": {
     "bos-workspace": "github:NEARBuilders/bos-workspace#1.0.0.wip",
     "concurrently": "^8.2.2"
-  }
+  },
+  "workspaces": [
+    "gateway"
+  ]
 }
