@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "devDependencies": {
-    "bos-workspace": "1.0.0-alpha",
+    "bos-workspace": "^1.0.0-alpha",
     "concurrently": "^8.2.2",
     "prettier": "^2.8.8"
   },
