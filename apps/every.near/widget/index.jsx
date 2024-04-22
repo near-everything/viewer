@@ -32,6 +32,7 @@ const Root = styled.div`
 
 return (
   <Root>
+    <p>YOU DID IT</p>
     <Widget src="every.near/widget/app.view" props={{ config, ...props }} />
   </Root>
 );

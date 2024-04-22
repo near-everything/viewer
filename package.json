@@ -2,22 +2,30 @@
   "name": "viewer",
   "version": "1.0.0",
   "description": "",
+  "private": true,
+  "type": "module",
   "scripts": {
+    "fmt": "prettier --write '**/*.{js,jsx,ts,tsx,json}'",
+    "fmt:check": "prettier --check '**/*.{js,jsx,ts,tsx,json}'",
     "bw": "bos-workspace",
-    "dev": "pnpm run dev:gateway && pnpm run dev:apps",
-    "dev:gateway": "cd gateway && pnpm run build",
-    "dev:apps": "pnpm run bw ws dev -g ./gateway/dist"
+    "dev": "yarn run dev:gateway && yarn run dev:apps",
+    "dev:apps": "yarn run bw ws dev",
+    "dev:gateway": "vite",
+    "build:gateway": "vite build",
+    "preview:gateway": "vite preview"
   },
   "keywords": [],
+  "dependencies": {
+    "preact": "^10.19.6"
+  },
   "devDependencies": {
-    "bos-workspace": "1.0.0-alpha",
+    "@preact/preset-vite": "^2.8.2",
+    "bos-workspace": "^1.0.0-alpha",
     "concurrently": "^8.2.2",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "vite": "^5.2.0"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "prettier --write --ignore-unknown"
-  },
-  "workspaces": [
-    "gateway"
-  ]
+  }
 }
