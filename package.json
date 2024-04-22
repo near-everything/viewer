@@ -19,6 +19,9 @@
     "preact": "^10.19.6"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "@preact/preset-vite": "^2.8.2",
     "bos-workspace": "^1.0.0-alpha",
     "concurrently": "^8.2.2",
