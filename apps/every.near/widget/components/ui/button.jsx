@@ -24,7 +24,7 @@ const StyledButton = styled.button`
       return "#DC3D43";
     } else if (props.variant === "primary") {
       return "#171717";
-    } else if (props.variant === "secondary" || props.variant === "tetriary") {
+    } else if (props.variant === "secondary" || props.variant === "tertiary") {
       return "#fff";
     }
   }};
@@ -46,12 +46,30 @@ const StyledButton = styled.button`
       return "#CD2B31";
     } else if (props.variant === "secondary") {
       return "#171717";
-    } else if (props.variant === "tetriary" && props.type === "danger") {
+    } else if (props.variant === "tertiary" && props.type === "danger") {
       return "#CD2B31";
-    } else if (props.variant === "tetriary") {
+    } else if (props.variant === "tertiary") {
       return "#6F6F6F";
     }
   }};
+
+  /* handle svg */
+  svg,
+  path {
+    stroke: ${(props) => {
+      if (props.variant === "primary") {
+        return "#fff";
+      } else if (props.variant === "secondary" && props.type === "danger") {
+        return "#CD2B31";
+      } else if (props.variant === "secondary") {
+        return "#171717";
+      } else if (props.variant === "tertiary" && props.type === "danger") {
+        return "#CD2B31";
+      } else if (props.variant === "tertiary") {
+        return "#6F6F6F";
+      }
+    }};
+  }
 
   font-size: ${(props) => {
     if (props.size === "large") {
@@ -96,9 +114,9 @@ const StyledButton = styled.button`
         return "#6F6F6F";
       } else if (props.variant === "secondary") {
         return "#FCFCFC";
-      } else if (props.variant === "tetriary" && props.type === "danger") {
+      } else if (props.variant === "tertiary" && props.type === "danger") {
         return "#FF050508";
-      } else if (props.variant === "tetriary") {
+      } else if (props.variant === "tertiary") {
         return "#F8F8F8";
       }
     }};
@@ -125,14 +143,25 @@ const StyledButton = styled.button`
     color: ${(props) => {
       if (props.variant === "primary") {
         return "rgba(255, 255, 255, 0.59)";
-      } else if (props.variant === "secondary" || props.variant === "tetriary") {
+      } else if (props.variant === "secondary" || props.variant === "tertiary") {
         return "#C7C7C7";
       }
     }};
+
+    svg,
+    path {
+      stroke: ${(props) => {
+        if (props.variant === "primary") {
+          return "rgba(255, 255, 255, 0.59)";
+        } else if (props.variant === "secondary" || props.variant === "tertiary") {
+          return "#C7C7C7";
+        }
+      }};
+    }
   }
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled.button`
   all: unset;
 
   display: inline-flex;
@@ -143,6 +172,12 @@ const StyledLink = styled.a`
   border-radius: 12px;
 
   color: #006adc;
+
+  svg,
+  path {
+    stroke: #006adc;
+  }
+
   font-family: Poppins, sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -161,19 +196,57 @@ const StyledLink = styled.a`
     cursor: pointer;
     text-decoration: none;
     background: #f5faff;
+    color: #006adc;
+
+    svg,
+    path {
+      stroke: #006adc;
+    }
+  }
+
+  &:active {
+    color: #006adc;
+
+    svg,
+    path {
+      stroke: #006adc;
+    }
   }
 
   &:disabled {
     color: #c7c7c7;
+    svg,
+    path {
+      stroke: #c7c7c7;
+    }
   }
 `;
 
-const Button = ({ children, onClick, variant, size, href, type, icon, ...restProps }) => {
+const Button = ({
+  children,
+  onClick,
+  variant,
+  size,
+  href,
+  type,
+  icon,
+  linkClassName,
+  ...restProps
+}) => {
   if (href) {
     return (
-      <StyledLink href={href} size={size} {...restProps}>
-        {children}
-      </StyledLink>
+      <Link href={href} className={linkClassName}>
+        <StyledLink
+          onClick={onClick}
+          variant={variant ?? "primary"}
+          size={size ?? "medium"}
+          icon={icon}
+          type={type}
+          {...restProps}
+        >
+          {children}
+        </StyledLink>
+      </Link>
     );
   }
 
