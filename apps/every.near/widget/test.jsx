@@ -1,16 +1,11 @@
-const items = ["test", "test2", "test3", "test4"];
-const [selected, setSelected] = useState(null);
-
-useEffect(() => console.log(selected), [selected]);
+const { Badge } = VM.require("every.near/widget/components") || {
+  Badge: () => <></>,
+};
 
 return (
-  <Widget
-    src="every.near/widget/components.chips"
-    props={{
-      items: items,
-      size: "medium",
-      onSelect: (items) => setSelected(items),
-      multiple: false,
-    }}
-  />
+  <div>
+    <Badge variant="solid" color="blue">
+      11+
+    </Badge>
+  </div>
 );
