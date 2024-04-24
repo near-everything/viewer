@@ -1,3 +1,7 @@
+const widgets = {
+  navbar: "every.near/widget/components.navbar",
+};
+
 const config = {
   theme: {},
   layout: {
@@ -8,7 +12,11 @@ const config = {
   },
   blocks: {
     // these get passed to the layout and children
-    Header: () => <></>,
+    Header: () => (
+      <>
+        <Widget src={widgets.navbar} props={{ routes: config.router.routes, page: props.page }} />
+      </>
+    ),
     Footer: () => <></>, // customize your footer
   },
   router: {
@@ -33,11 +41,11 @@ const PoppinsCSS = fetch(
 const Root = styled.div`
   // you can override classnames here
   ${PoppinsCSS}
+  font-family: Poppins, sans-serif;
 `;
 
 return (
   <Root>
-    <p>YOU DID IT</p>
     <Widget src="every.near/widget/app.view" props={{ config, ...props }} />
   </Root>
 );
