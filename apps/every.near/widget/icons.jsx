@@ -14,12 +14,14 @@ const { LogOut } = VM.require("every.near/widget/icons.log-out");
 const { Moon } = VM.require("every.near/widget/icons.moon");
 const { PaintRoller } = VM.require("every.near/widget/icons.paint-roller");
 const { PartyPopper } = VM.require("every.near/widget/icons.party-popper");
+const { Plus } = VM.require("every.near/widget/icons.plus");
 const { QRCode } = VM.require("every.near/widget/icons.qr-code");
 const { ShoppingCart } = VM.require("every.near/widget/icons.shopping-cart");
 const { Sun } = VM.require("every.near/widget/icons.sun");
 const { UserCircle } = VM.require("every.near/widget/icons.user-circle");
 const { User } = VM.require("every.near/widget/icons.user");
 const { Video } = VM.require("every.near/widget/icons.video");
+const { X } = VM.require("every.near/widget/icons.x");
 
 return {
   Bell,
@@ -38,10 +40,12 @@ return {
   Moon,
   PaintRoller,
   PartyPopper,
+  Plus,
   QRCode,
   ShoppingCart,
   Sun,
   UserCircle,
   User,
   Video,
+  X,
 };
