@@ -5,7 +5,7 @@ useEffect(() => console.log(selected), [selected]);
 
 return (
   <Widget
-    src="every.near/widget/components.tags"
+    src="every.near/widget/components.chips"
     props={{ items: items, onSelect: (items) => setSelected(items), multiple: false }}
   />
 );

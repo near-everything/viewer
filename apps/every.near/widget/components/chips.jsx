@@ -1,5 +1,5 @@
-const { Tag } = VM.require("every.near/widget/components") || {
-  Tag: () => <></>,
+const { Chip } = VM.require("every.near/widget/components") || {
+  Chip: () => <></>,
 };
 
 const items = props.items ?? [];
@@ -39,13 +39,13 @@ if (duplicates.length > 0) {
 return (
   <div className="d-flex align-items-center gap-2 flex-wrap">
     {items.map((item) => (
-      <Tag
+      <Chip
         key={item}
         selected={props.multiple ? selectedItems.includes(item) : selectedItems === item}
         onClick={() => handleClick(item)}
       >
         {item}
-      </Tag>
+      </Chip>
     ))}
   </div>
 );

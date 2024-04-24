@@ -3,7 +3,7 @@ const { Plus, X } = VM.require("every.near/widget/icons") || {
   X: () => <></>,
 };
 
-const StyledTag = styled.div`
+const StyledChip = styled.div`
   display: inline-flex;
   height: 32px;
   padding: 8px 16px;
@@ -39,12 +39,12 @@ const StyledTag = styled.div`
   }
 `;
 
-const Tag = ({ children, selected, onClick, ...restProps }) => {
+const Chip = ({ children, selected, onClick, ...restProps }) => {
   return (
-    <StyledTag className={selected ? "selected" : ""} onClick={onClick} {...restProps}>
+    <StyledChip className={selected ? "selected" : ""} onClick={onClick} {...restProps}>
       {children} {selected ? <X /> : <Plus />}
-    </StyledTag>
+    </StyledChip>
   );
 };
 
-return { Tag };
+return { Chip };
