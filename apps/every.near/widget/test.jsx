@@ -8,7 +8,7 @@ return (
     src="every.near/widget/components.chips"
     props={{
       items: items,
-      size: "small",
+      size: "medium",
       onSelect: (items) => setSelected(items),
       multiple: false,
     }}

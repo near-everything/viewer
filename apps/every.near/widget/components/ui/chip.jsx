@@ -54,10 +54,11 @@ const StyledChip = styled.div`
   }
 `;
 
-const Chip = ({ children, selected, onClick, size, ...restProps }) => {
+const Chip = ({ children, selected, onClick, size, multiple, ...restProps }) => {
+  console.log(multiple);
   return (
     <StyledChip size={size} className={selected ? "selected" : ""} onClick={onClick} {...restProps}>
-      {children} {selected ? <X /> : <Plus />}
+      {children} {multiple ? selected ? <X /> : <Plus /> : null}
     </StyledChip>
   );
 };
