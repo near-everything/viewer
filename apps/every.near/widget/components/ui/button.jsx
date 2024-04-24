@@ -43,11 +43,11 @@ const StyledButton = styled.button`
     if (props.variant === "primary") {
       return "#fff";
     } else if (props.variant === "secondary" && props.type === "danger") {
-      return "#CD2B31";
+      return "#CD2B31 !important";
     } else if (props.variant === "secondary") {
       return "#171717";
     } else if (props.variant === "tertiary" && props.type === "danger") {
-      return "#CD2B31";
+      return "#CD2B31 !important";
     } else if (props.variant === "tertiary") {
       return "#6F6F6F";
     }
@@ -60,11 +60,11 @@ const StyledButton = styled.button`
       if (props.variant === "primary") {
         return "#fff";
       } else if (props.variant === "secondary" && props.type === "danger") {
-        return "#CD2B31";
+        return "#CD2B31 !important";
       } else if (props.variant === "secondary") {
         return "#171717";
       } else if (props.variant === "tertiary" && props.type === "danger") {
-        return "#CD2B31";
+        return "#CD2B31 !important";
       } else if (props.variant === "tertiary") {
         return "#6F6F6F";
       }

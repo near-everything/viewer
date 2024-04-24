@@ -4,6 +4,13 @@ const { Avatar, Button, Badge } = VM.require("every.near/widget/components") || 
   Badge: () => <></>,
 };
 
+const { MobileRight } = VM.require("every.near/widget/components.navbar.mobile-right") || {
+  MobileRight: () => <></>,
+};
+const { MobileLeft } = VM.require("every.near/widget/components.navbar.mobile-left") || {
+  MobileLeft: () => <></>,
+};
+
 const {
   Bell,
   Check,
@@ -18,6 +25,7 @@ const {
   History,
   LayoutTemplate,
   LogOut,
+  Menu,
   Moon,
   PaintRoller,
   PartyPopper,
@@ -40,6 +48,7 @@ const {
   History: () => <></>,
   LayoutTemplate: () => <></>,
   LogOut: () => <></>,
+  Menu: () => <></>,
   Moon: () => <></>,
   PaintRoller: () => <></>,
   PartyPopper: () => <></>,
@@ -72,6 +81,18 @@ const toggleMenuDropdown = useCallback(() => {
   setMenuDropdownOpen((prev) => !prev);
 }, []);
 
+// mobile
+const [mobileRight, setMobileRight] = useState(false);
+const [mobileLeft, setMobileLeft] = useState(false);
+
+const toggleMobileRight = useCallback(() => {
+  setMobileRight((prev) => !prev);
+}, []);
+
+const toggleMobileLeft = useCallback(() => {
+  setMobileLeft((prev) => !prev);
+}, []);
+
 const StyledNavbar = styled.div`
   display: flex;
   padding: 12px 40px;
@@ -80,24 +101,42 @@ const StyledNavbar = styled.div`
   gap: 16px;
   background: #fff;
   border-bottom: 1px solid #e2e2e2;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    gap: 8px;
+  }
 `;
 
-const LogoText = styled.span`
-  color: #0d0d0d;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; /* 18px */
-  text-transform: lowercase;
-  margin-left: 12px;
+const LogoText = styled.div`
+  span {
+    color: #0d0d0d;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%; /* 18px */
+    text-transform: lowercase;
+    margin-left: 12px;
+  }
+  @media (max-width: 768px) {
+    span {
+      font-size: 15px;
+      margin-left: 10px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
 `;
 
 const Logo = () => {
   return (
-    <div className="d-flex align-items-center">
+    <LogoText className="d-flex align-items-center">
       <Everything />
-      <LogoText>everything</LogoText>
-    </div>
+      <span>everything</span>
+    </LogoText>
   );
 };
 
@@ -119,6 +158,7 @@ const DropdownContent = styled.div`
   button {
     margin: 0 8px;
     justify-content: flex-start;
+    color: #1c2024;
   }
 `;
 
@@ -154,6 +194,7 @@ const Seperator = styled.div`
 const DropdownHeading = styled.div`
   display: flex;
   padding: 16px 16px 8px 16px;
+  margin: 0 8px;
   align-items: center;
   align-self: stretch;
   color: #8f8f8f;
@@ -253,147 +294,167 @@ const MemoizedUserDropdown = useMemo(
 );
 
 return (
-  <StyledNavbar className="container-xl">
-    <div className="d-flex align-items-center gap-3">
-      <div className="position-relative">
-        <Button icon variant="tertiary" onClick={toggleAppMenu}>
-          <Grip />
-        </Button>
-        {appMenuOpen && (
-          <DropdownContent className="p-3" style={{ minWidth: 400 }}>
-            <AppGrid>
-              <AppCard>
-                <div className="icon">
-                  <Video />
-                </div>
-                Video
-              </AppCard>
-              <AppCard>
-                <div className="icon">
-                  <PaintRoller />
-                </div>
-                Canvas
-              </AppCard>
-              <AppCard>
-                <div className="icon">
-                  <PartyPopper />
-                </div>
-                Event
-              </AppCard>
-              <AppCard>
-                <div className="icon">
-                  <LayoutTemplate />
-                </div>
-                Profile
-              </AppCard>
-              <AppCard className="disabled">
-                <Badge
-                  variant="alpha"
-                  size="x-small"
-                  style={{ position: "absolute", top: 15, right: 15 }}
-                >
-                  Coming Soon
-                </Badge>
-                <div className="icon">
-                  <ShoppingCart />
-                </div>
-                Marketplace
-              </AppCard>
-              <AppCard>
-                <div className="icon">
-                  <Code />
-                </div>
-                App
-              </AppCard>
-              <AppCard>
-                <div className="icon">
-                  <Code />
-                </div>
-                App
-              </AppCard>
-              <AppCard>
-                <div className="icon">
-                  <Code />
-                </div>
-                App
-              </AppCard>
-            </AppGrid>
-          </DropdownContent>
-        )}
-      </div>
-      <Link href="/" style={{ textDecoration: "none" }}>
-        <Logo />
-      </Link>
-    </div>
-    <div className="d-flex align-items-center gap-2">
-      <div className="position-relative">
-        <Button icon variant="secondary" onClick={toggleCodeMenu}>
-          <Code />
-        </Button>
-        {codeMenuOpen && (
-          <DropdownContent>
-            <Button variant="tertiary" size="small">
-              <GitFork />
-              Fork Widget
-            </Button>
-            <Button variant="tertiary" size="small">
-              <FileCode />
-              View Source
-            </Button>
-            <Button variant="tertiary" size="small">
-              <History />
-              View History
-            </Button>
-          </DropdownContent>
-        )}
-      </div>
-      {context.accountId ? (
-        <>
-          <div className="position-relative">
-            <Button icon variant="secondary">
-              <Bell />
-            </Button>
-            {unreadNotifications && <BellCounter />}
-          </div>
-          <div className="position-relative">
-            {MemoizedUserDropdown}
-            {menuDropdownOpen && (
-              <DropdownContent>
-                <Button variant="tertiary" size="small">
-                  <UserCircle /> My Profile
-                </Button>
-                <Button variant="tertiary" size="small">
-                  <QRCode /> Mobile sign-in QR
-                </Button>
-                <Button variant="tertiary" size="small">
-                  <Download /> Withdraw
-                </Button>
-                <Seperator />
-                <DropdownHeading>APPEARANCE</DropdownHeading>
-                <Button variant="tertiary" size="small">
-                  <Sun /> Light
-                  <div
-                    className="d-flex align-items-center justify-content-center"
-                    style={{ marginLeft: "auto" }}
-                  >
-                    <Check />
+  <>
+    <StyledNavbar className="container-xl">
+      <div className="d-flex align-items-center gap-md-3 gap-2">
+        <div className="position-relative">
+          {/* Desktop */}
+          <Button icon variant="tertiary" className="d-none d-md-block" onClick={toggleAppMenu}>
+            <Grip />
+          </Button>
+          <Button icon variant="tertiary" className="d-md-none" onClick={toggleMobileLeft}>
+            <Grip />
+          </Button>
+          {appMenuOpen && (
+            <DropdownContent className="p-3" style={{ minWidth: 400 }}>
+              <AppGrid>
+                <AppCard>
+                  <div className="icon">
+                    <Video />
                   </div>
-                </Button>
-                <Button variant="tertiary" size="small">
-                  <Moon /> Dark
-                </Button>
-                <Seperator />
-                <Button variant="tertiary" size="small" type="danger">
-                  <LogOut />
-                  Log Out
-                </Button>
-              </DropdownContent>
-            )}
-          </div>
-        </>
-      ) : (
-        <Button variant="primary">connect</Button>
-      )}
-    </div>
-  </StyledNavbar>
+                  Video
+                </AppCard>
+                <AppCard>
+                  <div className="icon">
+                    <PaintRoller />
+                  </div>
+                  Canvas
+                </AppCard>
+                <AppCard>
+                  <div className="icon">
+                    <PartyPopper />
+                  </div>
+                  Event
+                </AppCard>
+                <AppCard>
+                  <div className="icon">
+                    <LayoutTemplate />
+                  </div>
+                  Profile
+                </AppCard>
+                <AppCard className="disabled">
+                  <Badge
+                    variant="alpha"
+                    size="x-small"
+                    style={{ position: "absolute", top: 15, right: 15 }}
+                  >
+                    Coming Soon
+                  </Badge>
+                  <div className="icon">
+                    <ShoppingCart />
+                  </div>
+                  Marketplace
+                </AppCard>
+                <AppCard>
+                  <div className="icon">
+                    <Code />
+                  </div>
+                  App
+                </AppCard>
+                <AppCard>
+                  <div className="icon">
+                    <Code />
+                  </div>
+                  App
+                </AppCard>
+                <AppCard>
+                  <div className="icon">
+                    <Code />
+                  </div>
+                  App
+                </AppCard>
+              </AppGrid>
+            </DropdownContent>
+          )}
+        </div>
+        <Link href="/" style={{ textDecoration: "none" }}>
+          <Logo />
+        </Link>
+      </div>
+      <div className="align-items-center gap-2 d-none d-md-flex">
+        {context.accountId ? (
+          <>
+            <div className="position-relative">
+              <Button icon variant="secondary">
+                <Bell />
+              </Button>
+              {unreadNotifications && <BellCounter />}
+            </div>
+            <div className="position-relative">
+              {MemoizedUserDropdown}
+              {menuDropdownOpen && (
+                <DropdownContent>
+                  <Button variant="tertiary" size="small">
+                    <UserCircle /> My Profile
+                  </Button>
+                  <Button variant="tertiary" size="small">
+                    <QRCode /> Mobile sign-in QR
+                  </Button>
+                  <Button variant="tertiary" size="small">
+                    <Download /> Withdraw
+                  </Button>
+                  <Seperator />
+                  <Button variant="tertiary" size="small" type="danger">
+                    <LogOut />
+                    Log Out
+                  </Button>
+                </DropdownContent>
+              )}
+            </div>
+          </>
+        ) : (
+          <Button variant="primary">connect</Button>
+        )}
+        <div className="position-relative">
+          <Button icon variant="secondary" onClick={toggleCodeMenu}>
+            <Menu />
+          </Button>
+          {codeMenuOpen && (
+            <DropdownContent style={{ right: "0" }}>
+              <DropdownHeading>SOURCE CODE</DropdownHeading>
+              <Button variant="tertiary" size="small">
+                <GitFork />
+                Fork Widget
+              </Button>
+              <Button variant="tertiary" size="small">
+                <FileCode />
+                View Source
+              </Button>
+              <Button variant="tertiary" size="small">
+                <History />
+                View History
+              </Button>
+              <Seperator />
+              <DropdownHeading>APPEARANCE</DropdownHeading>
+              <Button variant="tertiary" size="small">
+                <Sun /> Light
+                <div
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ marginLeft: "auto" }}
+                >
+                  <Check />
+                </div>
+              </Button>
+              <Button variant="tertiary" size="small">
+                <Moon /> Dark
+              </Button>
+            </DropdownContent>
+          )}
+        </div>
+      </div>
+      <div className="d-md-none d-flex align-items-center gap-2">
+        <div className="position-relative">
+          <Button icon variant="secondary">
+            <Bell />
+          </Button>
+          {unreadNotifications && <BellCounter />}
+        </div>
+        <Button variant="secondary" className="px-2" onClick={toggleMobileRight}>
+          <Avatar accountId={context.accountId} size="24px" /> <Menu />
+        </Button>
+      </div>
+    </StyledNavbar>
+    {mobileRight && <MobileRight toggle={toggleMobileRight} accountId={context.accountId} />}
+    {mobileLeft && <MobileLeft toggle={toggleMobileLeft} />}
+  </>
 );

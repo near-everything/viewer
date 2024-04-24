@@ -11,6 +11,7 @@ const { Grip } = VM.require("every.near/widget/icons.grip");
 const { History } = VM.require("every.near/widget/icons.history");
 const { LayoutTemplate } = VM.require("every.near/widget/icons.layout-template");
 const { LogOut } = VM.require("every.near/widget/icons.log-out");
+const { Menu } = VM.require("every.near/widget/icons.menu");
 const { Moon } = VM.require("every.near/widget/icons.moon");
 const { PaintRoller } = VM.require("every.near/widget/icons.paint-roller");
 const { PartyPopper } = VM.require("every.near/widget/icons.party-popper");
@@ -37,6 +38,7 @@ return {
   History,
   LayoutTemplate,
   LogOut,
+  Menu,
   Moon,
   PaintRoller,
   PartyPopper,
