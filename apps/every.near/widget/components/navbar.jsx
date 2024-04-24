@@ -1,6 +1,7 @@
-const { Avatar, Button } = VM.require("every.near/widget/components") || {
+const { Avatar, Button, Badge } = VM.require("every.near/widget/components") || {
   Avatar: () => <></>,
   Button: () => <></>,
+  Badge: () => <></>,
 };
 
 const {
@@ -222,28 +223,6 @@ const AppCard = styled.div`
   }
 `;
 
-const Tag = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: inline-flex;
-  height: 16px;
-  padding: 4px 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  border-radius: 100px;
-  background: var(--Gray-Light-Alpha-3, rgba(0, 0, 0, 0.05));
-  color: var(--Gray-Light-12, #171717);
-  text-align: center;
-  font-family: Poppins, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 140%; /* 16.8px */
-  letter-spacing: -0.12px;
-`;
-
 const getNotificationCount = () => {
   const notificationFeedSrc = "mob.near/widget/NotificationFeed";
 
@@ -308,7 +287,13 @@ return (
                 Profile
               </AppCard>
               <AppCard className="disabled">
-                <Tag>Coming Soon</Tag>
+                <Badge
+                  variant="alpha"
+                  size="x-small"
+                  style={{ position: "absolute", top: 15, right: 15 }}
+                >
+                  Coming Soon
+                </Badge>
                 <div className="icon">
                   <ShoppingCart />
                 </div>
