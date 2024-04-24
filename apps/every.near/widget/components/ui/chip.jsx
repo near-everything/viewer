@@ -12,6 +12,15 @@ const StyledChip = styled.div`
   gap: 8px;
   flex-shrink: 0;
 
+  ${(props) => {
+    if (props.size === "small") {
+      return {
+        height: "24px",
+        padding: "8px 12px",
+      };
+    }
+  }}
+
   border-radius: 12px;
   background: #f3f3f3;
 
@@ -45,9 +54,9 @@ const StyledChip = styled.div`
   }
 `;
 
-const Chip = ({ children, selected, onClick, ...restProps }) => {
+const Chip = ({ children, selected, onClick, size, ...restProps }) => {
   return (
-    <StyledChip className={selected ? "selected" : ""} onClick={onClick} {...restProps}>
+    <StyledChip size={size} className={selected ? "selected" : ""} onClick={onClick} {...restProps}>
       {children} {selected ? <X /> : <Plus />}
     </StyledChip>
   );

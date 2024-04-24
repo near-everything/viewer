@@ -6,6 +6,11 @@ useEffect(() => console.log(selected), [selected]);
 return (
   <Widget
     src="every.near/widget/components.chips"
-    props={{ items: items, onSelect: (items) => setSelected(items), multiple: false }}
+    props={{
+      items: items,
+      size: "small",
+      onSelect: (items) => setSelected(items),
+      multiple: false,
+    }}
   />
 );

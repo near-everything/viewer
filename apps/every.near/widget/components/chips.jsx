@@ -43,6 +43,7 @@ return (
         key={item}
         selected={props.multiple ? selectedItems.includes(item) : selectedItems === item}
         onClick={() => handleClick(item)}
+        size={props.size}
       >
         {item}
       </Chip>
