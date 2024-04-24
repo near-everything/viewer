@@ -33,6 +33,12 @@ const StyledChip = styled.div`
     background: #171717;
     color: #fff;
 
+    svg {
+      path {
+        fill: #dbdbdb;
+      }
+    }
+
     &:hover {
       background: #6f6f6f;
     }
