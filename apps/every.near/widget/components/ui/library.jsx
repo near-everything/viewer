@@ -24,8 +24,8 @@ return (
   <div className="d-flex flex-column gap-3">
     <h1>UI Library</h1>
     <h2>Button</h2>
-    <div className="d-flex align-items-center gap-5">
-      <div className="d-flex align-items-center gap-3">
+    <div className="d-flex align-items-center gap-5 flex-wrap">
+      <div className="d-flex align-items-center gap-3 flex-wrap">
         <Button size={"large"}>
           <i className="bi bi-box"></i> button <i className="bi bi-box"></i>
         </Button>
@@ -48,8 +48,8 @@ return (
         </Button>
       </div>
     </div>
-    <div className="d-flex align-items-center gap-5">
-      <div className="d-flex align-items-center gap-3">
+    <div className="d-flex align-items-center gap-5 flex-wrap">
+      <div className="d-flex align-items-center gap-3 flex-wrap">
         <Button variant="secondary" size={"large"}>
           <i className="bi bi-box"></i> button <i className="bi bi-box"></i>
         </Button>
@@ -72,8 +72,8 @@ return (
         </Button>
       </div>
     </div>
-    <div className="d-flex align-items-center gap-5">
-      <div className="d-flex align-items-center gap-3">
+    <div className="d-flex align-items-center gap-5 flex-wrap">
+      <div className="d-flex align-items-center gap-3 flex-wrap">
         <Button variant="tertiary" size={"large"}>
           <i className="bi bi-box"></i> button <i className="bi bi-box"></i>
         </Button>
@@ -96,8 +96,8 @@ return (
         </Button>
       </div>
     </div>
-    <div className="d-flex align-items-center gap-5">
-      <div className="d-flex align-items-center gap-3">
+    <div className="d-flex align-items-center gap-5 flex-wrap">
+      <div className="d-flex align-items-center gap-3 flex-wrap">
         <Button href="https://google.com" size={"large"}>
           <i className="bi bi-box"></i> button <i className="bi bi-box"></i>
         </Button>
@@ -106,8 +106,8 @@ return (
         </Button>
       </div>
     </div>
-    <div className="d-flex align-items-center gap-5">
-      <div className="d-flex align-items-center gap-3">
+    <div className="d-flex align-items-center gap-5 flex-wrap">
+      <div className="d-flex align-items-center gap-3 flex-wrap">
         <Button type="danger" size={"large"}>
           <i className="bi bi-box"></i> button <i className="bi bi-box"></i>
         </Button>
@@ -130,8 +130,8 @@ return (
         </Button>
       </div>
     </div>
-    <div className="d-flex align-items-center gap-5">
-      <div className="d-flex align-items-center gap-3">
+    <div className="d-flex align-items-center gap-5 flex-wrap">
+      <div className="d-flex align-items-center gap-3 flex-wrap">
         <Button type="danger" variant="secondary" size={"large"}>
           <i className="bi bi-box"></i> button <i className="bi bi-box"></i>
         </Button>
@@ -154,8 +154,8 @@ return (
         </Button>
       </div>
     </div>
-    <div className="d-flex align-items-center gap-5">
-      <div className="d-flex align-items-center gap-3">
+    <div className="d-flex align-items-center gap-5 flex-wrap">
+      <div className="d-flex align-items-center gap-3 flex-wrap">
         <Button type="danger" variant="tertiary" size={"large"}>
           <i className="bi bi-box"></i> button <i className="bi bi-box"></i>
         </Button>
