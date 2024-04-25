@@ -1,7 +1,8 @@
-const { Avatar, Button, Badge } = VM.require("every.near/widget/components") || {
+const { Avatar, Button, Badge, Logo } = VM.require("every.near/widget/components") || {
   Avatar: () => <></>,
   Button: () => <></>,
   Badge: () => <></>,
+  Logo: () => <></>,
 };
 
 const { MobileRight } = VM.require("every.near/widget/components.navbar.mobile-right") || {
@@ -99,46 +100,14 @@ const StyledNavbar = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: #fff;
-  border-bottom: 1px solid #e2e2e2;
+  background: var(--bg, #fff);
+  border-bottom: 1px solid var(--stroke, #e2e2e2);
 
   @media (max-width: 768px) {
     padding: 16px;
     gap: 8px;
   }
 `;
-
-const LogoText = styled.div`
-  span {
-    color: #0d0d0d;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 100%; /* 18px */
-    text-transform: lowercase;
-    margin-left: 12px;
-  }
-  @media (max-width: 768px) {
-    span {
-      font-size: 15px;
-      margin-left: 10px;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-`;
-
-const Logo = () => {
-  return (
-    <LogoText className="d-flex align-items-center">
-      <Everything />
-      <span>everything</span>
-    </LogoText>
-  );
-};
 
 const DropdownContent = styled.div`
   position: absolute;
@@ -150,34 +119,34 @@ const DropdownContent = styled.div`
   padding: 8px 0;
   flex-direction: column;
   align-items: stretch;
-  background: white;
+  background: var(--bg, #fff);
   border-radius: 12px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid var(--stroke, #e2e2e2);
   box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
 
   button {
     margin: 0 8px;
     justify-content: flex-start;
-    color: #1c2024;
+    color: var(--dropdown-button-color, #1c2024);
   }
 `;
 
 const BellCounter = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(20%, -20%);
+  top: 35%;
+  right: 35%;
+  transform: translate(50%, -50%);
   display: flex;
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 10px;
   justify-content: center;
   align-items: center;
   border: 2px solid white;
   gap: 4px;
   flex-shrink: 0;
   border-radius: 100%;
-  background: #dc3d43;
-  color: var(--White, var(--White-100, #fff));
+  background: var(--btn-primary-danger-bg, #dc3d43);
+  border: 1.5px solid var(--btn-secondary-bg, #fff);
   font-size: 12px;
   font-weight: 500;
   line-height: 140%;
@@ -186,7 +155,7 @@ const BellCounter = styled.div`
 
 const Seperator = styled.div`
   height: 1px;
-  background: #e2e2e2;
+  background: var(--seperator-color, #e2e2e2);
   margin: 4px 0;
   width: 100%;
 `;
@@ -221,9 +190,9 @@ const AppCard = styled.div`
   gap: 8px;
   flex: 1 0 0;
   border-radius: 20px;
-  border: 1px solid #e2e2e2;
-  background: #fff;
-  color: var(--Black-100, #000);
+  border: 1px solid var(--stroke, #e2e2e2);
+  background: var(--btn-secondary-bg, #fff);
+  color: var(--btn-secondary-color, #000);
 
   /* Poppins/Text/M - 16px/Medium */
   font-family: Poppins, sans-serif;
@@ -238,11 +207,17 @@ const AppCard = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    background: #f8f8f8;
+    background: var(--btn-secondary-hover-bg, #c7c7c7);
 
     svg {
       height: 20px;
       width: 20px;
+    }
+
+    svg,
+    path {
+      color: var(--btn-secondary-color, #000);
+      stroke: var(--btn-secondary-color, #000);
     }
   }
 
@@ -250,11 +225,11 @@ const AppCard = styled.div`
 
   &:hover {
     cursor: pointer;
-    background: #f8f8f8;
+    background: var(--btn-secondary-hover-bg, #c7c7c7);
   }
   &.disabled {
     cursor: not-allowed;
-    background: #f8f8f8;
+    background: var(--app-card-disabled-bg, #c7c7c7);
     color: #6f6f6f;
     svg,
     path {
@@ -293,13 +268,16 @@ const MemoizedUserDropdown = useMemo(
   [context.accountId, menuDropdownOpen]
 );
 
+const profile = Social.getr(`${context.accountId}/profile`);
+const theme = profile.every.theme ?? "light";
+
 return (
   <>
     <StyledNavbar className="container-xl">
       <div className="d-flex align-items-center gap-md-3 gap-2">
         <div className="position-relative">
           {/* Desktop */}
-          <Button icon variant="tertiary" className="d-none d-md-block" onClick={toggleAppMenu}>
+          <Button icon variant="tertiary" className="d-none d-md-flex" onClick={toggleAppMenu}>
             <Grip />
           </Button>
           <Button icon variant="tertiary" className="d-md-none" onClick={toggleMobileLeft}>
@@ -336,7 +314,13 @@ return (
                   <Badge
                     variant="alpha"
                     size="x-small"
-                    style={{ position: "absolute", top: 15, right: 15 }}
+                    style={{
+                      position: "absolute",
+                      top: 15,
+                      right: 15,
+                      color: "var(--btn-secondary-color, #EDEDED)",
+                      background: "var(--btn-secondary-bg, #C7C7C7)",
+                    }}
                   >
                     Coming Soon
                   </Badge>
@@ -426,31 +410,80 @@ return (
               </Button>
               <Seperator />
               <DropdownHeading>APPEARANCE</DropdownHeading>
-              <Button variant="tertiary" size="small">
+              <Button
+                variant="tertiary"
+                size="small"
+                onClick={() =>
+                  Social.set({
+                    profile: {
+                      every: {
+                        theme: "light",
+                      },
+                    },
+                  })
+                }
+              >
                 <Sun /> Light
-                <div
-                  className="d-flex align-items-center justify-content-center"
-                  style={{ marginLeft: "auto" }}
-                >
-                  <Check />
-                </div>
+                {theme === "light" && (
+                  <div
+                    className="d-flex align-items-center justify-content-center"
+                    style={{ marginLeft: "auto" }}
+                  >
+                    <Check />
+                  </div>
+                )}
               </Button>
-              <Button variant="tertiary" size="small">
+              <Button
+                variant="tertiary"
+                size="small"
+                onClick={() =>
+                  Social.set({
+                    profile: {
+                      every: {
+                        theme: "dark",
+                      },
+                    },
+                  })
+                }
+              >
                 <Moon /> Dark
+                {theme === "dark" && (
+                  <div
+                    className="d-flex align-items-center justify-content-center"
+                    style={{ marginLeft: "auto" }}
+                  >
+                    <Check />
+                  </div>
+                )}
               </Button>
+              {!context.accountId && (
+                <span
+                  className="px-3"
+                  style={{ fontSize: "12px", color: "var(--btn-secondary-danger-color, #CD2B31)" }}
+                >
+                  <small>Please login to change theme</small>
+                </span>
+              )}
             </DropdownContent>
           )}
         </div>
       </div>
       <div className="d-md-none d-flex align-items-center gap-2">
-        <div className="position-relative">
-          <Button icon variant="secondary">
-            <Bell />
-          </Button>
-          {unreadNotifications && <BellCounter />}
-        </div>
-        <Button variant="secondary" className="px-2" onClick={toggleMobileRight}>
-          <Avatar accountId={context.accountId} size="24px" /> <Menu />
+        {context.accountId && (
+          <div className="position-relative">
+            <Button icon variant="secondary">
+              <Bell />
+            </Button>
+            {unreadNotifications && <BellCounter />}
+          </div>
+        )}
+        <Button
+          variant="secondary"
+          icon={!context.accountId}
+          className="px-2"
+          onClick={toggleMobileRight}
+        >
+          {context.accountId && <Avatar accountId={context.accountId} size="24px" />} <Menu />
         </Button>
       </div>
     </StyledNavbar>

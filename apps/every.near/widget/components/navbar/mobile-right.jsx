@@ -1,6 +1,7 @@
-const { Avatar, Button } = VM.require("every.near/widget/components") || {
+const { Avatar, Button, Logo } = VM.require("every.near/widget/components") || {
   Avatar: () => <></>,
   Button: () => <></>,
+  Logo: () => <></>,
 };
 
 const {
@@ -38,8 +39,8 @@ const Container = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: white;
-    z-index: 999999;
+    background: var(--bg, #fff);
+    z-index: 1049;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -53,38 +54,6 @@ const Container = styled.div`
     }
   }
 `;
-
-const LogoText = styled.div`
-  span {
-    color: #0d0d0d;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 100%; /* 18px */
-    text-transform: lowercase;
-    margin-left: 12px;
-  }
-  @media (max-width: 768px) {
-    span {
-      font-size: 15px;
-      margin-left: 10px;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-`;
-
-const Logo = () => {
-  return (
-    <LogoText className="d-flex align-items-center">
-      <Everything />
-      <span>everything</span>
-    </LogoText>
-  );
-};
 
 const ProfileSection = styled.div`
   display: flex;
@@ -101,7 +70,7 @@ const ProfileButtons = styled.div`
   flex-direction: column;
   button {
     justify-content: flex-start;
-    color: #1c2024;
+    color: var(--dropdown-button-color, #1c2024);
     padding: 8px 12px 8px 8px;
   }
 `;
@@ -114,7 +83,7 @@ const OptionSection = styled.div`
   align-self: stretch;
   button {
     justify-content: flex-start;
-    color: #1c2024;
+    color: var(--dropdown-button-color, #1c2024);
     padding: 8px 12px 8px 8px;
   }
 `;
@@ -135,7 +104,7 @@ const Heading = styled.div`
 
 const Seperator = styled.div`
   height: 1px;
-  background: #e2e2e2;
+  background: var(--seperator-color, #e2e2e2);
   margin: 4px 0;
   width: 100%;
 `;
@@ -146,7 +115,7 @@ const UserInfo = styled.div`
   padding: 0 16px;
 
   h6 {
-    color: #0d0d0d;
+    color: var(--color, #0d0d0d);
     font-family: Poppins, sans-serif;
     font-weight: 500;
     line-height: 150%; /* 24px */
@@ -155,7 +124,7 @@ const UserInfo = styled.div`
   }
 
   p {
-    color: #0d0d0d;
+    color: var(--color, #0d0d0d);
     font-family: Poppins, sans-serif;
     font-size: 14px;
     line-height: 140%; /* 19.6px */
@@ -166,6 +135,8 @@ const UserInfo = styled.div`
 
 const MobileRight = ({ toggle, accountId }) => {
   const profile = Social.getr(`${accountId}/profile`);
+  const theme = profile.every.theme ?? "light";
+
   return (
     <Container>
       <div className="d-flex align-items-center justify-content-between p-3">
@@ -216,18 +187,60 @@ const MobileRight = ({ toggle, accountId }) => {
         </Button>
         <Seperator />
         <Heading>APPEARANCE</Heading>
-        <Button variant="tertiary" size="small">
+        <Button
+          variant="tertiary"
+          size="small"
+          onClick={() =>
+            Social.set({
+              profile: {
+                every: {
+                  theme: "light",
+                },
+              },
+            })
+          }
+        >
           <Sun /> Light
-          <div
-            className="d-flex align-items-center justify-content-center"
-            style={{ marginLeft: "auto" }}
-          >
-            <Check />
-          </div>
+          {theme === "light" && (
+            <div
+              className="d-flex align-items-center justify-content-center"
+              style={{ marginLeft: "auto" }}
+            >
+              <Check />
+            </div>
+          )}
         </Button>
-        <Button variant="tertiary" size="small">
+        <Button
+          variant="tertiary"
+          size="small"
+          onClick={() =>
+            Social.set({
+              profile: {
+                every: {
+                  theme: "dark",
+                },
+              },
+            })
+          }
+        >
           <Moon /> Dark
+          {theme === "dark" && (
+            <div
+              className="d-flex align-items-center justify-content-center"
+              style={{ marginLeft: "auto" }}
+            >
+              <Check />
+            </div>
+          )}
         </Button>
+        {!accountId && (
+          <span
+            className="px-3"
+            style={{ fontSize: "12px", color: "var(--btn-secondary-danger-color, #CD2B31)" }}
+          >
+            <small>Please login to change theme</small>
+          </span>
+        )}
       </OptionSection>
     </Container>
   );

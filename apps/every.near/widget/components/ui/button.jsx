@@ -21,19 +21,19 @@ const StyledButton = styled.button`
   /* variant styles */
   background: ${(props) => {
     if (props.variant === "primary" && props.type === "danger") {
-      return "#DC3D43";
+      return "var(--btn-primary-danger-bg, #DC3D43)";
     } else if (props.variant === "primary") {
-      return "#171717";
+      return "var(--btn-primary-bg, #171717)";
     } else if (props.variant === "secondary" || props.variant === "tertiary") {
-      return "#fff";
+      return "var(--btn-secondary-bg, #fff)";
     }
   }};
 
   border: ${(props) => {
     if (props.variant === "secondary" && props.type === "danger") {
-      return "1px solid #F3AEAF";
+      return "1px solid var(--btn-secondary-danger-stroke, #F3AEAF)";
     } else if (props.variant === "secondary") {
-      return "1px solid #DBDBDB";
+      return "1px solid var(--btn-secondary-stroke, #DBDBDB)";
     } else {
       return ""; // No border for other cases
     }
@@ -41,15 +41,16 @@ const StyledButton = styled.button`
 
   color: ${(props) => {
     if (props.variant === "primary") {
-      return "#fff";
-    } else if (props.variant === "secondary" && props.type === "danger") {
-      return "#CD2B31 !important";
+      return "var(--btn-primary-color, #fff)";
+    } else if (
+      (props.variant === "secondary" || props.variant === "tertiary") &&
+      props.type === "danger"
+    ) {
+      return "var(--btn-secondary-danger-color, #CD2B31) !important";
     } else if (props.variant === "secondary") {
-      return "#171717";
-    } else if (props.variant === "tertiary" && props.type === "danger") {
-      return "#CD2B31 !important";
+      return "var(--btn-secondary-color, #171717)";
     } else if (props.variant === "tertiary") {
-      return "#6F6F6F";
+      return "var(--btn-tertiary-color, #6F6F6F)";
     }
   }};
 
@@ -58,15 +59,16 @@ const StyledButton = styled.button`
   path {
     stroke: ${(props) => {
       if (props.variant === "primary") {
-        return "#fff";
-      } else if (props.variant === "secondary" && props.type === "danger") {
-        return "#CD2B31 !important";
+        return "var(--btn-primary-color, #fff)";
+      } else if (
+        (props.variant === "secondary" || props.variant === "tertiary") &&
+        props.type === "danger"
+      ) {
+        return "var(--btn-secondary-danger-color, #CD2B31) !important";
       } else if (props.variant === "secondary") {
-        return "#171717";
-      } else if (props.variant === "tertiary" && props.type === "danger") {
-        return "#CD2B31 !important";
+        return "var(--btn-secondary-color, #171717)";
       } else if (props.variant === "tertiary") {
-        return "#6F6F6F";
+        return "var(--btn-tertiary-color, #6F6F6F)";
       }
     }};
   }
@@ -111,19 +113,19 @@ const StyledButton = styled.button`
       if (props.variant === "primary" && props.type === "danger") {
         return "#CD2B31";
       } else if (props.variant === "primary") {
-        return "#6F6F6F";
+        return "var(--btn-primary-hover-bg, #6F6F6F)";
       } else if (props.variant === "secondary") {
-        return "#FCFCFC";
+        return "var(btn-secondary-hover-bg, #FCFCFC)";
       } else if (props.variant === "tertiary" && props.type === "danger") {
-        return "#FF050508";
+        return "var(--btn-tertiary-danger-hover-bg,#FF050508)";
       } else if (props.variant === "tertiary") {
-        return "#F8F8F8";
+        return "var(--btn-tertiary-hover-bg, #F8F8F8)";
       }
     }};
 
     border: ${(props) => {
       if (props.variant === "secondary") {
-        return "1px solid #C7C7C7";
+        return "1px solid var(--btn-secondary-hover-stroke, #C7C7C7)";
       }
     }};
   }
@@ -132,19 +134,19 @@ const StyledButton = styled.button`
     cursor: not-allowed;
     background: ${(props) => {
       if (props.variant === "primary") {
-        return "#C7C7C7";
+        return "var(--btn-primary-disabled-bg, #C7C7C7)";
       }
     }};
     border: ${(props) => {
       if (props.variant === "secondary") {
-        return "1px solid #DBDBDB";
+        return "1px solid var(--btn-secondary-disabled-stroke, #DBDBDB)";
       }
     }};
     color: ${(props) => {
       if (props.variant === "primary") {
         return "rgba(255, 255, 255, 0.59)";
       } else if (props.variant === "secondary" || props.variant === "tertiary") {
-        return "#C7C7C7";
+        return "var(--btn-primary-disabled-bg, #C7C7C7)";
       }
     }};
 
@@ -154,7 +156,7 @@ const StyledButton = styled.button`
         if (props.variant === "primary") {
           return "rgba(255, 255, 255, 0.59)";
         } else if (props.variant === "secondary" || props.variant === "tertiary") {
-          return "#C7C7C7";
+          return "var(--btn-primary-disabled-bg, #C7C7C7)";
         }
       }};
     }

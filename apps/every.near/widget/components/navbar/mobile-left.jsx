@@ -1,6 +1,7 @@
-const { Badge, Button } = VM.require("every.near/widget/components") || {
+const { Badge, Button, Logo } = VM.require("every.near/widget/components") || {
   Badge: () => <></>,
   Button: () => <></>,
+  Logo: () => <></>,
 };
 
 const { Code, Everything, LayoutTemplate, PaintRoller, PartyPopper, ShoppingCart, X, Video } =
@@ -24,8 +25,8 @@ const Container = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: white;
-    z-index: 999999;
+    background: var(--bg, #fff);
+    z-index: 1049;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -39,38 +40,6 @@ const Container = styled.div`
     }
   }
 `;
-
-const LogoText = styled.div`
-  span {
-    color: #0d0d0d;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 100%; /* 18px */
-    text-transform: lowercase;
-    margin-left: 12px;
-  }
-  @media (max-width: 768px) {
-    span {
-      font-size: 15px;
-      margin-left: 10px;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-`;
-
-const Logo = () => {
-  return (
-    <LogoText className="d-flex align-items-center">
-      <Everything />
-      <span>everything</span>
-    </LogoText>
-  );
-};
 
 const Heading = styled.div`
   display: flex;
@@ -90,21 +59,22 @@ const AppGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  padding: 0 1rem;
+  padding: 1rem;
 `;
 
 const AppCard = styled.div`
   position: relative;
   display: flex;
+  min-width: 160px;
   padding: 16px;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   flex: 1 0 0;
   border-radius: 20px;
-  border: 1px solid #e2e2e2;
-  background: #fff;
-  color: var(--Black-100, #000);
+  border: 1px solid var(--stroke, #e2e2e2);
+  background: var(--btn-secondary-bg, #fff);
+  color: var(--btn-secondary-color, #000);
 
   /* Poppins/Text/M - 16px/Medium */
   font-family: Poppins, sans-serif;
@@ -119,11 +89,17 @@ const AppCard = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    background: #f8f8f8;
+    background: var(--btn-secondary-hover-bg, #c7c7c7);
 
     svg {
       height: 20px;
       width: 20px;
+    }
+
+    svg,
+    path {
+      color: var(--btn-secondary-color, #000);
+      stroke: var(--btn-secondary-color, #000);
     }
   }
 
@@ -131,11 +107,11 @@ const AppCard = styled.div`
 
   &:hover {
     cursor: pointer;
-    background: #f8f8f8;
+    background: var(--btn-secondary-hover-bg, #c7c7c7);
   }
   &.disabled {
     cursor: not-allowed;
-    background: #f8f8f8;
+    background: var(--app-card-disabled-bg, #c7c7c7);
     color: #6f6f6f;
     svg,
     path {
@@ -150,6 +126,7 @@ const Links = styled.div`
   flex-direction: column;
   align-items: stretch;
   padding: 16px;
+  flex-grow: 1;
 
   button {
     justify-content: flex-start;
@@ -159,7 +136,7 @@ const Links = styled.div`
   }
 
   .active {
-    color: #171717;
+    color: var(--color);
     font-weight: 500;
   }
 `;
@@ -209,7 +186,13 @@ const MobileLeft = ({ toggle }) => {
             <Badge
               variant="alpha"
               size="x-small"
-              style={{ position: "absolute", top: 15, right: 15 }}
+              style={{
+                position: "absolute",
+                top: 15,
+                right: 15,
+                color: "#C7C7C7)",
+                background: "var(--btn-primary-disabled-bg, #C7C7C7)",
+              }}
             >
               Soon
             </Badge>
