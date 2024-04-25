@@ -64,6 +64,18 @@ const lightTheme = `
 
   /* app card */
   --app-card-disabled-bg: #c7c7c7;
+
+  /* badge */
+  --badge-alpha-black-color: #171717;
+
+  /* chip */
+  --chip-bg: #f3f3f3;
+  --chip-color: #171717;
+  --chip-hover-bg: #e8e8e8;
+  --chip-selected-bg: #171717;
+  --chip-selected-color: #fff;
+  --chip-selected-icon: #dbdbdb;
+  --chip-selected-hover-bg: #6f6f6f;
   
   /* danger buttons */
   --btn-primary-danger-bg: #DC3D43;
@@ -97,6 +109,18 @@ const darkTheme = `
 
   /* app card */
   --app-card-disabled-bg: #1c1c1c;
+
+  /* badge */
+  --badge-alpha-black-color: #f7f7f7;
+
+  /* chip */
+  --chip-bg: #f3f3f3;
+  --chip-color: #171717;
+  --chip-hover-bg: #e8e8e8;
+  --chip-selected-bg: #171717;
+  --chip-selected-color: #fff;
+  --chip-selected-icon: #dbdbdb;
+  --chip-selected-hover-bg: #6f6f6f;
   
   /* danger buttons */
   --btn-primary-danger-bg: #F2555A;

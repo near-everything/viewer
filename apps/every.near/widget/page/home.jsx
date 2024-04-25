@@ -1,12 +1,9 @@
-const { Badge, Container } = VM.require("every.near/widget/components") || {
-  Badge: () => <></>,
+const { Container } = VM.require("every.near/widget/components") || {
   Container: () => <></>,
 };
 
 return (
   <Container>
-    <Badge variant="solid" color="blue">
-      11+
-    </Badge>
+    <Widget src="every.near/widget/components.ui.library" loading="" />
   </Container>
 );

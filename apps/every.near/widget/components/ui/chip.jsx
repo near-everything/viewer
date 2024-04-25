@@ -22,9 +22,9 @@ const StyledChip = styled.div`
   }}
 
   border-radius: 12px;
-  background: #f3f3f3;
+  background: var(--chip-bg, #f3f3f3);
 
-  color: #171717;
+  color: var(--chip-color, #171717);
   font-family: Poppins, sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -35,27 +35,26 @@ const StyledChip = styled.div`
   cursor: pointer;
 
   &:hover {
-    background: #e8e8e8;
+    background: var(--chip-hover-bg, #e8e8e8);
   }
 
   &.selected {
-    background: #171717;
-    color: #fff;
+    background: var(--chip-selected-bg, #171717);
+    color: var(--chip-selected-color, #fff);
 
     svg {
       path {
-        fill: #dbdbdb;
+        fill: var(--chip-selected-icon, #dbdbdb);
       }
     }
 
     &:hover {
-      background: #6f6f6f;
+      background: var(--chip-selected-hover-bg, #6f6f6f);
     }
   }
 `;
 
 const Chip = ({ children, selected, onClick, size, multiple, ...restProps }) => {
-  console.log(multiple);
   return (
     <StyledChip size={size} className={selected ? "selected" : ""} onClick={onClick} {...restProps}>
       {children} {multiple ? selected ? <X /> : <Plus /> : null}

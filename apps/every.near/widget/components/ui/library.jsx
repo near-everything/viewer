@@ -1,23 +1,29 @@
-const { Button } = VM.require("every.near/widget/components") || {
+const { Button, Badge, Container } = VM.require("every.near/widget/components") || {
   Button: () => <></>,
+  Badge: () => <></>,
+  Container: () => <></>,
 };
 
-const PoppinsCSS = fetch(
-  `https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet`
-).body;
+const badgeSizes = ["xx-small", "x-small", "small", "medium"];
+const badgeStyles = ["alpha", "solid"];
+const badgeColors = ["black", "blue", "green", "yellow", "red"];
 
-const Root = styled.div`
-  // you can override classnames here
-  ${PoppinsCSS}
+const [selected, setSelected] = useState(null);
 
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
+const badges = [];
+
+badgeSizes.forEach((size) => {
+  badgeStyles.forEach((style) => {
+    badgeColors.forEach((color) => {
+      badges.push({ size, style, color });
+    });
+  });
+});
 
 return (
-  <Root>
-    <h1>Button</h1>
+  <div className="d-flex flex-column gap-3">
+    <h1>UI Library</h1>
+    <h2>Button</h2>
     <div className="d-flex align-items-center gap-5">
       <div className="d-flex align-items-center gap-3">
         <Button size={"large"}>
@@ -172,5 +178,37 @@ return (
         </Button>
       </div>
     </div>
-  </Root>
+    <h2>Badge</h2>
+    <div className="d-flex flex-wrap gap-3 align-items-center">
+      {badges.map((badge, index) => (
+        <Badge
+          style={{ width: "max-content" }}
+          key={index}
+          size={badge.size}
+          variant={badge.style}
+          color={badge.color}
+        >
+          1
+        </Badge>
+      ))}
+    </div>
+    <h2>Chips</h2>
+    <h3>Single</h3>
+    <Widget
+      src="every.near/widget/components.chips"
+      props={{
+        items: badgeColors,
+        onSelect: (selected) => setSelected(selected),
+      }}
+    />
+    <h3>Multiple</h3>
+    <Widget
+      src="every.near/widget/components.chips"
+      props={{
+        items: badgeColors,
+        onSelect: (selected) => setSelected(selected),
+        multiple: true,
+      }}
+    />
+  </div>
 );

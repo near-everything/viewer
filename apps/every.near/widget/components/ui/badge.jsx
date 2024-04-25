@@ -28,7 +28,7 @@ const StyledBadge = styled.div`
 
   color: ${(props) => {
     if (props.color === "black") {
-      return props.variant === "alpha" ? "#171717" : "#fff";
+      return props.variant === "alpha" ? "var(--badge-alpha-black-color, #171717)" : "#fff";
     } else if (props.color === "blue") {
       return props.variant === "alpha" ? "#006ADC" : "#fff";
     } else if (props.color === "green") {
