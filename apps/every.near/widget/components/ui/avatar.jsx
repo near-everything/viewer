@@ -12,7 +12,7 @@ const Avatar = ({ accountId, size, large, form, imageStyle, key }) => {
         style={{
           width: size ?? "48px",
           height: size ?? "48px",
-          background: "#EDEDED",
+          background: "var(--seperator-color, #e2e2e2)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -22,13 +22,18 @@ const Avatar = ({ accountId, size, large, form, imageStyle, key }) => {
           textAlign: "center",
           borderRadius: imageForm === "rectangle" ? "8px" : "100%",
           textTransform: "capitalize",
+          color: "var(--btn-secondary-color, #171717)",
           ...imageStyle,
         }}
       >
         {profile.name ? (
           profile.name[0]
         ) : (
-          <User width={size ? "14px" : "18px"} height={size ? "14px" : "18px"} />
+          <User
+            width={size ? "14px" : "18px"}
+            height={size ? "14px" : "18px"}
+            color={"var(--btn-secondary-color, #171717)"}
+          />
         )}
       </div>
     );

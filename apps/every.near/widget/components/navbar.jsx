@@ -229,7 +229,7 @@ const AppCard = styled.div`
   }
   &.disabled {
     cursor: not-allowed;
-    background: var(--app-card-disabled-bg, #c7c7c7);
+    background: var(--btn-secondary-hover-bg, #c7c7c7);
     color: #6f6f6f;
     svg,
     path {
@@ -318,8 +318,8 @@ return (
                       position: "absolute",
                       top: 15,
                       right: 15,
-                      color: "var(--btn-secondary-color, #EDEDED)",
-                      background: "var(--btn-secondary-bg, #C7C7C7)",
+                      // color: "var(--btn-secondary-color, #EDEDED)",
+                      // background: "var(--btn-secondary-bg, #C7C7C7)",
                     }}
                   >
                     Coming Soon

@@ -60,7 +60,7 @@ const lightTheme = `
   
   /* dropdown */
   --dropdown-button-color: #1c2024;
-  --seperator-color: e2e2e2;
+  --seperator-color: #e2e2e2;
 
   /* app card */
   --app-card-disabled-bg: #c7c7c7;

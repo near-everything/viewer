@@ -22,7 +22,7 @@ const AvatarGroup = ({ accountIds, large, size, maxCount }) => {
           style={{
             width: size ?? "48px",
             height: size ?? "48px",
-            background: "#EDEDED",
+            background: "var(--seperator-color, #e2e2e2)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -34,6 +34,7 @@ const AvatarGroup = ({ accountIds, large, size, maxCount }) => {
             textTransform: "capitalize",
             marginLeft: "-6px",
             border: "3px solid var(--bg, white)",
+            color: "var(--btn-secondary-color, #171717)",
           }}
         >
           +{remaining}

@@ -14,7 +14,7 @@ const badgeColors = ["black", "blue", "green", "yellow", "red"];
 
 const avatarIds = [
   "itexpert120-contra.near",
-  "itexpert120-contra.near",
+  "kwok0997.near",
   "itexpert120-contra.near",
   "itexpert120-contra.near",
   "itexpert120-contra.near",
