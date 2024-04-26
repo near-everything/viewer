@@ -1,38 +1,59 @@
-const Avatar = (props) => {
-  const accountId = props.accountId ?? context.accountId;
+const { User } = VM.require("every.near/widget/icons") || {
+  User: () => <></>,
+};
 
-  const ImageWrapper = styled.div`
-    img {
-      width: ${(props) => props.size ?? "52px"} !important;
-      height: ${(props) => props.size ?? "52px"} !important;
-      flex-shrink: 0 !important;
-      border-radius: 100px !important;
-    }
-
-    .profile-image {
-      width: auto !important;
-      height: auto !important;
-    }
-
-    @media screen and (max-width: 768px) {
-      ${(props) =>
-        `
-      img {
-        width: ${props.size ?? "40px"} !important;
-        height: ${props.size ?? "40px"} !important;
-      }
-    `}
-    }
-  `;
+const Avatar = ({ accountId, size, large, form, imageStyle, key }) => {
+  const imageForm = form ?? "circle";
+  const profile = Social.getr(`${accountId}/profile`);
+  if (!profile.image) {
+    return (
+      <div
+        key={key}
+        style={{
+          width: size ?? "48px",
+          height: size ?? "48px",
+          background: "#EDEDED",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "18px",
+          fontWeight: "500",
+          textAlign: "center",
+          borderRadius: imageForm === "rectangle" ? "8px" : "100%",
+          textTransform: "capitalize",
+          ...imageStyle,
+        }}
+      >
+        {profile.name ? (
+          profile.name[0]
+        ) : (
+          <User width={size ? "14px" : "18px"} height={size ? "14px" : "18px"} />
+        )}
+      </div>
+    );
+  }
 
   return (
-    <ImageWrapper size={props.size}>
-      <Widget
-        src="mob.near/widget/ProfileImage"
-        props={{ accountId }}
-        loading={<div style={{ width: props.size, height: props.size }}></div>}
-      />
-    </ImageWrapper>
+    <Widget
+      src="mob.near/widget/ProfileImage"
+      key={key}
+      props={{
+        accountId,
+        className: "",
+        fast: true,
+        style: {},
+        thumbnail: large ? "large" : "thumbnail",
+        imageClassName: "",
+        imageStyle: {
+          width: size ?? "48px",
+          height: size ?? "48px",
+          borderRadius: imageForm === "rectangle" ? "8px" : "100%",
+          objectFit: "cover",
+          ...imageStyle,
+        },
+      }}
+    />
   );
 };
 

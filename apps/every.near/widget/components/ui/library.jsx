@@ -1,4 +1,8 @@
-const { Button, Badge, Container } = VM.require("every.near/widget/components") || {
+const { Avatar, AvatarGroup, Button, Badge, Container } = VM.require(
+  "every.near/widget/components"
+) || {
+  Avatar: () => <></>,
+  AvatarGroup: () => <></>,
   Button: () => <></>,
   Badge: () => <></>,
   Container: () => <></>,
@@ -7,6 +11,17 @@ const { Button, Badge, Container } = VM.require("every.near/widget/components") 
 const badgeSizes = ["xx-small", "x-small", "small", "medium"];
 const badgeStyles = ["alpha", "solid"];
 const badgeColors = ["black", "blue", "green", "yellow", "red"];
+
+const avatarIds = [
+  "itexpert120-contra.near",
+  "itexpert120-contra.near",
+  "itexpert120-contra.near",
+  "itexpert120-contra.near",
+  "itexpert120-contra.near",
+  "itexpert120-contra.near",
+  "itexpert120-contra.near",
+  "itexpert120-contra.near",
+];
 
 const [selected, setSelected] = useState(null);
 
@@ -210,5 +225,24 @@ return (
         multiple: true,
       }}
     />
+    <h2>Avatar</h2>
+    <div className="d-flex align-items-center gap-3">
+      <Avatar accountId={"itexpert120-contra.near"} form="rectangle" size="48px" />
+      <Avatar accountId={"itexpert120-contra.near"} form="rectangle" size="40px" />
+      <Avatar accountId={"itexpert120-contra.near"} form="rectangle" size="32px" />
+      <Avatar accountId={"itexpert120-contra.near"} form="rectangle" size="24px" />
+    </div>
+    <div className="d-flex align-items-center gap-3">
+      <Avatar accountId={"itexpert120-contra.near"} form="circle" size="48px" />
+      <Avatar accountId={"itexpert120-contra.near"} form="circle" size="40px" />
+      <Avatar accountId={"itexpert120-contra.near"} form="circle" size="32px" />
+      <Avatar accountId={"itexpert120-contra.near"} form="circle" size="24px" />
+    </div>
+    <div className="d-flex flex-column gap-3">
+      <AvatarGroup accountIds={avatarIds} maxCount={5} size="48px" />
+      <AvatarGroup accountIds={avatarIds} maxCount={5} size="40px" />
+      <AvatarGroup accountIds={avatarIds} maxCount={5} size="32px" />
+      <AvatarGroup accountIds={avatarIds} maxCount={5} size="24px" />
+    </div>
   </div>
 );

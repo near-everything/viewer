@@ -1,19 +1,19 @@
-const User = () => {
+const User = ({ width, height }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
+      width={width ?? "20"}
+      height={height ?? "20"}
+      viewBox="0 0 20 20"
       fill="none"
-      stroke="#171717"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      class="lucide lucide-user"
     >
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
+      <path
+        d="M10.0007 10.8333C12.3018 10.8333 14.1673 8.96785 14.1673 6.66667C14.1673 4.36548 12.3018 2.5 10.0007 2.5C7.69946 2.5 5.83398 4.36548 5.83398 6.66667C5.83398 8.96785 7.69946 10.8333 10.0007 10.8333ZM10.0007 10.8333C11.7688 10.8333 13.4645 11.5357 14.7147 12.786C15.9649 14.0362 16.6673 15.7319 16.6673 17.5M10.0007 10.8333C8.23254 10.8333 6.53685 11.5357 5.28661 12.786C4.03636 14.0362 3.33398 15.7319 3.33398 17.5"
+        stroke="#171717"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 };
