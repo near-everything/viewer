@@ -16,6 +16,7 @@ const {
   UserCircle,
   QRCode,
   Download,
+  LogOut,
 } = VM.require("every.near/widget/icons") || {
   Everything: () => <></>,
   X: () => <></>,
@@ -28,6 +29,7 @@ const {
   UserCircle: () => <></>,
   QRCode: () => <></>,
   Download: () => <></>,
+  LogOut: () => <></>,
 };
 
 const Container = styled.div`
@@ -241,6 +243,11 @@ const MobileRight = ({ toggle, accountId }) => {
             <small>Please login to change theme</small>
           </span>
         )}
+        <Seperator />
+        <Button variant="tertiary" size="small" type="danger">
+          <LogOut />
+          Log Out
+        </Button>
       </OptionSection>
     </Container>
   );

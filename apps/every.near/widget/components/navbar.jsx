@@ -102,7 +102,6 @@ const StyledNavbar = styled.div`
   gap: 16px;
   background: var(--bg, #fff);
   border-bottom: 1px solid var(--stroke, #e2e2e2);
-
   @media (max-width: 768px) {
     padding: 16px;
     gap: 8px;
