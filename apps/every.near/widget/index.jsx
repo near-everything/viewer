@@ -60,7 +60,7 @@ const lightTheme = `
   
   /* dropdown */
   --dropdown-button-color: #1c2024;
-  --seperator-color: #e2e2e2;
+  --separator-color: #e2e2e2;
 
   /* app card */
   --app-card-disabled-bg: #c7c7c7;
@@ -105,7 +105,7 @@ const darkTheme = `
 
   /* dropdown */
   --dropdown-button-color: #C7C7C7;
-  --seperator-color: #2c2c2c;
+  --separator-color: #2c2c2c;
 
   /* app card */
   --app-card-disabled-bg: #1c1c1c;

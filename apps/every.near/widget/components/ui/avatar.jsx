@@ -12,7 +12,7 @@ const Avatar = ({ accountId, size, large, form, imageStyle, key }) => {
         style={{
           width: size ?? "48px",
           height: size ?? "48px",
-          background: "var(--seperator-color, #e2e2e2)",
+          background: "var(--separator-color, #e2e2e2)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

@@ -104,9 +104,9 @@ const Heading = styled.div`
   letter-spacing: -0.14px;
 `;
 
-const Seperator = styled.div`
+const Separator = styled.div`
   height: 1px;
-  background: var(--seperator-color, #e2e2e2);
+  background: var(--separator-color, #e2e2e2);
   margin: 4px 0;
   width: 100%;
 `;
@@ -187,7 +187,7 @@ const MobileRight = ({ toggle, accountId }) => {
           <History />
           View History
         </Button>
-        <Seperator />
+        <Separator />
         <Heading>APPEARANCE</Heading>
         <Button
           variant="tertiary"
@@ -243,7 +243,7 @@ const MobileRight = ({ toggle, accountId }) => {
             <small>Please login to change theme</small>
           </span>
         )}
-        <Seperator />
+        <Separator />
         <Button variant="tertiary" size="small" type="danger">
           <LogOut />
           Log Out

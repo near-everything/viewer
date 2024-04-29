@@ -152,9 +152,9 @@ const BellCounter = styled.div`
   letter-spacing: -0.12px;
 `;
 
-const Seperator = styled.div`
+const Separator = styled.div`
   height: 1px;
-  background: var(--seperator-color, #e2e2e2);
+  background: var(--separator-color, #e2e2e2);
   margin: 4px 0;
   width: 100%;
 `;
@@ -376,7 +376,7 @@ return (
                   <Button variant="tertiary" size="small">
                     <Download /> Withdraw
                   </Button>
-                  <Seperator />
+                  <Separator />
                   <Button variant="tertiary" size="small" type="danger">
                     <LogOut />
                     Log Out
@@ -407,7 +407,7 @@ return (
                 <History />
                 View History
               </Button>
-              <Seperator />
+              <Separator />
               <DropdownHeading>APPEARANCE</DropdownHeading>
               <Button
                 variant="tertiary"
