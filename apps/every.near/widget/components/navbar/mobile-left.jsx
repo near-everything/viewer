@@ -1,11 +1,11 @@
-const { Badge, Button, Logo } = VM.require("every.near/widget/components") || {
+const { Badge, Button, Logo } = VM.require("${config_account}/widget/components") || {
   Badge: () => <></>,
   Button: () => <></>,
   Logo: () => <></>,
 };
 
 const { Code, Everything, LayoutTemplate, PaintRoller, PartyPopper, ShoppingCart, X, Video } =
-  VM.require("every.near/widget/icons") || {
+  VM.require("${config_account}/widget/icons") || {
     Code: () => <></>,
     Everything: () => <></>,
     LayoutTemplate: () => <></>,

@@ -13,6 +13,10 @@ const StyledBadge = styled.div`
   background: rgba(0, 0, 0, 0.05);
   color: #171717;
   background: ${(props) => {
+    if (props.variant === "outline") {
+      return "white";
+    }
+
     if (props.color === "black") {
       return props.variant === "alpha" ? "rgba(0, 0, 0, 0.05)" : "#171717";
     } else if (props.color === "blue") {
@@ -27,6 +31,19 @@ const StyledBadge = styled.div`
   }};
 
   color: ${(props) => {
+    if (props.variant === "outline") {
+      if (props.color === "black") {
+        return "var(--badge-alpha-black-color, #171717)";
+      } else if (props.color === "blue") {
+        return "#006ADC";
+      } else if (props.color === "green") {
+        return "#18794E";
+      } else if (props.color === "yellow") {
+        return "#35290F";
+      } else if (props.color === "red") {
+        return "#CD2B31";
+      }
+    }
     if (props.color === "black") {
       return props.variant === "alpha" ? "var(--badge-alpha-black-color, #171717)" : "#fff";
     } else if (props.color === "blue") {
@@ -39,6 +56,53 @@ const StyledBadge = styled.div`
       return props.variant === "alpha" ? "#CD2B31" : "#fff";
     }
   }};
+
+  border: 1px solid
+    ${(props) => {
+      if (props.variant === "outline") {
+        if (props.color === "black") {
+          return "var(--badge-alpha-black-color, #171717)";
+        } else if (props.color === "blue") {
+          return "#006ADC";
+        } else if (props.color === "green") {
+          return "#18794E";
+        } else if (props.color === "yellow") {
+          return "#35290F";
+        } else if (props.color === "red") {
+          return "#CD2B31";
+        }
+      }
+    }};
+
+  svg,
+  path {
+    fill: ${(props) => {
+      if (props.variant === "outline") {
+        if (props.color === "black") {
+          return "var(--badge-alpha-black-color, #171717)";
+        } else if (props.color === "blue") {
+          return "#006ADC";
+        } else if (props.color === "green") {
+          return "#18794E";
+        } else if (props.color === "yellow") {
+          return "#35290F";
+        } else if (props.color === "red") {
+          return "#CD2B31";
+        }
+      }
+      if (props.color === "black") {
+        return props.variant === "alpha" ? "var(--badge-alpha-black-color, #171717)" : "#fff";
+      } else if (props.color === "blue") {
+        return props.variant === "alpha" ? "#006ADC" : "#fff";
+      } else if (props.color === "green") {
+        return props.variant === "alpha" ? "#18794E" : "#fff";
+      } else if (props.color === "yellow") {
+        return props.variant === "alpha" ? "#35290F" : "#fff";
+      } else if (props.color === "red") {
+        return props.variant === "alpha" ? "#CD2B31" : "#fff";
+      }
+    }};
+  }
 
   font-family: Poppins, sans-serif;
   font-size: 14px;

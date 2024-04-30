@@ -1,4 +1,4 @@
-const { Avatar } = VM.require("every.near/widget/components.ui.avatar") || {
+const { Avatar } = VM.require("${config_account}/widget/components.ui.avatar") || {
   Avatar: () => <></>,
 };
 

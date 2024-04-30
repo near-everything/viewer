@@ -1,5 +1,5 @@
 const { Avatar, AvatarGroup, Button, Badge, Container } = VM.require(
-  "every.near/widget/components"
+  "${config_account}/widget/components"
 ) || {
   Avatar: () => <></>,
   AvatarGroup: () => <></>,
@@ -210,7 +210,7 @@ return (
     <h2>Chips</h2>
     <h3>Single</h3>
     <Widget
-      src="every.near/widget/components.chips"
+      src="${config_account}/widget/components.chips"
       props={{
         items: badgeColors,
         onSelect: (selected) => setSelected(selected),
@@ -218,7 +218,7 @@ return (
     />
     <h3>Multiple</h3>
     <Widget
-      src="every.near/widget/components.chips"
+      src="${config_account}/widget/components.chips"
       props={{
         items: badgeColors,
         onSelect: (selected) => setSelected(selected),

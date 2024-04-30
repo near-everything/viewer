@@ -1,14 +1,14 @@
-const { Avatar, Button, Badge, Logo } = VM.require("every.near/widget/components") || {
+const { Avatar, Button, Badge, Logo } = VM.require("${config_account}/widget/components") || {
   Avatar: () => <></>,
   Button: () => <></>,
   Badge: () => <></>,
   Logo: () => <></>,
 };
 
-const { MobileRight } = VM.require("every.near/widget/components.navbar.mobile-right") || {
+const { MobileRight } = VM.require("${config_account}/widget/components.navbar.mobile-right") || {
   MobileRight: () => <></>,
 };
-const { MobileLeft } = VM.require("every.near/widget/components.navbar.mobile-left") || {
+const { MobileLeft } = VM.require("${config_account}/widget/components.navbar.mobile-left") || {
   MobileLeft: () => <></>,
 };
 
@@ -35,7 +35,7 @@ const {
   Sun,
   UserCircle,
   Video,
-} = VM.require("every.near/widget/icons") || {
+} = VM.require("${config_account}/widget/icons") || {
   Bell: () => <></>,
   Check: () => <></>,
   ChevronDown: () => <></>,

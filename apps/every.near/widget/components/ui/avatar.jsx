@@ -1,4 +1,4 @@
-const { User } = VM.require("every.near/widget/icons") || {
+const { User } = VM.require("${config_account}/widget/icons") || {
   User: () => <></>,
 };
 

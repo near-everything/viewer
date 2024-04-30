@@ -1,5 +1,5 @@
 const widgets = {
-  navbar: "every.near/widget/components.navbar",
+  navbar: "${config_account}/widget/components.navbar",
 };
 
 const config = {
@@ -23,7 +23,7 @@ const config = {
     param: "page",
     routes: {
       home: {
-        path: "every.near/widget/page.home",
+        path: "${config_account}/widget/page.home",
         blockHeight: "final",
         init: {
           name: "Home",
@@ -144,6 +144,6 @@ const Root = styled.div`
 
 return (
   <Root>
-    <Widget src="every.near/widget/app.view" props={{ config, ...props }} />
+    <Widget src="${config_account}/widget/app.view" props={{ config, ...props }} />
   </Root>
 );

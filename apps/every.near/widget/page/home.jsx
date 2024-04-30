@@ -1,9 +1,9 @@
-const { Container } = VM.require("every.near/widget/components") || {
+const { Container } = VM.require("${config_account}/widget/components") || {
   Container: () => <></>,
 };
 
 return (
   <Container>
-    <Widget src="every.near/widget/components.ui.library" loading="" />
+    <Widget src="${config_account}/widget/components.ui.library" loading="" />
   </Container>
 );

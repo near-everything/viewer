@@ -1,4 +1,4 @@
-const { Avatar, Button, Logo } = VM.require("every.near/widget/components") || {
+const { Avatar, Button, Logo } = VM.require("${config_account}/widget/components") || {
   Avatar: () => <></>,
   Button: () => <></>,
   Logo: () => <></>,
@@ -17,7 +17,7 @@ const {
   QRCode,
   Download,
   LogOut,
-} = VM.require("every.near/widget/icons") || {
+} = VM.require("${config_account}/widget/icons") || {
   Everything: () => <></>,
   X: () => <></>,
   GitFork: () => <></>,
